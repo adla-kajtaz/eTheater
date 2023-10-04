@@ -74,19 +74,21 @@ class _NavigacijaState extends State<Navigation> {
                     }),
               ),
               const Divider(
-                color: Colors.white, // Customize the line color
-                thickness: 1, // Customize the line thickness
-                //indent: 0, // Customize the left indentation
-                //endIndent: 0, // Customize the right indentation
+                color: Colors.white,
+                thickness: 1,
               ),
-              const Row(
+              Row(
                 children: [
-                  SizedBox(width: 10),
-                  Icon(Icons.account_circle,
+                  const SizedBox(width: 10),
+                  const Icon(Icons.account_circle,
                       size: 25, color: Color.fromARGB(255, 181, 176, 176)),
-                  SizedBox(width: 100),
-                  Icon(Icons.logout_outlined,
-                      size: 25, color: Color.fromARGB(255, 181, 176, 176))
+                  const SizedBox(width: 100),
+                  InkWell(
+                      onTap: () async {
+                        Navigator.pushNamed(context, Login.routeName);
+                      },
+                      child: const Icon(Icons.logout_outlined,
+                          size: 25, color: Color.fromARGB(255, 181, 176, 176)))
                 ],
               ),
               const SizedBox(height: 10),
