@@ -18,8 +18,11 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 234, 191, 90)),
         useMaterial3: true,
       ),
-      initialRoute: '/login',
-      routes: {Login.routeName: (context) => const Login()},
+      initialRoute: '/home',
+      routes: {
+        Login.routeName: (context) => const Login(),
+        Navigation.routeName: (context) => const Navigation()
+      },
     );
   }
 }
