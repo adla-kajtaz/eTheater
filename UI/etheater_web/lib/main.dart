@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/screens.dart';
+import 'views/view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         Login.routeName: (context) => const Login(),
         Navigation.routeName: (context) => const Navigation(),
+        NewShow.routeName: (context) => const NewShow(),
       },
     );
   }

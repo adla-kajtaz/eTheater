@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens.dart';
+import 'view.dart';
 
 class Navigation extends StatefulWidget {
   static const routeName = '/home';
