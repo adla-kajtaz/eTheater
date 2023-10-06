@@ -14,6 +14,8 @@ class _NavigacijaState extends State<Navigation> {
   final List<Widget> _screens = [
     const Shows(),
     const Schedule(),
+    const Tickets(),
+    const Notifications(),
   ];
 
   final List<String> _titles = [

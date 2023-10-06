@@ -1,14 +1,14 @@
 // import 'package:etheater_web/views/view.dart';
 import 'package:flutter/material.dart';
 
-class Shows extends StatefulWidget {
-  const Shows({super.key});
+class Notifications extends StatefulWidget {
+  const Notifications({super.key});
 
   @override
-  _ShowsState createState() => _ShowsState();
+  _NotificationsState createState() => _NotificationsState();
 }
 
-class _ShowsState extends State<Shows> {
+class _NotificationsState extends State<Notifications> {
   @override
   void initState() {
     super.initState();
@@ -25,50 +25,10 @@ class _ShowsState extends State<Shows> {
               Row(
                 children: [
                   InkWell(
-                      onTap: () async {
-                        /* showDialog(
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                                  title: Text('Modal Form'),
-                                  content: Container(
-                                    // You can place your form widgets here
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        TextField(
-                                          decoration: InputDecoration(
-                                              labelText: 'Name'),
-                                        ),
-                                        TextField(
-                                          decoration: InputDecoration(
-                                              labelText: 'Email'),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () {
-                                        // Close the dialog
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text('Cancel'),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        // Perform form submission or other actions here
-                                        // Close the dialog
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Text('Submit'),
-                                    ),
-                                  ],
-                                )); */
-                        // Navigator.popAndPushNamed(context, NewShow.routeName);
-                      },
+                      onTap: () async {},
                       child: const Icon(Icons.add_outlined,
                           size: 35, color: Color.fromARGB(255, 40, 38, 38))),
-                  const SizedBox(width: 650),
+                  const SizedBox(width: 450),
                   Expanded(
                     child: SizedBox(
                       height: 37,
@@ -77,15 +37,39 @@ class _ShowsState extends State<Shows> {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Search by name',
+                            hintText: 'Search by title',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide.none,
                             ),
-                            contentPadding: const EdgeInsets.only(
-                                left: 8,
-                                bottom:
-                                    8), // Adjust padding to position hint text
+                            contentPadding:
+                                const EdgeInsets.only(left: 8, bottom: 8),
+                            alignLabelWithHint: true,
+                            filled: true,
+                            fillColor: const Color.fromARGB(255, 40, 38, 38),
+                            hintStyle: const TextStyle(color: Colors.white),
+                          ),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: SizedBox(
+                      height: 37,
+                      width: 166,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Search by category',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide.none,
+                            ),
+                            contentPadding:
+                                const EdgeInsets.only(left: 8, bottom: 8),
                             alignLabelWithHint: true,
                             filled: true,
                             fillColor: const Color.fromARGB(255, 40, 38, 38),
@@ -128,7 +112,7 @@ class _ShowsState extends State<Shows> {
                           height: 40,
                           color: const Color.fromARGB(255, 40, 38, 38),
                           child: const Center(
-                              child: Text('Name',
+                              child: Text('Title',
                                   style: TextStyle(color: Colors.white))),
                         ),
                       ),
@@ -137,7 +121,7 @@ class _ShowsState extends State<Shows> {
                           height: 40,
                           color: const Color.fromARGB(255, 40, 38, 38),
                           child: const Center(
-                              child: Text('Duration',
+                              child: Text('Category',
                                   style: TextStyle(color: Colors.white))),
                         ),
                       ),
@@ -146,16 +130,7 @@ class _ShowsState extends State<Shows> {
                           height: 40,
                           color: const Color.fromARGB(255, 40, 38, 38),
                           child: const Center(
-                              child: Text('Director',
-                                  style: TextStyle(color: Colors.white))),
-                        ),
-                      ),
-                      TableCell(
-                        child: Container(
-                          height: 40,
-                          color: const Color.fromARGB(255, 40, 38, 38),
-                          child: const Center(
-                              child: Text('Genre',
+                              child: Text('User',
                                   style: TextStyle(color: Colors.white))),
                         ),
                       ),
@@ -190,19 +165,13 @@ class _ShowsState extends State<Shows> {
                       const TableCell(
                         child: SizedBox(
                           height: 40,
-                          child: Center(child: Text('45')),
+                          child: Center(child: Text('Novosti')),
                         ),
                       ),
                       const TableCell(
                         child: SizedBox(
                           height: 40,
                           child: Center(child: Text('Neko Nekić')),
-                        ),
-                      ),
-                      const TableCell(
-                        child: SizedBox(
-                          height: 40,
-                          child: Center(child: Text('Drama')),
                         ),
                       ),
                       const TableCell(
@@ -215,7 +184,7 @@ class _ShowsState extends State<Shows> {
                         child: SizedBox(
                           height: 40,
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(70, 0, 60, 0),
+                            padding: const EdgeInsets.fromLTRB(90, 0, 60, 0),
                             child: Row(
                               children: [
                                 InkWell(
