@@ -6,4 +6,5 @@ export 'notifications_view.dart';
 export 'tickets_view.dart';
 export 'theater_halls_view.dart';
 export 'purchases_view.dart';
+export 'users_view.dart';
 export 'new_show_view.dart';
