@@ -17,6 +17,7 @@ class _NavigacijaState extends State<Navigation> {
     const Tickets(),
     const Notifications(),
     const TheaterHalls(),
+    const Purchases(),
   ];
 
   final List<String> _titles = [
