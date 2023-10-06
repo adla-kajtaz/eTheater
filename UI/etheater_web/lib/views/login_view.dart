@@ -67,6 +67,8 @@ class _LoginState extends State<Login> {
                                 return "This field is required!";
                               }
                             },
+                            obscureText: true,
+                            autocorrect: false,
                             style: const TextStyle(
                                 color: Color.fromARGB(255, 40, 38, 38)),
                             decoration: InputDecoration(

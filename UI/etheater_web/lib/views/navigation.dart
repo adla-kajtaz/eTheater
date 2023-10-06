@@ -85,8 +85,12 @@ class _NavigacijaState extends State<Navigation> {
               Row(
                 children: [
                   const SizedBox(width: 10),
-                  const Icon(Icons.account_circle,
-                      size: 25, color: Color.fromARGB(255, 181, 176, 176)),
+                  InkWell(
+                      onTap: () async {
+                        Navigator.pushNamed(context, Profile.routeName);
+                      },
+                      child: const Icon(Icons.account_circle,
+                          size: 25, color: Color.fromARGB(255, 181, 176, 176))),
                   const SizedBox(width: 100),
                   InkWell(
                       onTap: () async {
