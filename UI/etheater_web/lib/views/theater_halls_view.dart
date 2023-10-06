@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Tickets extends StatefulWidget {
-  const Tickets({super.key});
+class TheaterHalls extends StatefulWidget {
+  const TheaterHalls({super.key});
 
   @override
-  _TicketsState createState() => _TicketsState();
+  _TheaterHallsState createState() => _TheaterHallsState();
 }
 
-class _TicketsState extends State<Tickets> {
+class _TheaterHallsState extends State<TheaterHalls> {
   @override
   void initState() {
     super.initState();
@@ -27,7 +27,7 @@ class _TicketsState extends State<Tickets> {
                       onTap: () async {},
                       child: const Icon(Icons.add_outlined,
                           size: 35, color: Color.fromARGB(255, 40, 38, 38))),
-                  const SizedBox(width: 750),
+                  const SizedBox(width: 700),
                   Expanded(
                     child: SizedBox(
                       height: 37,
@@ -36,7 +36,7 @@ class _TicketsState extends State<Tickets> {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Search by status',
+                            hintText: 'Search by name',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                               borderSide: BorderSide.none,
@@ -85,7 +85,7 @@ class _TicketsState extends State<Tickets> {
                           height: 40,
                           color: const Color.fromARGB(255, 40, 38, 38),
                           child: const Center(
-                              child: Text('Seat',
+                              child: Text('Name',
                                   style: TextStyle(color: Colors.white))),
                         ),
                       ),
@@ -94,7 +94,25 @@ class _TicketsState extends State<Tickets> {
                           height: 40,
                           color: const Color.fromARGB(255, 40, 38, 38),
                           child: const Center(
-                              child: Text('Active',
+                              child: Text('Total seats',
+                                  style: TextStyle(color: Colors.white))),
+                        ),
+                      ),
+                      TableCell(
+                        child: Container(
+                          height: 40,
+                          color: const Color.fromARGB(255, 40, 38, 38),
+                          child: const Center(
+                              child: Text('Total rows',
+                                  style: TextStyle(color: Colors.white))),
+                        ),
+                      ),
+                      TableCell(
+                        child: Container(
+                          height: 40,
+                          color: const Color.fromARGB(255, 40, 38, 38),
+                          child: const Center(
+                              child: Text('Number of seats per row',
                                   style: TextStyle(color: Colors.white))),
                         ),
                       ),
@@ -123,13 +141,25 @@ class _TicketsState extends State<Tickets> {
                       const TableCell(
                         child: SizedBox(
                           height: 40,
-                          child: Center(child: Text('A1')),
+                          child: Center(child: Text('Velika sala')),
                         ),
                       ),
                       const TableCell(
                         child: SizedBox(
                           height: 40,
-                          child: Center(child: Text('Yes')),
+                          child: Center(child: Text('200')),
+                        ),
+                      ),
+                      const TableCell(
+                        child: SizedBox(
+                          height: 40,
+                          child: Center(child: Text('20')),
+                        ),
+                      ),
+                      const TableCell(
+                        child: SizedBox(
+                          height: 40,
+                          child: Center(child: Text('10')),
                         ),
                       ),
                       const TableCell(
@@ -142,9 +172,16 @@ class _TicketsState extends State<Tickets> {
                         child: SizedBox(
                           height: 40,
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(140, 0, 60, 0),
+                            padding: const EdgeInsets.fromLTRB(70, 0, 60, 0),
                             child: Row(
                               children: [
+                                InkWell(
+                                    onTap: () async {},
+                                    child: const Icon(Icons.edit,
+                                        size: 25,
+                                        color:
+                                            Color.fromARGB(255, 40, 38, 38))),
+                                const SizedBox(width: 15),
                                 InkWell(
                                     onTap: () async {},
                                     child: const Icon(
