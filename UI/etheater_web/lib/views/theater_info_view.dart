@@ -1,20 +1,34 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class Profile extends StatefulWidget {
+class TheaterInfo extends StatefulWidget {
   static const routeName = '/profile';
 
-  const Profile({super.key});
+  const TheaterInfo({super.key});
 
   @override
-  _ProfileState createState() => _ProfileState();
+  _TheaterInfoState createState() => _TheaterInfoState();
 }
 
-class _ProfileState extends State<Profile> {
+class _TheaterInfoState extends State<TheaterInfo> {
   final formKey = GlobalKey<FormState>();
-  String? firstName;
-  String? lastName;
+  // XFile? pickedImage; // Variable to store the picked image
+  String? name;
+  String? adress;
   String? email;
   String? phoneNumber;
+  String? webPage;
+  // File? _file;
+
+  Future<File?> pickImage() async {
+    final myfile = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (myfile != null) {
+      return File(myfile.path);
+    }
+    return null;
+  }
 
   @override
   void initState() {
@@ -27,11 +41,11 @@ class _ProfileState extends State<Profile> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(30),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const Text(
-                'Profile',
+                'Theater info',
                 style: TextStyle(
                     color: Color.fromARGB(255, 40, 38, 38),
                     fontSize: 30,
@@ -44,6 +58,44 @@ class _ProfileState extends State<Profile> {
                       width: 600,
                       child: Column(
                         children: [
+                          /*Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () async {
+                                        final tmp = await pickImage();
+                                        setState(() {
+                                          _file = tmp;
+                                        });
+                                      },
+                                      child: Center(
+                                        child: Container(
+                                          height: 300,
+                                          width: 300,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              color: Colors.grey,
+                                              image: DecorationImage(
+                                                  image: _file == null
+                                                      ? const AssetImage(
+                                                          '../assets/imageHolder.png')
+                                                      : FileImage(_file!)
+                                                          as ImageProvider,
+                                                  fit: BoxFit.fill,
+                                                  alignment: Alignment.center)),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),*/
+                          const SizedBox(height: 20),
                           Row(
                             children: [
                               Expanded(
@@ -52,7 +104,7 @@ class _ProfileState extends State<Profile> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       const Text(
-                                        'First name:',
+                                        'Name:',
                                         style: TextStyle(
                                           color:
                                               Color.fromARGB(255, 40, 38, 38),
@@ -60,14 +112,14 @@ class _ProfileState extends State<Profile> {
                                       ),
                                       const SizedBox(height: 5),
                                       TextFormField(
-                                        onSaved: (newValue) =>
-                                            firstName = newValue,
+                                        onSaved: (newValue) => name = newValue,
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return "This field is required!";
                                           }
                                         },
-                                        initialValue: 'First name',
+                                        initialValue:
+                                            'Narodno pozorište Mostar',
                                         style: const TextStyle(
                                             color: Color.fromARGB(
                                                 255, 40, 38, 38)),
@@ -88,7 +140,7 @@ class _ProfileState extends State<Profile> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       const Text(
-                                        'Email:',
+                                        'Phone number:',
                                         style: TextStyle(
                                           color:
                                               Color.fromARGB(255, 40, 38, 38),
@@ -96,13 +148,14 @@ class _ProfileState extends State<Profile> {
                                       ),
                                       const SizedBox(height: 5),
                                       TextFormField(
-                                        onSaved: (newValue) => email = newValue,
+                                        onSaved: (newValue) =>
+                                            phoneNumber = newValue,
                                         validator: (value) {
                                           if (value!.isEmpty) {
                                             return "This field is required!";
                                           }
                                         },
-                                        initialValue: 'Email',
+                                        initialValue: '036-551-025',
                                         style: const TextStyle(
                                             color: Color.fromARGB(
                                                 255, 40, 38, 38)),
@@ -125,21 +178,20 @@ class _ProfileState extends State<Profile> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const Text(
-                                      'Last name:',
+                                      'Adress:',
                                       style: TextStyle(
                                         color: Color.fromARGB(255, 40, 38, 38),
                                       ),
                                     ),
                                     const SizedBox(height: 5),
                                     TextFormField(
-                                      onSaved: (newValue) =>
-                                          lastName = newValue,
+                                      onSaved: (newValue) => adress = newValue,
                                       validator: (value) {
                                         if (value!.isEmpty) {
                                           return "This field is required!";
                                         }
                                       },
-                                      initialValue: 'Last name',
+                                      initialValue: 'Maršala Tita bb',
                                       style: const TextStyle(
                                           color:
                                               Color.fromARGB(255, 40, 38, 38)),
@@ -159,21 +211,20 @@ class _ProfileState extends State<Profile> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const Text(
-                                      'Phone number:',
+                                      'Webpage:',
                                       style: TextStyle(
                                         color: Color.fromARGB(255, 40, 38, 38),
                                       ),
                                     ),
                                     const SizedBox(height: 5),
                                     TextFormField(
-                                      onSaved: (newValue) =>
-                                          phoneNumber = newValue,
+                                      onSaved: (newValue) => webPage = newValue,
                                       validator: (value) {
                                         if (value!.isEmpty) {
                                           return "This field is required!";
                                         }
                                       },
-                                      initialValue: '062-025-025',
+                                      initialValue: 'www.npm.ba',
                                       style: const TextStyle(
                                           color:
                                               Color.fromARGB(255, 40, 38, 38)),
@@ -188,42 +239,80 @@ class _ProfileState extends State<Profile> {
                                   ]),
                             ),
                           ]),
-                          const SizedBox(height: 25),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(310, 0, 0, 0),
-                            child: Container(
-                              height: 55,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 40, 38, 38),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: InkWell(
-                                onTap: () async {
-                                  if (formKey.currentState!.validate()) {
-                                    formKey.currentState!.save();
-                                    try {} on Exception catch (error) {
-                                      print(error.toString());
-                                      if (error
-                                          .toString()
-                                          .contains("Bad request")) {
-                                        formKey.currentState!.validate();
+                          const SizedBox(height: 20),
+                          Row(children: [
+                            Expanded(
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      'Email:',
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 40, 38, 38),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    TextFormField(
+                                      onSaved: (newValue) => email = newValue,
+                                      validator: (value) {
+                                        if (value!.isEmpty) {
+                                          return "This field is required!";
+                                        }
+                                      },
+                                      initialValue: 'info@npm.ba',
+                                      style: const TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 40, 38, 38)),
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                            const SizedBox(width: 20),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                                child: Container(
+                                  height: 55,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        const Color.fromARGB(255, 40, 38, 38),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      if (formKey.currentState!.validate()) {
+                                        formKey.currentState!.save();
+                                        try {} on Exception catch (error) {
+                                          print(error.toString());
+                                          if (error
+                                              .toString()
+                                              .contains("Bad request")) {
+                                            formKey.currentState!.validate();
+                                          }
+                                        }
                                       }
-                                    }
-                                  }
-                                },
-                                child: const Center(
-                                  child: Text(
-                                    'Save',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
+                                    },
+                                    child: const Center(
+                                      child: Text(
+                                        'Save',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
+                          ]),
                         ],
                       )))
             ]),

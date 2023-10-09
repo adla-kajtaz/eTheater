@@ -8,4 +8,5 @@ export 'theater_halls_view.dart';
 export 'purchases_view.dart';
 export 'users_view.dart';
 export 'profile_view.dart';
+export 'theater_info_view.dart';
 export 'new_show_view.dart';

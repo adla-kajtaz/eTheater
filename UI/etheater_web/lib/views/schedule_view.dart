@@ -8,6 +8,13 @@ class Schedule extends StatefulWidget {
 }
 
 class _ScheduleState extends State<Schedule> {
+  final formKey = GlobalKey<FormState>();
+
+  String? show;
+  String? ticketPrice;
+  String? hall;
+  String? dateTime;
+
   @override
   void initState() {
     super.initState();
@@ -24,7 +31,235 @@ class _ScheduleState extends State<Schedule> {
               Row(
                 children: [
                   InkWell(
-                      onTap: () async {},
+                      onTap: () async {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Schedule form'),
+                              content: Container(
+                                width: 500,
+                                height: 300,
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  const Text(
+                                                    'Show:',
+                                                    style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 40, 38, 38),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 5),
+                                                  TextFormField(
+                                                    onSaved: (newValue) =>
+                                                        show = newValue,
+                                                    validator: (value) {
+                                                      if (value!.isEmpty) {
+                                                        return "This field is required!";
+                                                      }
+                                                    },
+                                                    initialValue: 'Show',
+                                                    style: const TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 40, 38, 38)),
+                                                    decoration: InputDecoration(
+                                                      filled: true,
+                                                      fillColor: Colors.white,
+                                                      border:
+                                                          OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10)),
+                                                    ),
+                                                  ),
+                                                ]),
+                                          ),
+                                          const SizedBox(width: 20),
+                                          Expanded(
+                                            child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  const Text(
+                                                    'Ticket price:',
+                                                    style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 40, 38, 38),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 5),
+                                                  TextFormField(
+                                                    onSaved: (newValue) =>
+                                                        ticketPrice = newValue,
+                                                    validator: (value) {
+                                                      if (value!.isEmpty) {
+                                                        return "This field is required!";
+                                                      }
+                                                    },
+                                                    initialValue:
+                                                        'Ticket price',
+                                                    style: const TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 40, 38, 38)),
+                                                    decoration: InputDecoration(
+                                                      filled: true,
+                                                      fillColor: Colors.white,
+                                                      border:
+                                                          OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10)),
+                                                    ),
+                                                  ),
+                                                ]),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 20),
+                                      Row(children: [
+                                        Expanded(
+                                          child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                const Text(
+                                                  'Hall:',
+                                                  style: TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 40, 38, 38),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                TextFormField(
+                                                  onSaved: (newValue) =>
+                                                      hall = newValue,
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return "This field is required!";
+                                                    }
+                                                  },
+                                                  initialValue: 'Hall',
+                                                  style: const TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 40, 38, 38)),
+                                                  decoration: InputDecoration(
+                                                    filled: true,
+                                                    fillColor: Colors.white,
+                                                    border: OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10)),
+                                                  ),
+                                                ),
+                                              ]),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        Expanded(
+                                          child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                const Text(
+                                                  'Date:',
+                                                  style: TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 40, 38, 38),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                TextFormField(
+                                                  onSaved: (newValue) =>
+                                                      dateTime = newValue,
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return "This field is required!";
+                                                    }
+                                                  },
+                                                  initialValue: 'Date',
+                                                  style: const TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 40, 38, 38)),
+                                                  decoration: InputDecoration(
+                                                    filled: true,
+                                                    fillColor: Colors.white,
+                                                    border: OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10)),
+                                                  ),
+                                                ),
+                                              ]),
+                                        ),
+                                      ]),
+                                      const SizedBox(height: 25),
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            260, 0, 0, 0),
+                                        child: Container(
+                                          height: 55,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromARGB(
+                                                255, 40, 38, 38),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              if (formKey.currentState!
+                                                  .validate()) {
+                                                formKey.currentState!.save();
+                                                try {} on Exception catch (error) {
+                                                  print(error.toString());
+                                                  if (error.toString().contains(
+                                                      "Bad request")) {
+                                                    formKey.currentState!
+                                                        .validate();
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            child: const Center(
+                                              child: Text(
+                                                'Save',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    // Close the dialog without saving
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Cancel'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
                       child: const Icon(Icons.add_outlined,
                           size: 35, color: Color.fromARGB(255, 40, 38, 38))),
                   const SizedBox(width: 300),

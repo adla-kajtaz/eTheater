@@ -19,6 +19,8 @@ class _NavigacijaState extends State<Navigation> {
     const TheaterHalls(),
     const Purchases(),
     const Users(),
+    const TheaterInfo(),
+    const Profile(),
   ];
 
   final List<String> _titles = [
@@ -86,8 +88,10 @@ class _NavigacijaState extends State<Navigation> {
                 children: [
                   const SizedBox(width: 10),
                   InkWell(
-                      onTap: () async {
-                        Navigator.pushNamed(context, Profile.routeName);
+                      onTap: () {
+                        setState(() {
+                          _currentIndex = 8;
+                        });
                       },
                       child: const Icon(Icons.account_circle,
                           size: 25, color: Color.fromARGB(255, 181, 176, 176))),

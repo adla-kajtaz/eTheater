@@ -8,6 +8,13 @@ class TheaterHalls extends StatefulWidget {
 }
 
 class _TheaterHallsState extends State<TheaterHalls> {
+  final formKey = GlobalKey<FormState>();
+
+  String? name;
+  String? totalRows;
+  String? totalSeats;
+  String? numberOfSeatsPerRow;
+
   @override
   void initState() {
     super.initState();
@@ -24,7 +31,236 @@ class _TheaterHallsState extends State<TheaterHalls> {
               Row(
                 children: [
                   InkWell(
-                      onTap: () async {},
+                      onTap: () async {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Schedule form'),
+                              content: Container(
+                                width: 500,
+                                height: 300,
+                                child: Form(
+                                  key: formKey,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  const Text(
+                                                    'Name:',
+                                                    style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 40, 38, 38),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 5),
+                                                  TextFormField(
+                                                    onSaved: (newValue) =>
+                                                        name = newValue,
+                                                    validator: (value) {
+                                                      if (value!.isEmpty) {
+                                                        return "This field is required!";
+                                                      }
+                                                    },
+                                                    initialValue: 'Name',
+                                                    style: const TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 40, 38, 38)),
+                                                    decoration: InputDecoration(
+                                                      filled: true,
+                                                      fillColor: Colors.white,
+                                                      border:
+                                                          OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10)),
+                                                    ),
+                                                  ),
+                                                ]),
+                                          ),
+                                          const SizedBox(width: 20),
+                                          Expanded(
+                                            child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  const Text(
+                                                    'Total rows:',
+                                                    style: TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 40, 38, 38),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 5),
+                                                  TextFormField(
+                                                    onSaved: (newValue) =>
+                                                        totalRows = newValue,
+                                                    validator: (value) {
+                                                      if (value!.isEmpty) {
+                                                        return "This field is required!";
+                                                      }
+                                                    },
+                                                    initialValue: 'totalRows',
+                                                    style: const TextStyle(
+                                                        color: Color.fromARGB(
+                                                            255, 40, 38, 38)),
+                                                    decoration: InputDecoration(
+                                                      filled: true,
+                                                      fillColor: Colors.white,
+                                                      border:
+                                                          OutlineInputBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10)),
+                                                    ),
+                                                  ),
+                                                ]),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 20),
+                                      Row(children: [
+                                        Expanded(
+                                          child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                const Text(
+                                                  'Total seats:',
+                                                  style: TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 40, 38, 38),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                TextFormField(
+                                                  onSaved: (newValue) =>
+                                                      totalSeats = newValue,
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return "This field is required!";
+                                                    }
+                                                  },
+                                                  initialValue: 'totalSeats',
+                                                  style: const TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 40, 38, 38)),
+                                                  decoration: InputDecoration(
+                                                    filled: true,
+                                                    fillColor: Colors.white,
+                                                    border: OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10)),
+                                                  ),
+                                                ),
+                                              ]),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        Expanded(
+                                          child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                const Text(
+                                                  'Number of seats per row:',
+                                                  style: TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 40, 38, 38),
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 5),
+                                                TextFormField(
+                                                  onSaved: (newValue) =>
+                                                      numberOfSeatsPerRow =
+                                                          newValue,
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return "This field is required!";
+                                                    }
+                                                  },
+                                                  initialValue:
+                                                      'numberOfSeatsPerRow',
+                                                  style: const TextStyle(
+                                                      color: Color.fromARGB(
+                                                          255, 40, 38, 38)),
+                                                  decoration: InputDecoration(
+                                                    filled: true,
+                                                    fillColor: Colors.white,
+                                                    border: OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10)),
+                                                  ),
+                                                ),
+                                              ]),
+                                        ),
+                                      ]),
+                                      const SizedBox(height: 25),
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            260, 0, 0, 0),
+                                        child: Container(
+                                          height: 55,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: const Color.fromARGB(
+                                                255, 40, 38, 38),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              if (formKey.currentState!
+                                                  .validate()) {
+                                                formKey.currentState!.save();
+                                                try {} on Exception catch (error) {
+                                                  print(error.toString());
+                                                  if (error.toString().contains(
+                                                      "Bad request")) {
+                                                    formKey.currentState!
+                                                        .validate();
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            child: const Center(
+                                              child: Text(
+                                                'Save',
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    // Close the dialog without saving
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text('Cancel'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
                       child: const Icon(Icons.add_outlined,
                           size: 35, color: Color.fromARGB(255, 40, 38, 38))),
                   const SizedBox(width: 700),
