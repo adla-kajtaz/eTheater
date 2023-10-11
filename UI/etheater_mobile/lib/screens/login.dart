@@ -29,18 +29,16 @@ class _LoginState extends State<Login> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 80),
+              const SizedBox(height: 150),
               Center(
-                  child: ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image.asset(
-                  'assets/logo.png',
-                  width: 207,
-                  height: 146,
+                child: const Icon(
+                  Icons.theater_comedy,
+                  color: Colors.white,
+                  size: 100,
                 ),
-              )),
+              ),
               const SizedBox(
-                height: 30,
+                height: 40,
               ),
               Form(
                 key: formKey,
@@ -58,12 +56,10 @@ class _LoginState extends State<Login> {
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
+                        labelText: 'Email',
                         hintText: 'Email',
                         hintStyle: const TextStyle(
                             color: Color.fromARGB(255, 40, 38, 38)),
-                        errorStyle: const TextStyle(
-                          color: Color.fromARGB(255, 226, 189, 6),
-                        ),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -83,17 +79,14 @@ class _LoginState extends State<Login> {
                       style: const TextStyle(
                           color: Color.fromARGB(255, 40, 38, 38)),
                       decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hintStyle: const TextStyle(
-                            color: Color.fromARGB(255, 40, 38, 38)),
-                        errorStyle: const TextStyle(
-                          color: Color.fromARGB(255, 226, 189, 6),
-                        ),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        hintText: 'Password',
-                      ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintStyle: const TextStyle(
+                              color: Color.fromARGB(255, 40, 38, 38)),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          hintText: '*********',
+                          labelText: 'Password'),
                     ),
                   ],
                 ),

@@ -52,14 +52,12 @@ class _RegisterState extends State<Register> {
               children: [
                 const SizedBox(height: 50),
                 Center(
-                    child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: Image.asset(
-                    'assets/logo.png',
-                    width: 207,
-                    height: 146,
+                  child: const Icon(
+                    Icons.theater_comedy,
+                    color: Colors.white,
+                    size: 100,
                   ),
-                )),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -81,15 +79,13 @@ class _RegisterState extends State<Register> {
                           fillColor: Colors.white,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
+                          labelText: 'First name',
                           hintText: 'First name',
                           hintStyle: const TextStyle(
                               color: Color.fromARGB(255, 40, 38, 38)),
-                          errorStyle: const TextStyle(
-                            color: Color.fromARGB(255, 226, 189, 6),
-                          ),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 15),
                       TextFormField(
                         onSaved: (newValue) => lastName = newValue,
                         validator: (value) {
@@ -104,15 +100,13 @@ class _RegisterState extends State<Register> {
                           fillColor: Colors.white,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
+                          labelText: 'Last name',
                           hintText: 'Last name',
                           hintStyle: const TextStyle(
                               color: Color.fromARGB(255, 40, 38, 38)),
-                          errorStyle: const TextStyle(
-                            color: Color.fromARGB(255, 226, 189, 6),
-                          ),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 15),
                       TextFormField(
                         onSaved: (newValue) => email = newValue,
                         validator: (value) {
@@ -130,15 +124,13 @@ class _RegisterState extends State<Register> {
                           fillColor: Colors.white,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Email',
+                          labelText: 'Email',
+                          hintText: 'exapmle@gmail.com',
                           hintStyle: const TextStyle(
                               color: Color.fromARGB(255, 40, 38, 38)),
-                          errorStyle: const TextStyle(
-                            color: Color.fromARGB(255, 226, 189, 6),
-                          ),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 15),
                       TextFormField(
                         onSaved: (newValue) => phoneNumber = newValue,
                         validator: (value) {
@@ -156,15 +148,13 @@ class _RegisterState extends State<Register> {
                           fillColor: Colors.white,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Phone number',
+                          labelText: 'Phone number',
+                          hintText: '062-025-025',
                           hintStyle: const TextStyle(
                               color: Color.fromARGB(255, 40, 38, 38)),
-                          errorStyle: const TextStyle(
-                            color: Color.fromARGB(255, 226, 189, 6),
-                          ),
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 15),
                       TextFormField(
                         onSaved: (newValue) => password = newValue,
                         validator: (value) {
@@ -184,12 +174,10 @@ class _RegisterState extends State<Register> {
                           fillColor: Colors.white,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          hintText: 'Password',
+                          labelText: 'Password',
+                          hintText: '*********',
                           hintStyle: const TextStyle(
                               color: Color.fromARGB(255, 40, 38, 38)),
-                          errorStyle: const TextStyle(
-                            color: Color.fromARGB(255, 226, 189, 6),
-                          ),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -230,8 +218,7 @@ class _RegisterState extends State<Register> {
                     const SizedBox(width: 5),
                     const Text(
                       'Already have an account?',
-                      style:
-                          TextStyle(color: Color.fromARGB(225, 195, 178, 178)),
+                      style: TextStyle(color: Colors.white),
                     ),
                     const SizedBox(width: 20),
                     InkWell(

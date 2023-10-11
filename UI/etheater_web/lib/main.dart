@@ -21,7 +21,6 @@ class MyApp extends StatelessWidget {
       routes: {
         Login.routeName: (context) => const Login(),
         Navigation.routeName: (context) => const Navigation(),
-        NewShow.routeName: (context) => const NewShow(),
       },
     );
   }

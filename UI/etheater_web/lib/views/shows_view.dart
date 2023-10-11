@@ -1,7 +1,10 @@
 // import 'package:etheater_web/views/view.dart';
+import 'dart:convert';
+import 'package:image/image.dart' as imgLib;
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import '../utils/util.dart';
 
 class Shows extends StatefulWidget {
   const Shows({super.key});
@@ -26,17 +29,24 @@ class _ShowsState extends State<Shows> {
     super.initState();
   }
 
-  Future<File?> pickImage() async {
-    final myfile = await ImagePicker().pickImage(source: ImageSource.gallery);
+  Future<void> pickImageAndUpload() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
-    if (myfile != null) {
-      return File(myfile.path);
+    if (pickedFile != null) {
+      final bytes = await pickedFile.readAsBytes();
+      final image = imgLib.decodeImage(bytes) as imgLib.Image;
+      final base64Image = base64Encode(imgLib.encodeJpg(image));
+      setState(() {});
     }
-    return null;
   }
 
   @override
   Widget build(BuildContext context) {
+    Image profileImage = Image.asset(
+      'assets/imageHolder.png',
+      height: 100,
+    );
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -108,38 +118,22 @@ class _ShowsState extends State<Shows> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  GestureDetector(
-                                                    onTap: () async {
-                                                      final tmp =
-                                                          await pickImage();
-                                                      setState(() {
-                                                        _file = tmp;
-                                                      });
-                                                    },
-                                                    child: Center(
-                                                      child: Container(
-                                                        height: 100,
-                                                        width: 100,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10),
-                                                            color: Colors.grey,
-                                                            image: DecorationImage(
-                                                                image: _file ==
-                                                                        null
-                                                                    ? const AssetImage(
-                                                                        '../assets/imageHolder.png')
-                                                                    : FileImage(
-                                                                            _file!)
-                                                                        as ImageProvider,
-                                                                fit:
-                                                                    BoxFit.fill,
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center)),
-                                                      ),
+                                                  InkWell(
+                                                    onTap: () =>
+                                                        pickImageAndUpload(),
+                                                    child: Stack(
+                                                      children: [
+                                                        ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          child: SizedBox(
+                                                              width: 200,
+                                                              height: 100,
+                                                              child:
+                                                                  profileImage),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ]),

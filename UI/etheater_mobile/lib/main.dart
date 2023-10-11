@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'eTheater',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 215, 179, 70)),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 158, 159, 149)),
         useMaterial3: true,
       ),
       initialRoute: '/login',
