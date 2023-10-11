@@ -103,16 +103,20 @@ class _LoginState extends State<Login> {
                 ),
                 child: InkWell(
                   onTap: () async {
-                    if (formKey.currentState!.validate()) {
+                    Navigator.popAndPushNamed(context, Navigation.routeName);
+                    /*if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
 
-                      try {} on Exception catch (error) {
+                      try {
+                        Navigator.popAndPushNamed(
+                            context, Navigation.routeName);
+                      } on Exception catch (error) {
                         print(error.toString());
                         if (error.toString().contains("Bad request")) {
                           formKey.currentState!.validate();
                         }
                       }
-                    }
+                    }*/
                   },
                   child: const Center(
                     child: Text(

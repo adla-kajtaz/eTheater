@@ -13,14 +13,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'eTheater',
       theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 158, 159, 149)),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 158, 159, 149)),
         useMaterial3: true,
       ),
       initialRoute: '/login',
       routes: {
         Login.routeName: (context) => const Login(),
         Register.routeName: (context) => const Register(),
+        Navigation.routeName: (context) => const Navigation(),
       },
     );
   }
