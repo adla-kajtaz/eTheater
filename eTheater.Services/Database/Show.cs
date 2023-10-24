@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eTheater.Model.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace eTheater.Services.Database;
@@ -17,9 +18,7 @@ public partial class Show : BaseEntity
 
     public string? Director { get; set; }
 
-    public int? ShowGenreId { get; set; }
-
-    public virtual ShowGenre? ShowGenre { get; set; }
+    public ShowGenre? ShowGenre { get; set; }
 
     public virtual ICollection<ShowSchedule> ShowSchedules { get; set; } = new List<ShowSchedule>();
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eTheater.Model.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace eTheater.Services.Database;
@@ -13,9 +14,7 @@ public partial class Notification : BaseEntity
 
     public string? Picture { get; set; }
 
-    public int? NotificationCategoryId { get; set; }
-
-    public virtual NotificationCategory? NotificationCategory { get; set; }
+    public NotificationCategory? NotificationCategory { get; set; }
 
     public int? UserId { get; set; }
 

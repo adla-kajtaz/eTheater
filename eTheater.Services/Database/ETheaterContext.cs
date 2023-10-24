@@ -20,13 +20,9 @@ public partial class ETheaterContext : IdentityDbContext<User, IdentityRole<int>
 
     public virtual DbSet<Notification> Notifications { get; set; }
 
-    public virtual DbSet<NotificationCategory> NotificationCategories { get; set; }
-
     public virtual DbSet<Purchase> Purchases { get; set; }
 
     public virtual DbSet<Show> Shows { get; set; }
-
-    public virtual DbSet<ShowGenre> ShowGenres { get; set; }
 
     public virtual DbSet<ShowSchedule> ShowSchedules { get; set; }
 
@@ -52,18 +48,9 @@ public partial class ETheaterContext : IdentityDbContext<User, IdentityRole<int>
             entity.HasKey(e => e.NotificationId).HasName("PK__Notifica__20CF2E12A19052D9");
 
             entity.ToTable("Notification");
-
-            entity.HasOne(d => d.NotificationCategory).WithMany(p => p.Notifications)
-                .HasForeignKey(d => d.NotificationCategoryId)
-                .HasConstraintName("FK__Notificat__Notif__267ABA7A");
         });
 
-        modelBuilder.Entity<NotificationCategory>(entity =>
-        {
-            entity.HasKey(e => e.NotificationCategoryId).HasName("PK__Notifica__C7B551ABC13F63DA");
-
-            entity.ToTable("NotificationCategory");
-        });
+       
 
         modelBuilder.Entity<Purchase>(entity =>
         {
@@ -77,18 +64,9 @@ public partial class ETheaterContext : IdentityDbContext<User, IdentityRole<int>
             entity.HasKey(e => e.ShowId).HasName("PK__Show__6DE3E0B25CC97D35");
 
             entity.ToTable("Show");
-
-            entity.HasOne(d => d.ShowGenre).WithMany(p => p.Shows)
-                .HasForeignKey(d => d.ShowGenreId)
-                .HasConstraintName("FK__Show__ShowGenreI__2D27B809");
         });
 
-        modelBuilder.Entity<ShowGenre>(entity =>
-        {
-            entity.HasKey(e => e.ShowGenreId).HasName("PK__ShowGenr__5D1898B1648F4AFA");
-
-            entity.ToTable("ShowGenre");
-        });
+        
 
         modelBuilder.Entity<ShowSchedule>(entity =>
         {

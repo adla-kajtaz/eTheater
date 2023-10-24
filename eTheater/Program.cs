@@ -1,4 +1,6 @@
+using eTheater.Services;
 using eTheater.Services.Database;
+using eTheater.Services.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -16,7 +18,10 @@ builder.Services.AddDbContext<ETheaterContext>(options =>
 
 builder.Services.AddSwaggerGen();
 
-// builder.Services.AddAutoMapper(typeof(Program), typeof(MapperProfiles));
+builder.Services.AddTransient<IHallService, HallService>();
+
+
+builder.Services.AddAutoMapper(typeof(Program), typeof(MapperProfiles));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

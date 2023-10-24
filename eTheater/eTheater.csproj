@@ -30,10 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\eTheater.Model\eTheater.Model.csproj" />
     <ProjectReference Include="..\eTheater.Services\eTheater.Services.csproj" />
   </ItemGroup>
