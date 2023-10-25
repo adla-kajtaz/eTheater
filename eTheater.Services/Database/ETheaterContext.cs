@@ -74,7 +74,7 @@ public partial class ETheaterContext : IdentityDbContext<User, IdentityRole<int>
 
             entity.ToTable("ShowSchedule");
 
-            entity.Property(e => e.ShowDateTime).HasColumnType("datetime");
+            entity.Property(e => e.ShowDate).HasColumnType("datetime");
 
             entity.HasOne(d => d.Hall).WithMany(p => p.ShowSchedules)
                 .HasForeignKey(d => d.HallId)

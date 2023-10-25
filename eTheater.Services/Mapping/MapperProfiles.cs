@@ -14,10 +14,12 @@ namespace eTheater.Services.Mapping
         {
             CreateMap<Database.Hall, Model.Hall>();
             CreateMap<Database.Show, Model.Show>();
+            CreateMap<Database.ShowSchedule, Model.ShowSchedule>();
 
 
             CreateMap<HallUpsertRequest, Database.Hall>();
             CreateMap<ShowUpsertRequest, Database.Show>();
+            CreateMap<ShowScheduleUpsertRequest, Database.ShowSchedule>();
         }
     }
 }

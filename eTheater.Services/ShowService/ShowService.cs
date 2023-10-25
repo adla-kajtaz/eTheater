@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eTheater.Model.Enums;
 using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
 using eTheater.Services.BaseService;
@@ -24,7 +25,7 @@ namespace eTheater.Services
 
             if (!string.IsNullOrWhiteSpace(search?.Name))
                 filteredQuery = filteredQuery.Where(x => x.Name.ToLower().Contains(search.Name.ToLower()));
-            if (search?.ShowGenre != null)
+            if (search?.ShowGenre != ShowGenre.All)
                 filteredQuery = filteredQuery.Where(x => x.ShowGenre == search.ShowGenre);
             return filteredQuery;
         }

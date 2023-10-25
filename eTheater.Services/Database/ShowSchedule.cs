@@ -9,7 +9,9 @@ public partial class ShowSchedule : BaseEntity
 
     public int? TicketPrice { get; set; }
 
-    public DateTime? ShowDateTime { get; set; }
+    public DateTime ShowDate { get; set; }
+
+    public string? ShowTime { get; set; }
 
     public int? ShowId { get; set; }
 

@@ -14,7 +14,7 @@ public partial class Show : BaseEntity
 
     public string? Picture { get; set; }
 
-    public int? Duration { get; set; }
+    public int Duration { get; set; }
 
     public string? Director { get; set; }
 
