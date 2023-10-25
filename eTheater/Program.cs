@@ -19,6 +19,7 @@ builder.Services.AddDbContext<ETheaterContext>(options =>
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IHallService, HallService>();
+builder.Services.AddTransient<IShowService, ShowService>();
 
 
 builder.Services.AddAutoMapper(typeof(Program), typeof(MapperProfiles));

@@ -11,19 +11,21 @@ using System.Threading.Tasks;
 
 namespace eTheater.Services
 {
-    public class HallService : BaseCRUDService <Model.Hall, Database.Hall, HallSearchObject, HallUpsertRequest, HallUpsertRequest>, IHallService
+    public class ShowService : BaseCRUDService<Model.Show, Database.Show, ShowSearchObject, ShowUpsertRequest, ShowUpsertRequest>, IShowService
     {
-        public HallService(ETheaterContext context, IMapper mapper) : base(context, mapper)
+        public ShowService(ETheaterContext context, IMapper mapper) : base(context, mapper)
         {
 
         }
 
-        public override IQueryable<eTheater.Services.Database.Hall> AddFilter(IQueryable<eTheater.Services.Database.Hall> query, HallSearchObject search = null)
+        public override IQueryable<eTheater.Services.Database.Show> AddFilter(IQueryable<eTheater.Services.Database.Show> query, ShowSearchObject search = null)
         {
             var filteredQuery = base.AddFilter(query, search);
 
             if (!string.IsNullOrWhiteSpace(search?.Name))
                 filteredQuery = filteredQuery.Where(x => x.Name.ToLower().Contains(search.Name.ToLower()));
+            if (search?.ShowGenre != null)
+                filteredQuery = filteredQuery.Where(x => x.ShowGenre == search.ShowGenre);
             return filteredQuery;
         }
     }

@@ -13,9 +13,11 @@ namespace eTheater.Services.Mapping
         public MapperProfiles()
         {
             CreateMap<Database.Hall, Model.Hall>();
+            CreateMap<Database.Show, Model.Show>();
 
 
-            CreateMap<HallUpsertRequest, Database.Hall>();  
+            CreateMap<HallUpsertRequest, Database.Hall>();
+            CreateMap<ShowUpsertRequest, Database.Show>();
         }
     }
 }
