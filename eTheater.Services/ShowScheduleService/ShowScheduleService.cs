@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eTheater.Model;
 using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
 using eTheater.Services.BaseService;
@@ -37,6 +38,36 @@ namespace eTheater.Services
                 filteredQuery = filteredQuery.Where(x => x.ShowDate.Date.Equals(search.ShowDate.Value.Date));
             filteredQuery = filteredQuery.Where(x => x.IsDeleted == false);
             return filteredQuery;
+        }
+
+        public override Model.ShowSchedule Delete(int id)
+        {
+           var entity = _context.ShowSchedules.Find(id);
+           if (entity == null)
+           {
+                return null;
+           }
+           else
+           {
+                entity.IsDeleted = true;
+           }
+
+            _context.SaveChanges();
+            return _mapper.Map<Model.ShowSchedule>(entity);
+        }
+
+        public List<string> GetTimeSlotsForDate(int hallId, string date)
+        {
+            var showSchedules = _context.ShowSchedules.Where(e => e.ShowDate.ToString() == date && e.HallId == hallId);
+            List<string> slots = Helper.getTimeSlots();
+            List<string> responseSlots = new List<string> { };
+            foreach (string slot in slots)
+            {
+
+                if (!showSchedules.Any(e => e.ShowTime == slot))
+                    responseSlots.Add(slot);
+            };
+            return responseSlots;
         }
     }
 }

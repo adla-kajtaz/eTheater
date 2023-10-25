@@ -11,5 +11,6 @@ namespace eTheater.Services
 {
     public interface IShowScheduleService : IBaseCRUDService<Model.ShowSchedule, ShowScheduleSearchObject, ShowScheduleUpsertRequest, ShowScheduleUpsertRequest>
     {
+        List<string> GetTimeSlotsForDate(int hallId, string date);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
 using eTheater.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace eTheater.Controllers
 {
@@ -10,6 +11,12 @@ namespace eTheater.Controllers
         public ShowScheduleController(IShowScheduleService service) : base(service)
         {
             _service = service;
+        }
+
+        [HttpGet("GetTimeSlotsForDate")]
+        public List<string> GetTimeSlotsForDate(int hallId, string date)
+        {
+            return _service.GetTimeSlotsForDate(hallId, date);
         }
     }
 }
