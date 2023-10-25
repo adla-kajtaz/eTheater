@@ -35,6 +35,7 @@ namespace eTheater.Services
                 filteredQuery = filteredQuery.Where(x => x.HallId == search.HallId);
             if (search.ShowDate.HasValue)
                 filteredQuery = filteredQuery.Where(x => x.ShowDate.Date.Equals(search.ShowDate.Value.Date));
+            filteredQuery = filteredQuery.Where(x => x.IsDeleted == false);
             return filteredQuery;
         }
     }

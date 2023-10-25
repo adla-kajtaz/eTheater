@@ -27,7 +27,30 @@ namespace eTheater.Services
                 filteredQuery = filteredQuery.Where(x => x.Name.ToLower().Contains(search.Name.ToLower()));
             if (search?.ShowGenre != ShowGenre.All)
                 filteredQuery = filteredQuery.Where(x => x.ShowGenre == search.ShowGenre);
+            filteredQuery = filteredQuery.Where(x => x.IsDeleted == false);
             return filteredQuery;
+        }
+
+        public override Model.Show Delete(int id)
+        {
+            var entity = _context.Shows.Find(id);
+            var showSchedules = _context.ShowSchedules.Where(e => e.ShowId == id).ToList();
+
+            if (showSchedules != null && showSchedules.Any())
+            {
+                return null;
+            }
+            else if (entity == null)
+            {
+                return null;
+            }
+            else
+            {
+                entity.IsDeleted = true;
+            }
+
+            _context.SaveChanges();
+            return _mapper.Map<Model.Show>(entity);
         }
     }
 }
