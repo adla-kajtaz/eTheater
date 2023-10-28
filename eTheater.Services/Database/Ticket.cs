@@ -13,7 +13,7 @@ public partial class Ticket : BaseEntity
 
     public int? NumberOfSeat { get; set; }
 
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
 
     public int? ShowScheduleId { get; set; }
 

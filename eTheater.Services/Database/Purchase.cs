@@ -11,6 +11,8 @@ public partial class Purchase : BaseEntity
 
     public int? NumberOfTickets { get; set; }
 
+    public bool IsPaid { get; set; } = false;
+
     public int? UserId { get; set; }
 
     public virtual User? User { get; set; }

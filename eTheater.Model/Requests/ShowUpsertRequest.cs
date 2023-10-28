@@ -18,7 +18,7 @@ namespace eTheater.Model.Requests
         [Required]
         public string? Picture { get; set; }
 
-        [Range(10, int.MaxValue, ErrorMessage = "Duration cannot be less then or equal to 10.")]
+        [Range(10, 60, ErrorMessage = "Duration cannot be less then or equal to 10 or greater than 60.")]
         [Required]
         public int Duration { get; set; }
 

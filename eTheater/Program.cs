@@ -21,6 +21,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IHallService, HallService>();
 builder.Services.AddTransient<IShowService, ShowService>();
 builder.Services.AddTransient<IShowScheduleService, ShowScheduleService>();
+builder.Services.AddTransient<ITicketService, TicketService>();
 
 
 
