@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace eTheater.Controllers
 {
     public class TicketController : BaseCRUDController<Model.Ticket, TicketSearchObject, TicketUpsertRequest, TicketUpsertRequest>
-
     {
         public ITicketService _service { get; set; }
         public TicketController(ITicketService service) : base(service)

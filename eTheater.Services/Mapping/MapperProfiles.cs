@@ -16,12 +16,15 @@ namespace eTheater.Services.Mapping
             CreateMap<Database.Show, Model.Show>();
             CreateMap<Database.ShowSchedule, Model.ShowSchedule>();
             CreateMap<Database.Ticket, Model.Ticket>();
+            CreateMap<Database.TheaterInfo, Model.TheaterInfo>();
 
 
             CreateMap<HallUpsertRequest, Database.Hall>();
             CreateMap<ShowUpsertRequest, Database.Show>();
             CreateMap<ShowScheduleUpsertRequest, Database.ShowSchedule>();
             CreateMap<TicketUpsertRequest, Database.Ticket>();
+            CreateMap<TheaterInfoUpsertRequest, Database.TheaterInfo>();
+
         }
     }
 }

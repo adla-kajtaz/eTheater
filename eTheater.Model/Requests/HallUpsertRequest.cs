@@ -9,7 +9,6 @@ namespace eTheater.Model.Requests
 {
     public class HallUpsertRequest
     {
-        [MinLength(3)]
         [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }
 

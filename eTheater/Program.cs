@@ -22,6 +22,8 @@ builder.Services.AddTransient<IHallService, HallService>();
 builder.Services.AddTransient<IShowService, ShowService>();
 builder.Services.AddTransient<IShowScheduleService, ShowScheduleService>();
 builder.Services.AddTransient<ITicketService, TicketService>();
+builder.Services.AddTransient<ITheaterInfoService, TheaterInfoService>();
+
 
 
 

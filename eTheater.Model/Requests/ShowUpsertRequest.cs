@@ -8,7 +8,6 @@ namespace eTheater.Model.Requests
 {
     public class ShowUpsertRequest
     {
-        [MinLength(3)]
         [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }
 
