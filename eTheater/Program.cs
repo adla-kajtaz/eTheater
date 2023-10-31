@@ -1,3 +1,4 @@
+using eTheater;
 using eTheater.Services;
 using eTheater.Services.Database;
 using eTheater.Services.Mapping;
@@ -8,7 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(x =>
+{
+    x.Filters.Add<ErrorFilter>();
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -23,6 +28,8 @@ builder.Services.AddTransient<IShowService, ShowService>();
 builder.Services.AddTransient<IShowScheduleService, ShowScheduleService>();
 builder.Services.AddTransient<ITicketService, TicketService>();
 builder.Services.AddTransient<ITheaterInfoService, TheaterInfoService>();
+builder.Services.AddTransient<IUserService, UserService>();
+
 
 
 

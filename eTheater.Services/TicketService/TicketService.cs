@@ -34,6 +34,7 @@ namespace eTheater.Services
             if (search.IsActive != null)
                 filteredQuery = filteredQuery.Where(x => x.IsActive == search.IsActive);
             filteredQuery = filteredQuery.Where(x => x.IsDeleted == false);
+
             return filteredQuery;
         }
 
