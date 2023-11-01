@@ -56,6 +56,7 @@ namespace eTheater.Services
             {
                 throw new UserException("Username", "Username is already taken!");
             }
+
             var userWithEmail = _context.Users.Where(x => x.Id != id && x.Email == update.Email).ToList();
             if (userWithEmail != null && userWithEmail.Count > 0)
             {

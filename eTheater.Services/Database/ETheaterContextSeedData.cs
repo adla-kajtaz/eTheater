@@ -28,7 +28,7 @@ namespace eTheater.Services.Database
             );
 
             var hasher = new PasswordHasher<User>();
-            var password = "Test123!"; // Replace with a secure password
+            var adminPassword = "Admin123!";
             var admin = new User
             {
                 Id = 1,
@@ -37,11 +37,12 @@ namespace eTheater.Services.Database
                 Email = "admin@etheater.ba",
                 NormalizedEmail = "ADMIN@ETHEATER.BA",
                 EmailConfirmed = true,
-                PasswordHash = hasher.HashPassword(null, password),
+                PasswordHash = hasher.HashPassword(null, adminPassword),
                 SecurityStamp = Guid.NewGuid().ToString(),
 
             };
 
+            var password = "Test123!";
             var user = new User
             {
                 Id = 2,

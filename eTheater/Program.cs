@@ -2,6 +2,7 @@ using eTheater;
 using eTheater.Services;
 using eTheater.Services.Database;
 using eTheater.Services.Mapping;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -29,7 +30,23 @@ builder.Services.AddTransient<IShowScheduleService, ShowScheduleService>();
 builder.Services.AddTransient<ITicketService, TicketService>();
 builder.Services.AddTransient<ITheaterInfoService, TheaterInfoService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<ITokenService, TokenService>();
 
+
+builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 8;
+    options.User.AllowedUserNameCharacters = string.Empty;
+    options.User.RequireUniqueEmail = true;
+
+}).AddEntityFrameworkStores<ETheaterContext>().AddRoles<IdentityRole<int>>().AddDefaultTokenProviders();
+builder.Services.AddScoped<UserManager<User>>();
+builder.Services.AddScoped<IdentityRole<int>>();
 
 
 
