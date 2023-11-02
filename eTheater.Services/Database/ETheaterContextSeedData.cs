@@ -69,6 +69,37 @@ namespace eTheater.Services.Database
                 new IdentityUserClaim<int> { Id = 4, UserId = 2, ClaimType = ClaimTypes.Name, ClaimValue = "adlaKaj" },
                 new IdentityUserClaim<int> { Id = 5, UserId = 2, ClaimType = ClaimTypes.Email, ClaimValue = "adla@gmail.com" }
             );
+
+            modelBuilder.Entity<Notification>().HasData(new Notification[]
+            {
+                new Notification()
+                {
+                    NotificationId = 1,
+                    Title = "Uskoro u prodaji karte za predstavu Ćelava pjevačica",
+                    Content = "Ulaznice su u prodaji na blagajni NPM-a od ponedjeljka, 5.6.2023. svakim radnim danom od 9 - 14 sati, na dan igranja predstave od 9 do 14 sati te od 18 do 20 sati. Rezervacije: na broj 036/550-128, mail: marketing@npm.ba, porukom u inbox na Facebook stranici Narodnog pozorišta Mostar.",
+                    Picture = celavaPjevacinaPicture,
+                    UserId = 1,
+                    NotificationCategory = eTheater.Model.Enums.NotificationCategory.Novost
+                },
+                new Notification()
+                {
+                    NotificationId = 2,
+                    Title = "Uskoro u prodaji karte za Mostarsku lisku",
+                    Content = "Ulaznice su u prodaji na blagajni NPM-a od ponedjeljka, 14.12.2023. svakim radnim danom od 9 - 14 sati, na dan igranja predstave od 9 do 14 sati te od 18 do 20 sati. Rezervacije: na broj 036/550-128, mail: marketing@npm.ba, porukom u inbox na Facebook stranici Narodnog pozorišta Mostar.",
+                    Picture = notificationPicture,
+                    UserId = 1,
+                    NotificationCategory = eTheater.Model.Enums.NotificationCategory.Novost
+                },
+                new Notification()
+                {
+                    NotificationId = 3,
+                    Title = "Posebna manifestacija 25.11.2023.",
+                    Content = "Povodom Dana državonsti Bosne i Hercegovine u pozorištu će se održati posebna manfestacija, 25.11.2023. u 12:00",
+                    Picture = notificationPicture,
+                    UserId = 1,
+                    NotificationCategory = eTheater.Model.Enums.NotificationCategory.Ponude
+                }
+            });
         
 
             modelBuilder.Entity<Hall>().HasData(new Hall[]
