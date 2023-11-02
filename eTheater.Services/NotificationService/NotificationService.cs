@@ -32,7 +32,7 @@ namespace eTheater.Services
 
             if (!string.IsNullOrWhiteSpace(search?.Title))
                 filteredQuery = filteredQuery.Where(x => x.Title.ToLower().Contains(search.Title.ToLower()));
-            if (search?.NotificationCategory != NotificationCategory.All)
+            if (search?.NotificationCategory != null)
                 filteredQuery = filteredQuery.Where(x => x.NotificationCategory == search.NotificationCategory);
             filteredQuery = filteredQuery.Where(x => x.IsDeleted == false);
             return filteredQuery;
