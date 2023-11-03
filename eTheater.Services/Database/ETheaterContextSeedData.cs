@@ -273,7 +273,8 @@ namespace eTheater.Services.Database
                     ShowScheduleId = 1,
                     NumberOfSeat = 1,
                     NumberOfRow = "A",
-                    Seat = "A1"
+                    Seat = "A1",
+                    PurchaseId = 1
                 },
                 new Ticket()
                 {
@@ -282,7 +283,8 @@ namespace eTheater.Services.Database
                     ShowScheduleId = 1,
                     NumberOfSeat = 2,
                     NumberOfRow = "A",
-                    Seat = "A2"
+                    Seat = "A2",
+                    PurchaseId = 1
                 },
                  new Ticket()
                 {
@@ -1623,7 +1625,8 @@ namespace eTheater.Services.Database
                     ShowScheduleId = 2,
                     NumberOfSeat = 1,
                     NumberOfRow = "A",
-                    Seat = "A1"
+                    Seat = "A1",
+                    PurchaseId = 4
                 },
                 new Ticket()
                 {
@@ -1632,7 +1635,8 @@ namespace eTheater.Services.Database
                     ShowScheduleId = 2,
                     NumberOfSeat = 2,
                     NumberOfRow = "A",
-                    Seat = "A2"
+                    Seat = "A2",
+                    PurchaseId = 4
                 },
                  new Ticket()
                 {
@@ -4341,7 +4345,8 @@ namespace eTheater.Services.Database
                     ShowScheduleId = 5,
                     NumberOfSeat = 3,
                     NumberOfRow = "A",
-                    Seat = "A3"
+                    Seat = "A3",
+                    PurchaseId = 3
                 },
                 new Ticket()
                 {
@@ -5214,7 +5219,8 @@ namespace eTheater.Services.Database
                     ShowScheduleId = 5,
                     NumberOfSeat = 10,
                     NumberOfRow = "J",
-                    Seat = "J10"
+                    Seat = "J10",
+                    PurchaseId = 2
                 },
                 new Ticket()
                 {
@@ -5223,7 +5229,8 @@ namespace eTheater.Services.Database
                     ShowScheduleId = 6,
                     NumberOfSeat = 1,
                     NumberOfRow = "A",
-                    Seat = "A1"
+                    Seat = "A1",
+                    PurchaseId = 2
                 },
                 new Ticket()
                 {
@@ -5232,7 +5239,8 @@ namespace eTheater.Services.Database
                     ShowScheduleId = 6,
                     NumberOfSeat = 2,
                     NumberOfRow = "A",
-                    Seat = "A2"
+                    Seat = "A2",
+                    PurchaseId = 2
                 },
                  new Ticket()
                 {
@@ -6115,6 +6123,50 @@ namespace eTheater.Services.Database
                     NumberOfSeat = 10,
                     NumberOfRow = "J",
                     Seat = "J10"
+                },
+            });
+            
+            modelBuilder.Entity<Purchase>().HasData(new Purchase[]
+            {
+                new Purchase()
+                {
+                   PurchaseId = 1,
+                   NumberOfTickets = 2,
+                   TotalPrice = 40,
+                   PaymentIntentId = "pi_3NwMiYEDYm8POibP1HZgAANw_secret_L1f7hpTvlCWjJJXmeJaTwZO06",
+                   UserId = 2,
+                   ShowScheduleId = 1,
+                   IsPaid = true
+                },
+                new Purchase()
+                {
+                   PurchaseId = 2,
+                   NumberOfTickets = 3,
+                   TotalPrice = 30,
+                   PaymentIntentId = "pi_3NwMiYEDYm8POibP1HZgAANw_secret_L1f7hpTvlCWjJJXmeJaTwZO06",
+                   UserId = 2,
+                   ShowScheduleId = 6,
+                   IsPaid = true
+                },
+                new Purchase()
+                {
+                   PurchaseId = 3,
+                   NumberOfTickets = 1,
+                   TotalPrice = 10,
+                   PaymentIntentId = "pi_3NwMiYEDYm8POibP1HZgAANw_secret_L1f7hpTvlCWjJJXmeJaTwZO06",
+                   UserId = 2,
+                   ShowScheduleId = 5,
+                   IsPaid = true
+                },
+                new Purchase()
+                {
+                   PurchaseId = 4,
+                   NumberOfTickets = 2,
+                   TotalPrice = 20,
+                   PaymentIntentId = "pi_3NwMiYEDYm8POibP1HZgAANw_secret_L1f7hpTvlCWjJJXmeJaTwZO06",
+                   UserId = 2,
+                   ShowScheduleId = 2,
+                   IsPaid = true
                 },
             });
         }
