@@ -8,6 +8,7 @@ namespace eTheater.Controllers
     public class PurchaseController : BaseCRUDController<Model.Purchase, PurchaseSearchObject, PurchaseUpsertRequest, PurchaseUpsertRequest>
     {
         public IPurchaseService _service { get; set; }
+
         public PurchaseController(IPurchaseService service) : base(service)
         {
             _service = service;

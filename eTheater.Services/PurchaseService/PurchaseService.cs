@@ -14,9 +14,11 @@ namespace eTheater.Services
 {
     public class PurchaseService : BaseCRUDService<Model.Purchase, Database.Purchase, PurchaseSearchObject, PurchaseUpsertRequest, PurchaseUpsertRequest>, IPurchaseService
     {
-        public PurchaseService(ETheaterContext context, IMapper mapper) : base(context, mapper)
-        {
 
+        public StripeService _stripeService { get; set; }
+        public PurchaseService(StripeService stripeService, ETheaterContext context, IMapper mapper) : base(context, mapper)
+        {
+            _stripeService = stripeService;
         }
 
         public override IQueryable<eTheater.Services.Database.Purchase> AddInclude(IQueryable<eTheater.Services.Database.Purchase> query, PurchaseSearchObject search = null)
@@ -56,6 +58,27 @@ namespace eTheater.Services
             var entity = _context.Purchases.Include(x => x.ShowSchedule).Include(x => x.ShowSchedule.Show).Include(x => x.ShowSchedule.Hall).Include(x => x.User).Where(x => x.UserId == id).Where(x => x.IsPaid == true).AsQueryable();
             var list = entity.ToList();
             return _mapper.Map<IList<Model.Purchase>>(list);
+        }
+
+        public override Model.Purchase Insert(PurchaseUpsertRequest request)
+        {
+            var showSchedule = _context.Purchases.First(x => x.ShowScheduleId == request.ShowScheduleId);
+            if (showSchedule == null)
+                throw new Exception("Show schedule not found");
+
+            Purchase purchase = new Purchase();
+            purchase.UserId = request.UserId;
+            purchase.NumberOfTickets = request.Tickets.Count();
+            purchase.TotalPrice = request.TotalPrice;
+            purchase.ShowScheduleId = request.ShowScheduleId;
+            _context.Add(purchase);
+            _context.SaveChanges();
+
+            var paymentId = _stripeService.CreatePurchase(purchase.TotalPrice, $"Purchase for ({purchase.CreatedAt})");
+            purchase.PaymentIntentId = paymentId;
+
+            _context.SaveChanges();
+            return _mapper.Map<Model.Purchase>(purchase);
         }
     }
 }

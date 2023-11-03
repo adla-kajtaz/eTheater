@@ -10,9 +10,9 @@ namespace eTheater.Model
     {
         public int PurchaseId { get; set; }
 
-        public int? TotalPrice { get; set; }
+        public int TotalPrice { get; set; }
 
-        public int? NumberOfTickets { get; set; }
+        public int NumberOfTickets { get; set; }
 
         public bool IsPaid { get; set; }
 

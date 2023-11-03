@@ -34,7 +34,7 @@ builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<INotificationService, NotificationService>();
 builder.Services.AddTransient<IPurchaseService, PurchaseService>();
-
+builder.Services.AddTransient<StripeService>();
 
 
 builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
