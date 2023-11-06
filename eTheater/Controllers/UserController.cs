@@ -2,6 +2,7 @@
 using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
 using eTheater.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eTheater.Controllers
@@ -14,6 +15,7 @@ namespace eTheater.Controllers
             _service = service;
         }
 
+        [Authorize]
         [HttpPost]
         public override User Insert([FromBody] UserUpdateRequest insert)
         {

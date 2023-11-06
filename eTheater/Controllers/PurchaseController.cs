@@ -1,6 +1,7 @@
 ﻿using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
 using eTheater.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eTheater.Controllers
@@ -14,6 +15,7 @@ namespace eTheater.Controllers
             _service = service;
         }
 
+        [Authorize]
         [HttpGet("GetByUserId/{id}")]
         public IEnumerable<Model.Purchase> GetByUserId(int id)
         {

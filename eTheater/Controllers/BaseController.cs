@@ -1,4 +1,5 @@
 ﻿using eTheater.Services.BaseService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eTheater.Controllers
@@ -13,12 +14,14 @@ namespace eTheater.Controllers
             _service = service;
         }
 
+        [Authorize]
         [HttpGet]
         public virtual IEnumerable<T> GetAll([FromQuery] TSearch search = null)
         {
             return _service.GetAll(search);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public virtual T GetById(int id)
         {

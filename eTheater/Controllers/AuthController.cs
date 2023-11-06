@@ -2,11 +2,12 @@
 using eTheater.Model;
 using eTheater.Model.Requests;
 using eTheater.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eTheater.Controllers
 {
-    // [AllowAnonymous]
+    [AllowAnonymous]
     [ApiController]
     [Route("[controller]")]
     public class AuthController : ControllerBase
