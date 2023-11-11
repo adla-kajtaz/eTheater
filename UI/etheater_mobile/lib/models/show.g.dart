@@ -8,24 +8,22 @@ part of 'show.dart';
 
 Show _$ShowFromJson(Map<String, dynamic> json) => Show(
       showId: json['showId'] as int,
-      showName: json['showName'] as String,
-      showDescription: json['showDescription'] as String,
+      name: json['name'] as String,
+      description: json['description'] as String,
       picture: json['picture'] as String?,
       duration: json['duration'] as int,
-      director: json['director'] as String,
-      showGenreId: json['showGenreId'] as int?,
-      showGenre: json['showGenre'] == null
-          ? null
-          : ShowGenre.fromJson(json['showGenre'] as Map<String, dynamic>),
+      director: json['director'] as String?,
+      showGenre: Show.showGenreFromJson(json['showGenre'] as int),
+      isDeleted: json['isDeleted'] as bool?,
     );
 
 Map<String, dynamic> _$ShowToJson(Show instance) => <String, dynamic>{
       'showId': instance.showId,
-      'showName': instance.showName,
-      'showDescription': instance.showDescription,
+      'name': instance.name,
+      'description': instance.description,
       'picture': instance.picture,
       'duration': instance.duration,
       'director': instance.director,
-      'showGenreId': instance.showGenreId,
-      'showGenre': instance.showGenre,
+      'showGenre': Show.showGenreToJson(instance.showGenre),
+      'isDeleted': instance.isDeleted,
     };

@@ -1,3 +1,4 @@
+import 'package:etheater_mobile/providers/auth_provider.dart';
 import 'package:etheater_mobile/providers/showSchedule_provider.dart';
 import 'package:etheater_mobile/screens/screens.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ShowScheduleProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
       ],
       child: const MyApp(),
     ),

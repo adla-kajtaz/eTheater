@@ -1,29 +1,35 @@
-import 'package:etheater_mobile/models/models.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'enums.dart';
 
 part 'show.g.dart';
 
 @JsonSerializable()
 class Show {
   int showId;
-  String showName;
-  String showDescription;
+  String name;
+  String description;
   String? picture;
   int duration;
-  String director;
-  int? showGenreId;
-  ShowGenre? showGenre;
+  String? director;
+  @JsonKey(fromJson: showGenreFromJson, toJson: showGenreToJson)
+  ShowGenre showGenre;
+  bool? isDeleted;
 
   Show(
       {required this.showId,
-      required this.showName,
-      required this.showDescription,
+      required this.name,
+      required this.description,
       this.picture,
       required this.duration,
-      required this.director,
-      this.showGenreId,
-      this.showGenre});
+      this.director,
+      required this.showGenre,
+      this.isDeleted});
 
   factory Show.fromJson(Map<String, dynamic> json) => _$ShowFromJson(json);
   Map<String, dynamic> toJson() => _$ShowToJson(this);
+
+  static ShowGenre showGenreFromJson(int json) =>
+      const ShowGenreConverter().fromJson(json);
+  static int showGenreToJson(ShowGenre object) =>
+      const ShowGenreConverter().toJson(object);
 }

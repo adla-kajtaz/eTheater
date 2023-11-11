@@ -46,12 +46,12 @@ class ShowListing extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          showSchedule.show!.showName,
+                          showSchedule.show!.name,
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                         Text(
-                          '${showSchedule.showDateTime.toString().substring(0, 10)}, ${showSchedule.showDateTime.toString().substring(11, 14)}',
+                          '${showSchedule.showDate.toString().substring(0, 10)}, ${showSchedule.showTime.toString().substring(11, 14)}',
                           style: const TextStyle(fontSize: 12),
                         ),
                         const SizedBox(height: 30),

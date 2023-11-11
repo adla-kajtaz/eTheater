@@ -6,21 +6,25 @@ part 'showSchedule.g.dart';
 @JsonSerializable()
 class ShowSchedule {
   int showScheduleId;
-  int ticketPrice;
-  DateTime showDateTime;
+  int? ticketPrice;
+  DateTime showDate;
+  String? showTime;
   int? hallId;
   Hall? hall;
   int? showId;
   Show? show;
+  bool? isDeleted;
 
   ShowSchedule(
       {required this.showScheduleId,
-      required this.ticketPrice,
-      required this.showDateTime,
+      this.ticketPrice,
+      required this.showDate,
+      this.showTime,
       this.hallId,
       this.hall,
       this.showId,
-      this.show});
+      this.show,
+      this.isDeleted});
 
   factory ShowSchedule.fromJson(Map<String, dynamic> json) =>
       _$ShowScheduleFromJson(json);

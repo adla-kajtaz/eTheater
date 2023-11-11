@@ -1,5 +1,12 @@
+import 'package:etheater_mobile/providers/token_provider.dart';
 import 'package:etheater_mobile/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/auth_provider.dart';
+
+RegExp regexEmail = RegExp(
+    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+RegExp regexPassword = RegExp(r'^.{8,}$');
 
 class Login extends StatefulWidget {
   static const routeName = '/login';
@@ -14,10 +21,13 @@ class _LoginState extends State<Login> {
   final formKey = GlobalKey<FormState>();
   String? email;
   String? password;
+  bool loginFailed = false;
+  AuthProvider? _authProvider;
 
   @override
   void initState() {
     super.initState();
+    _authProvider = context.read<AuthProvider>();
   }
 
   @override
@@ -50,6 +60,9 @@ class _LoginState extends State<Login> {
                         if (value!.isEmpty) {
                           return "This field is required!";
                         }
+                        if (!regexEmail.hasMatch(value)) {
+                          return 'Invalid email!';
+                        }
                       },
                       style: const TextStyle(
                           color: Color.fromARGB(255, 40, 38, 38)),
@@ -72,6 +85,12 @@ class _LoginState extends State<Login> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "This field is required!";
+                        }
+                        if (!regexPassword.hasMatch(value)) {
+                          return 'Password must have at least 8 characters!';
+                        }
+                        if (loginFailed) {
+                          return 'Incorrect username or password!';
                         }
                       },
                       obscureText: true,
@@ -103,20 +122,25 @@ class _LoginState extends State<Login> {
                 ),
                 child: InkWell(
                   onTap: () async {
-                    Navigator.popAndPushNamed(context, Navigation.routeName);
-                    /*if (formKey.currentState!.validate()) {
+                    loginFailed = false;
+                    if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
-
+                      Map loginData = {'email': email, 'password': password};
                       try {
-                        Navigator.popAndPushNamed(
-                            context, Navigation.routeName);
+                        var data = await _authProvider!.login(loginData);
+                        TokenProvider.jwtToken = data!.token;
+                        if (context.mounted) {
+                          Navigator.popAndPushNamed(
+                              context, Navigation.routeName);
+                        }
                       } on Exception catch (error) {
                         print(error.toString());
                         if (error.toString().contains("Bad request")) {
+                          loginFailed = true;
                           formKey.currentState!.validate();
                         }
                       }
-                    }*/
+                    }
                   },
                   child: const Center(
                     child: Text(
