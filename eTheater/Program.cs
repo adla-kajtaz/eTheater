@@ -62,6 +62,7 @@ builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<INotificationService, NotificationService>();
 builder.Services.AddTransient<IPurchaseService, PurchaseService>();
+builder.Services.AddTransient<IActorService, ActorService>();
 builder.Services.AddTransient<StripeService>();
 
 

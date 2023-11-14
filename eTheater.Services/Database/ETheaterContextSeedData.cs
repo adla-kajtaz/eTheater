@@ -128,6 +128,34 @@ namespace eTheater.Services.Database
                 }
             });
 
+            modelBuilder.Entity<Actor>().HasData(new Actor[]
+            {
+                new Actor()
+                {
+                    ActorId = 1,
+                    FirstName = "Ajla",
+                    LastName = "Hamzić"
+                },
+                new Actor()
+                {
+                    ActorId = 2,
+                    FirstName = "Emir",
+                    LastName = "Spahić"
+                },
+                new Actor()
+                {
+                    ActorId = 3,
+                    FirstName = "Asija",
+                    LastName = "Kajtaz"
+                },
+                new Actor()
+                {
+                    ActorId = 4,
+                    FirstName = "Adi",
+                    LastName = "Pezo"
+                }
+           });
+
             modelBuilder.Entity<Show>().HasData(new Show[]
             {
                 new Show()
