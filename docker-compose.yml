@@ -1,8 +1,8 @@
-version: '3'
+version: "3"
 services:
   #mssql docker
   etheater-sql:
-    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    image: mcr.microsoft.com/mssql/server:2019-latest
     restart: unless-stopped
     environment:
       - ACCEPT_EULA=Y
@@ -20,7 +20,7 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:DefaultConnection=Server=etheater-sql,1433;Database=eTheater;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+      - ConnectionStrings:DefaultConnection=Server=etheater-sql,1433;Database=eTheater;User=sa;Password=QWElkj132!;ConnectRetryCount=0;TrustServerCertificate=True;
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 5192:5192

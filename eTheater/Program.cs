@@ -23,7 +23,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ETheaterContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString, b => b.MigrationsAssembly("eTheater")));
 
 builder.Services.AddSwaggerGen(sw => sw.SwaggerDoc("v1", new OpenApiInfo { Title = "eTheater", Version = "1.0"}));
 
