@@ -35,8 +35,13 @@ namespace eTheater.Services
         {
             var entity = _context.Shows.Find(id);
             var showSchedules = _context.ShowSchedules.Where(e => e.ShowId == id).ToList();
+            var showActors = _context.ShowActors.Where(e => e.ShowId == id).ToList();
 
             if (showSchedules != null && showSchedules.Any())
+            {
+                return null;
+            }
+            else if (showActors != null && showActors.Any())
             {
                 return null;
             }

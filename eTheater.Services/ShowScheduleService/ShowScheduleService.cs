@@ -43,7 +43,13 @@ namespace eTheater.Services
         public override Model.ShowSchedule Delete(int id)
         {
            var entity = _context.ShowSchedules.Find(id);
-           if (entity == null)
+           var tickets = _context.Tickets.Where(e => e.ShowScheduleId == id).ToList();
+
+           if (tickets != null && tickets.Any())
+           {
+                return null;
+           }
+           else if(entity == null)
            {
                 return null;
            }

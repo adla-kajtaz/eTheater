@@ -31,7 +31,13 @@ namespace eTheater.Services
         public override Model.Actor Delete(int id)
         {
             var entity = _context.Actors.Find(id);
+            var showActors = _context.ShowActors.Where(e => e.ActorId == id).ToList();
 
+            if (showActors != null && showActors.Any())
+            {
+                return null;
+            }
+            else
             if (entity == null)
             {
                 return null;

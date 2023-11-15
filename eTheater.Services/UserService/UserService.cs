@@ -34,7 +34,7 @@ namespace eTheater.Services
 
         public override Model.User Delete(int id)
         {
-            var entity = _context.Tickets.Find(id);
+            var entity = _context.Users.Find(id);
 
             if (entity == null)
             {
