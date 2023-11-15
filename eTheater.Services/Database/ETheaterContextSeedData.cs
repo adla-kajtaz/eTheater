@@ -220,6 +220,52 @@ namespace eTheater.Services.Database
                 }
             });
 
+            modelBuilder.Entity<ShowActor>().HasData(new ShowActor[]
+            {
+                new ShowActor()
+                {
+                    ShowActorId = 1,
+                    ActorId = 2,
+                    ShowId = 1
+                },
+                new ShowActor()
+                {
+                    ShowActorId = 2,
+                    ActorId = 2,
+                    ShowId = 2
+                },
+                new ShowActor()
+                {
+                    ShowActorId = 3,
+                    ActorId = 2,
+                    ShowId = 3
+                },
+                new ShowActor()
+                {
+                    ShowActorId = 4,
+                    ActorId = 1,
+                    ShowId = 4
+                },
+                new ShowActor()
+                {
+                    ShowActorId = 5,
+                    ActorId = 1,
+                    ShowId = 5
+                },
+                new ShowActor()
+                {
+                    ShowActorId = 6,
+                    ActorId = 1,
+                    ShowId = 6
+                },
+                new ShowActor()
+                {
+                    ShowActorId = 7,
+                    ActorId = 2,
+                    ShowId = 6
+                }
+           });
+
             modelBuilder.Entity<ShowSchedule>().HasData(new ShowSchedule[]
             {
                 new ShowSchedule()

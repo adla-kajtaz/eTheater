@@ -32,6 +32,9 @@ public partial class ETheaterContext : IdentityDbContext<User, IdentityRole<int>
 
     public virtual DbSet<Actor> Actors { get; set; }
 
+    public virtual DbSet<ShowActor> ShowActors { get; set; }
+
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

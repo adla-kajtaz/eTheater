@@ -21,4 +21,7 @@ public partial class Show : BaseEntity
     public ShowGenre? ShowGenre { get; set; }
 
     public virtual ICollection<ShowSchedule> ShowSchedules { get; set; } = new List<ShowSchedule>();
+
+    public virtual ICollection<ShowActor> ShowActors { get; set; } = new List<ShowActor>();
+
 }

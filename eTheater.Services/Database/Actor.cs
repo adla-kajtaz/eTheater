@@ -14,5 +14,6 @@ namespace eTheater.Services.Database
 
         public string LastName { get; set; }
 
+        public virtual ICollection<ShowActor> ShowActors { get; set; } = new List<ShowActor>();
     }
 }

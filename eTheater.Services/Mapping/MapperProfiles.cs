@@ -21,7 +21,7 @@ namespace eTheater.Services.Mapping
             CreateMap<Database.Notification, Model.Notification>();
             CreateMap<Database.Purchase, Model.Purchase>();
             CreateMap<Database.Actor, Model.Actor>();
-
+            CreateMap<Database.ShowActor, Model.ShowActor>();
 
             CreateMap<HallUpsertRequest, Database.Hall>();
             CreateMap<ShowUpsertRequest, Database.Show>();
@@ -32,6 +32,7 @@ namespace eTheater.Services.Mapping
             CreateMap<NotificationUpsertRequest, Database.Notification>();
             CreateMap<PurchaseUpsertRequest, Database.Purchase>();
             CreateMap<ActorUpsertRequest, Database.Actor>();
+            CreateMap<ShowActorUpsertRequest, Database.ShowActor>();
         }
     }
 }
