@@ -1,4 +1,5 @@
-﻿using eTheater.Model.Requests;
+﻿using eTheater.Model;
+using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
 using eTheater.Services;
 
@@ -10,6 +11,11 @@ namespace eTheater.Controllers
         public TheaterInfoController(ITheaterInfoService service) : base(service)
         {
             _service = service;
+        }
+
+        public override TheaterInfo Delete(int id)
+        {
+            throw new UserException("Not allowed", "Deleting theater is not allowed");
         }
     }
 }

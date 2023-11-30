@@ -1,4 +1,5 @@
-﻿using eTheater.Model.Requests;
+﻿using eTheater.Model;
+using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
 using eTheater.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -20,6 +21,11 @@ namespace eTheater.Controllers
         public IEnumerable<Model.Purchase> GetByUserId(int id)
         {
             return _service.GetByUserId(id);
+        }
+
+        public override Purchase Delete(int id)
+        {
+            throw new UserException("Not allowed", "Deleting purchase is not allowed");
         }
     }
 }
