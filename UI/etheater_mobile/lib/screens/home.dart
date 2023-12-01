@@ -1,4 +1,9 @@
+import 'package:etheater_mobile/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/showSchedule_provider.dart';
+import '../widgets/show_listing.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -7,6 +12,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<ShowSchedule> showSchedules = [];
+  ShowScheduleProvider? _showScheduleProvider;
+
   final List<Tab> myTabs = <Tab>[
     const Tab(text: 'Now'),
     const Tab(text: 'Recommended')
@@ -15,6 +23,16 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    _showScheduleProvider = context.read<ShowScheduleProvider>();
+    loadData();
+  }
+
+  Future loadData() async {
+    var tempData = await _showScheduleProvider?.get();
+
+    setState(() {
+      showSchedules = tempData!;
+    });
   }
 
   @override
@@ -27,9 +45,13 @@ class _HomeState extends State<Home> {
           appBar: AppBar(
             automaticallyImplyLeading: false,
             backgroundColor: const Color.fromARGB(255, 40, 38, 38),
-            actions: [
+            title: const Text(
+              'Shows',
+              style: TextStyle(color: Colors.white),
+            ),
+            actions: const [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0),
                 child: Icon(
                   Icons.theater_comedy,
                   color: Colors.white,
@@ -47,8 +69,8 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(16),
             child: TabBarView(
               children: [
-                Text("text 1"),
-                Text("text 2"),
+                ShowListing(showSchedules: [...showSchedules]),
+                const Text("text 2"),
               ],
             ),
           ),

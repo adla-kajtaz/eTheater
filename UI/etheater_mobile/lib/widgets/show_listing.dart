@@ -51,7 +51,7 @@ class ShowListing extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                         Text(
-                          '${showSchedule.showDate.toString().substring(0, 10)}, ${showSchedule.showTime.toString().substring(11, 14)}',
+                          '${showSchedule.showDate.toString().substring(0, 10)}, ${showSchedule.showTime.toString()}',
                           style: const TextStyle(fontSize: 12),
                         ),
                         const SizedBox(height: 30),

@@ -40,8 +40,8 @@ class _LoginState extends State<Login> {
           child: Column(
             children: [
               const SizedBox(height: 150),
-              Center(
-                child: const Icon(
+              const Center(
+                child: Icon(
                   Icons.theater_comedy,
                   color: Colors.white,
                   size: 100,
