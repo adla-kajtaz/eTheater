@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/models.dart';
+import '../providers/notification_provider.dart';
+import '../widgets/news_listing.dart';
 
 class News extends StatefulWidget {
   const News({super.key});
@@ -8,9 +12,22 @@ class News extends StatefulWidget {
 }
 
 class _NewsState extends State<News> {
+  List<NotificationEtheater> notifications = [];
+  NotificationProvider? _notificationProvider;
+
   @override
   void initState() {
     super.initState();
+    _notificationProvider = context.read<NotificationProvider>();
+    loadData();
+  }
+
+  Future loadData() async {
+    var tempData = await _notificationProvider?.get();
+
+    setState(() {
+      notifications = tempData!;
+    });
   }
 
   @override
@@ -21,6 +38,10 @@ class _NewsState extends State<News> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+          title: const Text(
+            'News',
+            style: TextStyle(color: Colors.white),
+          ),
           actions: const [
             Padding(
               padding: EdgeInsets.all(8.0),
@@ -32,8 +53,9 @@ class _NewsState extends State<News> {
             ),
           ],
         ),
-        body: const Padding(
-          padding: EdgeInsets.all(16),
+        body: Padding(
+          padding: const EdgeInsets.all(16),
+          child: NewsListing(notifications: [...notifications]),
         ),
       ),
     );

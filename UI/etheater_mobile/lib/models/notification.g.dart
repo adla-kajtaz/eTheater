@@ -6,12 +6,14 @@ part of 'notification.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Notification _$NotificationFromJson(Map<String, dynamic> json) => Notification(
+NotificationEtheater _$NotificationEtheaterFromJson(
+        Map<String, dynamic> json) =>
+    NotificationEtheater(
       notificationId: json['notificationId'] as int,
       title: json['title'] as String,
       content: json['content'] as String,
       picture: json['picture'] as String?,
-      notificationCategory: Notification.notificationCategoryFromJson(
+      notificationCategory: NotificationEtheater.notificationCategoryFromJson(
           json['notificationCategory'] as int),
       userId: json['userId'] as int?,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
@@ -19,13 +21,14 @@ Notification _$NotificationFromJson(Map<String, dynamic> json) => Notification(
       isDeleted: json['isDeleted'] as bool?,
     );
 
-Map<String, dynamic> _$NotificationToJson(Notification instance) =>
+Map<String, dynamic> _$NotificationEtheaterToJson(
+        NotificationEtheater instance) =>
     <String, dynamic>{
       'notificationId': instance.notificationId,
       'title': instance.title,
       'content': instance.content,
       'picture': instance.picture,
-      'notificationCategory': Notification.notificationCategoryToJson(
+      'notificationCategory': NotificationEtheater.notificationCategoryToJson(
           instance.notificationCategory),
       'userId': instance.userId,
       'user': instance.user,

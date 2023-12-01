@@ -1,7 +1,6 @@
 import 'package:etheater_mobile/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/showSchedule_provider.dart';
 import '../widgets/show_listing.dart';
 
