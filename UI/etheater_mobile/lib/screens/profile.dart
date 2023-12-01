@@ -1,5 +1,10 @@
+import 'package:etheater_mobile/models/models.dart';
 import 'package:etheater_mobile/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/auth_provider.dart';
+import '../providers/purchase_provider.dart';
+import '../widgets/purchase_history.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -9,9 +14,22 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  List<Purchase> purchases = [];
+  PurchaseProvider? _purchaseProvider;
+  AuthProvider? _authProvider;
   @override
   void initState() {
     super.initState();
+    _purchaseProvider = context.read<PurchaseProvider>();
+    _authProvider = context.read<AuthProvider>();
+    loadData();
+  }
+
+  Future loadData() async {
+    var tempData = await _purchaseProvider?.getByUserId(2); //dodati pravi id
+    setState(() {
+      purchases = tempData!;
+    });
   }
 
   @override
@@ -22,17 +40,21 @@ class _ProfileState extends State<Profile> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 40, 38, 38),
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
+        title: const Text(
+          'Profil',
+          style: TextStyle(color: Colors.white),
+        ),
+        leading: const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Icon(
             Icons.settings,
             color: Colors.white,
             size: 40,
           ),
         ),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Icon(
               Icons.theater_comedy,
               color: Colors.white,
@@ -75,6 +97,26 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
+                ),
+              ),
+              const SizedBox(height: 15),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Your purchases',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 219, 209, 209),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 5),
+              SizedBox(
+                height: 550,
+                width: double.infinity,
+                child: PurchaseHistory(
+                  purchases: [...purchases],
                 ),
               ),
             ]),
