@@ -70,7 +70,7 @@ class _LoginState extends State<Login> {
                         filled: true,
                         fillColor: Colors.white,
                         labelText: 'Email',
-                        hintText: 'Email',
+                        hintText: 'email@example.com',
                         hintStyle: const TextStyle(
                             color: Color.fromARGB(255, 40, 38, 38)),
                         border: OutlineInputBorder(
@@ -82,6 +82,7 @@ class _LoginState extends State<Login> {
                     ),
                     TextFormField(
                       onSaved: (newValue) => password = newValue,
+                      enableSuggestions: false,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "This field is required!";

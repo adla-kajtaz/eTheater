@@ -1,5 +1,8 @@
 import 'package:etheater_mobile/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/auth_provider.dart';
+import '../providers/token_provider.dart';
 
 class Register extends StatefulWidget {
   static const routeName = '/register';
@@ -15,11 +18,6 @@ bool isPasswordValid(String value) {
   return regex.hasMatch(value);
 }
 
-bool isPhoneNumberValid(String value) {
-  RegExp regex = RegExp(r'^\d{3}-\d{3}-(\d{4}|\d{3})$');
-  return regex.hasMatch(value);
-}
-
 bool isEmailValid(String value) {
   RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$',
       caseSensitive: false);
@@ -27,16 +25,16 @@ bool isEmailValid(String value) {
 }
 
 class _RegisterState extends State<Register> {
+  AuthProvider? _authProvider;
   final formKey = GlobalKey<FormState>();
-  String? firstName;
-  String? lastName;
+  String? userName;
   String? email;
-  String? phoneNumber;
   String? password;
-  List<int> uloge = [2];
+  List<String> errors = [];
   @override
   void initState() {
     super.initState();
+    _authProvider = context.read<AuthProvider>();
   }
 
   @override
@@ -51,8 +49,8 @@ class _RegisterState extends State<Register> {
             child: Column(
               children: [
                 const SizedBox(height: 50),
-                Center(
-                  child: const Icon(
+                const Center(
+                  child: Icon(
                     Icons.theater_comedy,
                     color: Colors.white,
                     size: 100,
@@ -66,10 +64,16 @@ class _RegisterState extends State<Register> {
                   child: Column(
                     children: [
                       TextFormField(
-                        onSaved: (newValue) => firstName = newValue,
+                        onSaved: (newValue) => userName = newValue,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "This field is required!";
+                          }
+                          if (errors.isNotEmpty &&
+                              errors.any((e) =>
+                                  e ==
+                                  "Username '$userName' is already taken.")) {
+                            return 'Username is already taken!';
                           }
                         },
                         style: const TextStyle(
@@ -79,29 +83,8 @@ class _RegisterState extends State<Register> {
                           fillColor: Colors.white,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          labelText: 'First name',
-                          hintText: 'First name',
-                          hintStyle: const TextStyle(
-                              color: Color.fromARGB(255, 40, 38, 38)),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      TextFormField(
-                        onSaved: (newValue) => lastName = newValue,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "This field is required!";
-                          }
-                        },
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 40, 38, 38)),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          labelText: 'Last name',
-                          hintText: 'Last name',
+                          labelText: 'Username',
+                          hintText: 'emma123',
                           hintStyle: const TextStyle(
                               color: Color.fromARGB(255, 40, 38, 38)),
                         ),
@@ -116,6 +99,11 @@ class _RegisterState extends State<Register> {
                           if (!isEmailValid(value!)) {
                             return "Please enter a valid email!";
                           }
+                          if (errors.isNotEmpty &&
+                              errors.any((element) =>
+                                  element == "Email is already taken!")) {
+                            return "Email is already taken!";
+                          }
                         },
                         style: const TextStyle(
                             color: Color.fromARGB(255, 40, 38, 38)),
@@ -125,31 +113,7 @@ class _RegisterState extends State<Register> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                           labelText: 'Email',
-                          hintText: 'exapmle@gmail.com',
-                          hintStyle: const TextStyle(
-                              color: Color.fromARGB(255, 40, 38, 38)),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      TextFormField(
-                        onSaved: (newValue) => phoneNumber = newValue,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "This field is required!";
-                          }
-                          if (!isPhoneNumberValid(value!)) {
-                            return "Please enter a phone number in format 06x-xxx-xxx!";
-                          }
-                        },
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 40, 38, 38)),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          labelText: 'Phone number',
-                          hintText: '062-025-025',
+                          hintText: 'email@example.com',
                           hintStyle: const TextStyle(
                               color: Color.fromARGB(255, 40, 38, 38)),
                         ),
@@ -167,6 +131,7 @@ class _RegisterState extends State<Register> {
                         },
                         obscureText: true,
                         autocorrect: false,
+                        enableSuggestions: false,
                         style: const TextStyle(
                             color: Color.fromARGB(255, 40, 38, 38)),
                         decoration: InputDecoration(
@@ -183,13 +148,38 @@ class _RegisterState extends State<Register> {
                       const SizedBox(height: 20),
                       InkWell(
                         onTap: () async {
+                          errors = [];
                           if (formKey.currentState!.validate()) {
                             formKey.currentState!.save();
                           }
-
-                          try {} on Exception catch (err) {
-                            print(err.toString());
-                            formKey.currentState!.validate();
+                          Map registerData = {
+                            'email': email,
+                            'password': password,
+                            'userName': userName,
+                          };
+                          try {
+                            var data =
+                                await _authProvider!.register(registerData);
+                            TokenProvider.jwtToken = data!.token;
+                            if (context.mounted) {
+                              Navigator.popAndPushNamed(
+                                  context, Navigation.routeName);
+                            }
+                          } on Exception catch (err) {
+                            if (err.toString().contains("Bad request")) {
+                              print(err.toString());
+                              if (err.toString().contains(
+                                  "Email '$email' is already taken")) {
+                                errors.add("Email is already taken!");
+                              }
+                              // print(error);
+                              if (err.toString().contains(
+                                  "Username '$userName' is already taken.")) {
+                                errors.add(
+                                    "Username '$userName' is already taken.");
+                              }
+                              formKey.currentState!.validate();
+                            }
                           }
                         },
                         child: Container(
