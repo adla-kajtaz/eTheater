@@ -11,6 +11,6 @@ namespace eTheater.Services
 {
     public interface IUserService : IBaseCRUDService<Model.User, UserSearchObject, UserUpdateRequest, UserUpdateRequest>
     {
-
+        Model.User GetMe(int id);
     }
 }

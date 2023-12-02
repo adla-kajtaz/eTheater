@@ -4,6 +4,7 @@ using eTheater.Model.SearchObjects;
 using eTheater.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace eTheater.Controllers
 {
@@ -13,6 +14,13 @@ namespace eTheater.Controllers
         public UserController(IUserService service) : base(service)
         {
             _service = service;
+        }
+
+        [HttpGet("getMe")]
+        public User GetMe()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            return _service.GetMe(userId);
         }
 
         [Authorize]

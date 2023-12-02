@@ -64,5 +64,11 @@ namespace eTheater.Services
             }
             return base.Update(id, update);
         }
+
+        public Model.User GetMe(int id)
+        {
+            var user = _context.Users.Find(id);
+            return _mapper.Map<Model.User>(user);
+        }
     }
 }

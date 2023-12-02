@@ -1,7 +1,9 @@
 ﻿using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
 using eTheater.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace eTheater.Controllers
 {
@@ -13,10 +15,18 @@ namespace eTheater.Controllers
             _service = service;
         }
 
-        [HttpGet("GetTimeSlotsForDate")]
+        [HttpGet("getTimeSlotsForDate")]
         public List<string> GetTimeSlotsForDate(int hallId, string date)
         {
             return _service.GetTimeSlotsForDate(hallId, date);
+        }
+
+        [Authorize]
+        [HttpGet("recommend")]
+        public List<Model.ShowSchedule> Recommend()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            return _service.ShowScheduleRecommenderSystem(userId);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace eTheater.Controllers
             return token;
         }
 
-        [HttpPost("login/admin")]
+        [HttpPost("login/Admin")]
         public async Task<AuthToken> LoginAdmin([FromBody] LoginRequest body)
         {
             var admin = await _service.LoginAdmin(body);
