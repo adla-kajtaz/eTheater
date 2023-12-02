@@ -12,10 +12,6 @@ namespace eTheater.Model.Requests
         [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Total seats cannot be less then or equal to 0.")]
-        [Required]
-        public int TotalSeats { get; set; }
-
         [Range(0, int.MaxValue, ErrorMessage = "Total rows cannot be less then or equal to 0.")]
         [Required]
         public int TotalRows { get; set; }

@@ -28,6 +28,35 @@ namespace eTheater.Services
             return filteredQuery;
         }
 
+        public override Model.Hall Insert(HallUpsertRequest request)
+        {
+            Database.Hall hall = new Database.Hall();
+            hall.Name = request.Name;
+            hall.TotalRows = request.TotalRows;
+            hall.NumberOfSeatsPerRow = request.NumberOfSeatsPerRow;
+            hall.TotalSeats = request.TotalRows * request.NumberOfSeatsPerRow;
+            _context.Add(hall);
+            _context.SaveChanges();
+            return _mapper.Map<Model.Hall>(hall);
+        }
+
+        public override Model.Hall Update (int id, HallUpsertRequest request)
+        {
+            var entity = _context.Halls.Find(id);
+
+            if (entity != null)
+            {
+                entity.TotalSeats = request.TotalRows * request.NumberOfSeatsPerRow;
+                _mapper.Map(request, entity);
+            }
+            else
+            {
+                return null;
+            }
+            _context.SaveChanges();
+            return _mapper.Map<Model.Hall>(entity);
+        }
+
         public override Model.Hall Delete(int id)
         {
             var entity = _context.Halls.Find(id);
