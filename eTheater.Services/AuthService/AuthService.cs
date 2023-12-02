@@ -34,7 +34,7 @@ namespace eTheater.Services
             if (user == null || user.IsDeleted == true) throw new eTheaterException("Invalid credentials", "Invalid email or password");
 
             var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, isPersistent: false, lockoutOnFailure: false);
-           
+            if (result.Succeeded)
             {
                 var isCustomer = await _userManager.IsInRoleAsync(user, "User");
                 if (isCustomer)
@@ -52,8 +52,8 @@ namespace eTheater.Services
             if (admin == null || admin.IsDeleted == true)
                 throw new eTheaterException("Invalid credentials", "Invalid email or password");
 
-            // var result = await _signInManager.PasswordSignInAsync(admin.UserName, request.Password, isPersistent: false, lockoutOnFailure: false);
-            // if (result.Succeeded)
+            //var result = await _signInManager.PasswordSignInAsync(admin.UserName, request.Password, isPersistent: false, lockoutOnFailure: false);
+            //if (result.Succeeded)
             if (await _userManager.CheckPasswordAsync(admin, request.Password))
             {
                 var isAdmin = await _userManager.IsInRoleAsync(admin, "Admin");
