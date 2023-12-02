@@ -25,7 +25,7 @@ namespace eTheater.Controllers
 
         public override Purchase Delete(int id)
         {
-            throw new UserException("Not allowed", "Deleting purchase is not allowed");
+            throw new eTheaterException("Not allowed", "Deleting purchase is not allowed");
         }
     }
 }

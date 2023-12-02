@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eTheater.Model;
 using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
 using eTheater.Services.BaseService;
@@ -40,10 +41,15 @@ namespace eTheater.Services
         public override Model.ShowActor Delete(int id)
         {
             var entity = _context.ShowActors.Find(id);
-            
+            var showActors = _context.ShowActors.Where(e => e.ShowId == entity!.ShowId && e.IsDeleted == false).ToList();
+
             if (entity == null)
             {
                 return null;
+            }
+            else if (showActors!.Count() == 1)
+            {
+                throw new eTheaterException("Warning", "You cannot delete an actor, the show must have at least one actor!");
             }
             else
             {

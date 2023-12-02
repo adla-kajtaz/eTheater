@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace eTheater.Model
 {
-	public class UserException : Exception
+	public class eTheaterException : Exception
 	{
 		public string Title { get; set; }
 
-		public UserException(string title, string message) : base(message)
+		public eTheaterException(string title, string message) : base(message)
 		{
 			Title = title;
 		}

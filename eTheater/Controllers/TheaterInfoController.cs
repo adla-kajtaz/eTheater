@@ -15,7 +15,7 @@ namespace eTheater.Controllers
 
         public override TheaterInfo Delete(int id)
         {
-            throw new UserException("Not allowed", "Deleting theater is not allowed");
+            throw new eTheaterException("Not allowed", "Deleting theater is not allowed");
         }
     }
 }

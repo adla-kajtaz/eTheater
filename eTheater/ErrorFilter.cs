@@ -10,14 +10,9 @@ namespace eTheater
         public override void OnException(ExceptionContext context)
         {
 
-            if (context.Exception is UserException)
+            if (context.Exception is eTheaterException)
             {
-                context.ModelState.AddModelError(((UserException)context.Exception).Title, context.Exception.Message);
-                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            }
-            else if (context.Exception is ShowScheduleException)
-            {
-                context.ModelState.AddModelError(((ShowScheduleException)context.Exception).Title, context.Exception.Message);
+                context.ModelState.AddModelError(((eTheaterException)context.Exception).Title, context.Exception.Message);
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
             else

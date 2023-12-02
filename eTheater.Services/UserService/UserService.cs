@@ -54,13 +54,13 @@ namespace eTheater.Services
             var userWithUsername = _context.Users.Where(x => x.Id != id && x.UserName == update.UserName).ToList();
             if (userWithUsername != null && userWithUsername.Count > 0)
             {
-                throw new UserException("Username", "Username is already taken!");
+                throw new eTheaterException("Username", "Username is already taken!");
             }
 
             var userWithEmail = _context.Users.Where(x => x.Id != id && x.Email == update.Email).ToList();
             if (userWithEmail != null && userWithEmail.Count > 0)
             {
-                throw new UserException("Email", "Email is already taken!");
+                throw new eTheaterException("Email", "Email is already taken!");
             }
             return base.Update(id, update);
         }

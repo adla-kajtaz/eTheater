@@ -31,7 +31,7 @@ namespace eTheater.Services
         public async Task<AuthToken> Login(LoginRequest request)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
-            if (user == null || user.IsDeleted == true) throw new UserException("Invalid credentials", "Invalid email or password");
+            if (user == null || user.IsDeleted == true) throw new eTheaterException("Invalid credentials", "Invalid email or password");
 
             var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, isPersistent: false, lockoutOnFailure: false);
            
@@ -43,14 +43,14 @@ namespace eTheater.Services
                     return new AuthToken() { Token = token };
                 }
             }
-            throw new UserException("Invalid credentials", "Invalid email or password");
+            throw new eTheaterException("Invalid credentials", "Invalid email or password");
         }
 
         public async Task<AuthToken> LoginAdmin(LoginRequest request)
         {
             var admin = await _userManager.FindByEmailAsync(request.Email);
             if (admin == null || admin.IsDeleted == true)
-                throw new UserException("Invalid credentials", "Invalid email or password");
+                throw new eTheaterException("Invalid credentials", "Invalid email or password");
 
             // var result = await _signInManager.PasswordSignInAsync(admin.UserName, request.Password, isPersistent: false, lockoutOnFailure: false);
             // if (result.Succeeded)
@@ -63,7 +63,7 @@ namespace eTheater.Services
                     return new AuthToken() { Token = token };
                 }
             }
-            throw new UserException("Invalid credentials", "Invalid email or password");
+            throw new eTheaterException("Invalid credentials", "Invalid email or password");
         }
 
         public async Task<AuthToken> Register(RegisterRequest request)
@@ -78,7 +78,7 @@ namespace eTheater.Services
             {
                 string code = result.Errors.ToList()[0].Code;
                 string message = result.Errors.ToList()[0].Description;
-                throw new UserException(code, message);
+                throw new eTheaterException(code, message);
             }
             await _userManager.AddToRoleAsync(user, "User");
             var token = _tokenService.GenerateJwtToken(user, "User");

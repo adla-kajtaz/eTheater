@@ -19,7 +19,7 @@ namespace eTheater.Controllers
         [HttpPost]
         public override User Insert([FromBody] UserUpdateRequest insert)
         {
-            throw new UserException("Not allowed", "Manually inserting users in the system is not allowed");
+            throw new eTheaterException("Not allowed", "Manually inserting users in the system is not allowed");
         }
     }
 }
