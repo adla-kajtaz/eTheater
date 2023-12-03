@@ -1,4 +1,5 @@
 import 'package:etheater_mobile/models/models.dart';
+import 'package:etheater_mobile/screens/recommendation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/showSchedule_provider.dart';
@@ -69,7 +70,7 @@ class _HomeState extends State<Home> {
             child: TabBarView(
               children: [
                 ShowListing(showSchedules: [...showSchedules]),
-                const Text("text 2"),
+                const Recommend(),
               ],
             ),
           ),

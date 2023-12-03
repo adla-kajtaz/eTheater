@@ -14,8 +14,8 @@ class PurchaseProvider extends BaseProvider<Purchase> {
     return Purchase.fromJson(data);
   }
 
-  Future<List<Purchase>> getByUserId(int id) async {
-    var url = "$_baseUrl" + "Purchase/GetByUserId/$id";
+  Future<List<Purchase>> getByUser() async {
+    var url = "$_baseUrl" + "Purchase/GetByUser";
     var uri = Uri.parse(url);
 
     Map<String, String> headers = createHeaders();

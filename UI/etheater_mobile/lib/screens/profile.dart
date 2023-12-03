@@ -2,7 +2,6 @@ import 'package:etheater_mobile/models/models.dart';
 import 'package:etheater_mobile/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/auth_provider.dart';
 import '../providers/purchase_provider.dart';
 import '../widgets/purchase_history.dart';
 
@@ -16,17 +15,15 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   List<Purchase> purchases = [];
   PurchaseProvider? _purchaseProvider;
-  AuthProvider? _authProvider;
   @override
   void initState() {
     super.initState();
     _purchaseProvider = context.read<PurchaseProvider>();
-    _authProvider = context.read<AuthProvider>();
     loadData();
   }
 
   Future loadData() async {
-    var tempData = await _purchaseProvider?.getByUserId(2); //dodati pravi id
+    var tempData = await _purchaseProvider?.getByUser();
     setState(() {
       purchases = tempData!;
     });

@@ -94,7 +94,7 @@ namespace eTheater.Services
 
             if (purchases.Count < 3)
             {
-                throw new RecommendationException("You have to have atleast 3 purchases for us to recommend you something!");
+                throw new RecommendationException("You must have at least 3 purchases before we recommend something!");
             }
 
             lock (isLocked)

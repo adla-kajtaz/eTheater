@@ -4,6 +4,7 @@ using eTheater.Model.SearchObjects;
 using eTheater.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace eTheater.Controllers
 {
@@ -17,10 +18,11 @@ namespace eTheater.Controllers
         }
 
         [Authorize]
-        [HttpGet("GetByUserId/{id}")]
-        public IEnumerable<Model.Purchase> GetByUserId(int id)
+        [HttpGet("GetByUser")]
+        public IEnumerable<Model.Purchase> GetByUserId()
         {
-            return _service.GetByUserId(id);
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            return _service.GetByUserId(userId);
         }
 
         public override Purchase Delete(int id)
