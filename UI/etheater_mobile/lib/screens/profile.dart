@@ -38,16 +38,16 @@ class _ProfileState extends State<Profile> {
         automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 40, 38, 38),
         title: const Text(
-          'Profil',
+          'Profile',
           style: TextStyle(color: Colors.white),
         ),
-        leading: const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Icon(
+        leading: IconButton(
+          icon: const Icon(
             Icons.settings,
             color: Colors.white,
             size: 40,
           ),
+          onPressed: () => Navigator.pushNamed(context, ProfilEdit.routeName),
         ),
         actions: const [
           Padding(
