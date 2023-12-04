@@ -4,7 +4,7 @@ using eTheater.Services;
 
 namespace eTheater.Controllers
 {
-    public class HallController : BaseCRUDController<Model.Hall, HallSearchObject, HallUpsertRequest, HallUpsertRequest>
+    public class HallController : BaseCRUDController<Model.Hall, HallSearchObject, HallInsertRequest, HallUpdateRequest>
     {
         public IHallService _service { get; set; }
         public HallController(IHallService service) : base(service)

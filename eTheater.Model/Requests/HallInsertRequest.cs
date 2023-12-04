@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eTheater.Model.Requests
 {
-    public class HallUpsertRequest
+    public class HallInsertRequest
     {
         [Required(AllowEmptyStrings = false)]
         public string Name { get; set; }

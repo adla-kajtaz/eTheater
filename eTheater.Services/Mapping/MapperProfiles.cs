@@ -23,7 +23,8 @@ namespace eTheater.Services.Mapping
             CreateMap<Database.Actor, Model.Actor>();
             CreateMap<Database.ShowActor, Model.ShowActor>();
 
-            CreateMap<HallUpsertRequest, Database.Hall>();
+            CreateMap<HallInsertRequest, Database.Hall>();
+            CreateMap<HallUpdateRequest, Database.Hall>();
             CreateMap<ShowUpsertRequest, Database.Show>();
             CreateMap<ShowScheduleUpsertRequest, Database.ShowSchedule>();
             CreateMap<TicketUpsertRequest, Database.Ticket>();

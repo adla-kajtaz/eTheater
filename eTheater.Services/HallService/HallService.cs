@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace eTheater.Services
 {
-    public class HallService : BaseCRUDService <Model.Hall, Database.Hall, HallSearchObject, HallUpsertRequest, HallUpsertRequest>, IHallService
+    public class HallService : BaseCRUDService <Model.Hall, Database.Hall, HallSearchObject, HallInsertRequest, HallUpdateRequest>, IHallService
     {
         public HallService(ETheaterContext context, IMapper mapper) : base(context, mapper)
         {
@@ -28,7 +28,7 @@ namespace eTheater.Services
             return filteredQuery;
         }
 
-        public override Model.Hall Insert(HallUpsertRequest request)
+        public override Model.Hall Insert(HallInsertRequest request)
         {
             Database.Hall hall = new Database.Hall();
             hall.Name = request.Name;
@@ -38,23 +38,6 @@ namespace eTheater.Services
             _context.Add(hall);
             _context.SaveChanges();
             return _mapper.Map<Model.Hall>(hall);
-        }
-
-        public override Model.Hall Update (int id, HallUpsertRequest request)
-        {
-            var entity = _context.Halls.Find(id);
-
-            if (entity != null)
-            {
-                entity.TotalSeats = request.TotalRows * request.NumberOfSeatsPerRow;
-                _mapper.Map(request, entity);
-            }
-            else
-            {
-                return null;
-            }
-            _context.SaveChanges();
-            return _mapper.Map<Model.Hall>(entity);
         }
 
         public override Model.Hall Delete(int id)

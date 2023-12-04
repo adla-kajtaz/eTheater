@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace eTheater.Services
 {
-    public interface IHallService : IBaseCRUDService <Model.Hall, HallSearchObject, HallUpsertRequest, HallUpsertRequest>
+    public interface IHallService : IBaseCRUDService <Model.Hall, HallSearchObject, HallInsertRequest, HallUpdateRequest>
     {
 
     }
