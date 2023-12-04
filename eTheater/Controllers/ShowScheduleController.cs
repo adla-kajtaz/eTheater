@@ -28,5 +28,13 @@ namespace eTheater.Controllers
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             return _service.ShowScheduleRecommenderSystem(userId);
         }
+
+        [Authorize]
+        [HttpGet("deleteTickets/{id}")]
+        public void DeleteTickets(int id)
+        {
+           _service.DeleteTicketsByShowScheduleId(id);
+        }
+
     }
 }

@@ -18,9 +18,11 @@ namespace eTheater.Services
 {
     public class ShowScheduleService : BaseCRUDService<Model.ShowSchedule, Database.ShowSchedule, ShowScheduleSearchObject, ShowScheduleUpsertRequest, ShowScheduleUpsertRequest>, IShowScheduleService
     {
-        public ShowScheduleService(ETheaterContext context, IMapper mapper) : base(context, mapper)
-        {
+        ITicketService _ticketService { get; set; }
 
+        public ShowScheduleService(ETheaterContext context, IMapper mapper, ITicketService ticketService) : base(context, mapper)
+        {
+            _ticketService = ticketService;
         }
 
         public override IQueryable<eTheater.Services.Database.ShowSchedule> AddInclude(IQueryable<eTheater.Services.Database.ShowSchedule> query, ShowScheduleSearchObject search = null)
@@ -65,6 +67,60 @@ namespace eTheater.Services
             return _mapper.Map<Model.ShowSchedule>(entity);
         }
 
+        public override Model.ShowSchedule Insert(ShowScheduleUpsertRequest request)
+        {
+            var show = _context.Shows.First(x => x.ShowId == request.ShowId);
+            if (show == null)
+                throw new eTheaterException("Not found","Show not found!");
+            var hall = _context.Halls.First(x => x.HallId == request.HallId);
+            if (hall == null)
+                throw new eTheaterException("Not found", "Hall not found!");
+
+            var showSchedule = base.Insert(request);
+            if (showSchedule != null)
+            {
+                for (int i = 0; i < hall.TotalRows; i++)
+                {
+                    var row = (char)(i + 65);
+                    for (int j = 0; j < hall.NumberOfSeatsPerRow; j++)
+                    {
+                        TicketUpsertRequest ticketUpsertRequest = new TicketUpsertRequest
+                        {
+                            ShowScheduleId = showSchedule.ShowScheduleId,
+                            NumberOfSeat = j + 1,
+                            NumberOfRow = row.ToString(),
+                            Seat = $"{row.ToString()}{(j + 1).ToString()}"
+                        };
+                        _ticketService.Insert(ticketUpsertRequest);
+                    }
+                }
+            }
+            return showSchedule;
+        }
+
+        public void DeleteTicketsByShowScheduleId(int id)
+        {
+            var tickets = _context.Tickets.Where(e => e.ShowScheduleId == id).ToList();
+            var counter = tickets.Where(e => e.IsActive == false).Count();
+
+            if (tickets == null)
+            {
+                throw new eTheaterException("Not found", "There are no tickets for this show schedule!");
+            }
+            else if (counter != 0)
+            {
+                throw new eTheaterException("You cannot delete", "You cannot delete tickets, because some have already been purchased!");
+            }
+            else
+            {
+                for (int i = 0; i < tickets.Count; i++)
+                {
+                    _context.Tickets.Remove(tickets[i]);
+                }
+            }
+            _context.SaveChanges();
+        }
+
         public List<string> GetTimeSlotsForDate(int hallId, string date)
         {
             var showSchedules = _context.ShowSchedules.Where(e => e.ShowDate.ToString() == date && e.HallId == hallId);
@@ -72,7 +128,6 @@ namespace eTheater.Services
             List<string> responseSlots = new List<string> { };
             foreach (string slot in slots)
             {
-
                 if (!showSchedules.Any(e => e.ShowTime == slot))
                     responseSlots.Add(slot);
             };
