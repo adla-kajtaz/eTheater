@@ -10,6 +10,7 @@ namespace eTheater.Model.Requests
     public class UserUpdateRequest
     {
         [Required]
+        [MinLength(4, ErrorMessage = "Username must contain at least 4 characters!")]
         public string UserName { get; set; }
 
         [Required]

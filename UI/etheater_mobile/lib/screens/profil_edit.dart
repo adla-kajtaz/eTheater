@@ -157,7 +157,7 @@ class _ProfilEditState extends State<ProfilEdit> {
                           return 'This field is required!';
                         }
                         if (!isUserNameValid(newValue!)) {
-                          return "Korisničko ime mora sadržavati najmanje 4 karaktera!";
+                          return "Username must contain at least 4 characters!";
                         }
                         if (error != null && error!.contains("Username")) {
                           return 'Username is already taken!';
@@ -186,7 +186,7 @@ class _ProfilEditState extends State<ProfilEdit> {
                           return 'This field is required!';
                         }
                         if (!isEmailValid(newValue!)) {
-                          return "Unesite validnu email adresu!";
+                          return "Please enter a valid email!";
                         }
                         if (error != null && error!.contains('Email')) {
                           return 'Email is already taken!';

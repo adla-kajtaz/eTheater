@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
         Navigation.routeName: (context) => const Navigation(),
         Recommend.routeName: (context) => const Recommend(),
         ProfilEdit.routeName: (context) => const ProfilEdit(),
+        NewsDetails.routeName: (context) => const NewsDetails(),
       },
     );
   }

@@ -18,7 +18,7 @@ namespace eTheater.Model.Requests
         public string Password { get; set; }
 
         [Required]
-        [MinLength(4)]
+        [MinLength(4, ErrorMessage = "Username must contain at least 4 characters!")]
         public string UserName { get; set; }
       
     }

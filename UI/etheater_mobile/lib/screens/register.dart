@@ -13,6 +13,11 @@ class Register extends StatefulWidget {
   State<Register> createState() => _RegisterState();
 }
 
+bool isUserNameValid(String value) {
+  RegExp regex = RegExp(r'^.{4,}$');
+  return regex.hasMatch(value);
+}
+
 bool isPasswordValid(String value) {
   RegExp regex = RegExp(r'^.{8,}$');
   return regex.hasMatch(value);
@@ -65,9 +70,12 @@ class _RegisterState extends State<Register> {
                     children: [
                       TextFormField(
                         onSaved: (newValue) => userName = newValue,
-                        validator: (value) {
-                          if (value!.isEmpty) {
+                        validator: (newValue) {
+                          if (newValue!.isEmpty) {
                             return "This field is required!";
+                          }
+                          if (!isUserNameValid(newValue!)) {
+                            return "Username must contain at least 4 characters!";
                           }
                           if (errors.isNotEmpty &&
                               errors.any((e) =>
@@ -92,11 +100,11 @@ class _RegisterState extends State<Register> {
                       const SizedBox(height: 15),
                       TextFormField(
                         onSaved: (newValue) => email = newValue,
-                        validator: (value) {
-                          if (value!.isEmpty) {
+                        validator: (newValue) {
+                          if (newValue!.isEmpty) {
                             return "This field is required!";
                           }
-                          if (!isEmailValid(value!)) {
+                          if (!isEmailValid(newValue!)) {
                             return "Please enter a valid email!";
                           }
                           if (errors.isNotEmpty &&
@@ -121,11 +129,11 @@ class _RegisterState extends State<Register> {
                       const SizedBox(height: 15),
                       TextFormField(
                         onSaved: (newValue) => password = newValue,
-                        validator: (value) {
-                          if (value!.isEmpty) {
+                        validator: (newValue) {
+                          if (newValue!.isEmpty) {
                             return "This field is required!";
                           }
-                          if (!isPasswordValid(value!)) {
+                          if (!isPasswordValid(newValue!)) {
                             return "Password must be atleast 8 charcters!";
                           }
                         },
@@ -172,7 +180,6 @@ class _RegisterState extends State<Register> {
                                   "Email '$email' is already taken")) {
                                 errors.add("Email is already taken!");
                               }
-                              // print(error);
                               if (err.toString().contains(
                                   "Username '$userName' is already taken.")) {
                                 errors.add(

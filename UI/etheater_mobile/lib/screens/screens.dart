@@ -6,3 +6,4 @@ export 'news.dart';
 export 'profile.dart';
 export 'profil_edit.dart';
 export 'recommendation.dart';
+export 'news_details.dart';
