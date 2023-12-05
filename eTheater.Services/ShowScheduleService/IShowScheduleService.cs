@@ -14,5 +14,6 @@ namespace eTheater.Services
         List<string> GetTimeSlotsForDate(int hallId, string date);
         List<Model.ShowSchedule> ShowScheduleRecommenderSystem(int userId);
         void DeleteTicketsByShowScheduleId(int id);
+        Model.RevenuesPerShow RevenuesPerShowReport(int showId);
     }
 }

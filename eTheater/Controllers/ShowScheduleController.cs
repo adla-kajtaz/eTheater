@@ -36,5 +36,11 @@ namespace eTheater.Controllers
            _service.DeleteTicketsByShowScheduleId(id);
         }
 
+        [Authorize]
+        [HttpGet("revenuesPerShowReport/{id}")]
+        public Model.RevenuesPerShow RevenuesPerShowReport(int id)
+        {
+            return _service.RevenuesPerShowReport(id);
+        }
     }
 }
