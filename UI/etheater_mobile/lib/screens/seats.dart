@@ -65,11 +65,11 @@ class _SeatsState extends State<Seats> {
     ShowSchedule? _showSchedule = widget.showSchedule;
     if (tickets.isEmpty) {
       return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+        backgroundColor: const Color.fromARGB(255, 28, 28, 29),
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+          backgroundColor: const Color.fromARGB(255, 28, 28, 29),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new_rounded,
                 color: Colors.white),

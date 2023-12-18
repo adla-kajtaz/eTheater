@@ -40,9 +40,9 @@ class _NavigationState extends State<Navigation> {
             label: '', // Add labels if needed
           );
         }).toList(),
-        selectedItemColor: const Color.fromARGB(255, 140, 26, 26),
-        unselectedItemColor: const Color.fromARGB(255, 40, 38, 38),
-        backgroundColor: Colors.white,
+        selectedItemColor: const Color.fromARGB(255, 204, 36, 68),
+        unselectedItemColor: const Color.fromARGB(255, 250, 250, 250),
+        backgroundColor: const Color.fromARGB(255, 28, 28, 29),
       ),
     );
   }

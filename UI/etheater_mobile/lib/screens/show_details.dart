@@ -18,11 +18,11 @@ class _ShowDetailsState extends State<ShowDetails> {
   Widget build(BuildContext context) {
     ShowSchedule? _showSchedule = widget.showSchedule;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+      backgroundColor: const Color.fromARGB(255, 28, 28, 29),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+        backgroundColor: const Color.fromARGB(255, 28, 28, 29),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded,
               color: Color.fromARGB(225, 195, 178, 178)),

@@ -64,11 +64,11 @@ class _ProfilEditState extends State<ProfilEdit> {
   Widget build(BuildContext context) {
     if (user == null) {
       return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+        backgroundColor: const Color.fromARGB(255, 28, 28, 29),
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+          backgroundColor: const Color.fromARGB(255, 28, 28, 29),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new_rounded,
                 color: Colors.white),
@@ -139,18 +139,16 @@ class _ProfilEditState extends State<ProfilEdit> {
                       onSaved: (newValue) => user!.userName = newValue!,
                       initialValue: user!.userName,
                       style: const TextStyle(
-                        color: Color.fromARGB(255, 40, 38, 38),
+                        color: Color.fromARGB(255, 250, 250, 250),
                       ),
                       decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
                         labelText: 'Username:',
                         hintText: 'emma123',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                         hintStyle: const TextStyle(
-                            color: Color.fromARGB(255, 40, 38, 38)),
+                            color: Color.fromARGB(255, 250, 250, 250)),
                       ),
                       validator: (newValue) {
                         if (newValue!.isEmpty) {
@@ -170,16 +168,14 @@ class _ProfilEditState extends State<ProfilEdit> {
                       onSaved: (newValue) => user!.email = newValue!,
                       initialValue: user!.email,
                       style: const TextStyle(
-                          color: Color.fromARGB(255, 40, 38, 38)),
+                          color: Color.fromARGB(255, 250, 250, 250)),
                       decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
                         labelText: 'Email:',
                         hintText: 'email@example.com',
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)),
                         hintStyle: const TextStyle(
-                            color: Color.fromARGB(255, 40, 38, 38)),
+                            color: Color.fromARGB(255, 250, 250, 250)),
                       ),
                       validator: (newValue) {
                         if (newValue!.isEmpty) {
@@ -215,7 +211,6 @@ class _ProfilEditState extends State<ProfilEdit> {
                           } on Exception catch (err) {
                             String errorString =
                                 err.toString().replaceFirst("Bad request ", "");
-                            print(errorString);
                             setState(() {
                               error = errorString;
                             });
@@ -226,14 +221,14 @@ class _ProfilEditState extends State<ProfilEdit> {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
+                          color: const Color.fromARGB(255, 204, 36, 68),
                         ),
                         height: 50,
                         child: const Center(
                           child: Text(
                             'Save',
                             style: TextStyle(
-                                color: Color.fromARGB(255, 40, 38, 38),
+                                color: Color.fromARGB(255, 250, 250, 250),
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),

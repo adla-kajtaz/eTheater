@@ -34,10 +34,10 @@ class _NewsState extends State<News> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+        backgroundColor: const Color.fromARGB(255, 28, 28, 29),
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+          backgroundColor: const Color.fromARGB(255, 28, 28, 29),
           title: const Text(
             'News',
             style: TextStyle(color: Colors.white),

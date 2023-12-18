@@ -41,10 +41,10 @@ class _HomeState extends State<Home> {
       length: 2,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+          backgroundColor: const Color.fromARGB(255, 28, 28, 29),
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+            backgroundColor: const Color.fromARGB(255, 28, 28, 29),
             title: const Text(
               'Shows',
               style: TextStyle(color: Colors.white),

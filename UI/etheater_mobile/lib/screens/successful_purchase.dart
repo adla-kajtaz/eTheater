@@ -11,7 +11,7 @@ class SuccessfulPurchase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+        backgroundColor: const Color.fromARGB(255, 28, 28, 29),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Padding(

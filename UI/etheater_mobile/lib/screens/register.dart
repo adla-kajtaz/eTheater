@@ -45,7 +45,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+      backgroundColor: const Color.fromARGB(255, 28, 28, 29),
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: SafeArea(
@@ -62,7 +62,7 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
                 Form(
                   key: formKey,
@@ -85,16 +85,14 @@ class _RegisterState extends State<Register> {
                           }
                         },
                         style: const TextStyle(
-                            color: Color.fromARGB(255, 40, 38, 38)),
+                            color: Color.fromARGB(255, 250, 250, 250)),
                         decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                           labelText: 'Username',
                           hintText: 'emma123',
                           hintStyle: const TextStyle(
-                              color: Color.fromARGB(255, 40, 38, 38)),
+                              color: Color.fromARGB(255, 250, 250, 250)),
                         ),
                       ),
                       const SizedBox(height: 15),
@@ -114,16 +112,14 @@ class _RegisterState extends State<Register> {
                           }
                         },
                         style: const TextStyle(
-                            color: Color.fromARGB(255, 40, 38, 38)),
+                            color: Color.fromARGB(255, 250, 250, 250)),
                         decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                           labelText: 'Email',
                           hintText: 'email@example.com',
                           hintStyle: const TextStyle(
-                              color: Color.fromARGB(255, 40, 38, 38)),
+                              color: Color.fromARGB(255, 250, 250, 250)),
                         ),
                       ),
                       const SizedBox(height: 15),
@@ -141,16 +137,14 @@ class _RegisterState extends State<Register> {
                         autocorrect: false,
                         enableSuggestions: false,
                         style: const TextStyle(
-                            color: Color.fromARGB(255, 40, 38, 38)),
+                            color: Color.fromARGB(255, 250, 250, 250)),
                         decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                           labelText: 'Password',
                           hintText: '*********',
                           hintStyle: const TextStyle(
-                              color: Color.fromARGB(255, 40, 38, 38)),
+                              color: Color.fromARGB(255, 250, 250, 250)),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -192,14 +186,14 @@ class _RegisterState extends State<Register> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
+                            color: const Color.fromARGB(255, 204, 36, 68),
                           ),
                           height: 50,
                           child: const Center(
                             child: Text(
                               'Register',
                               style: TextStyle(
-                                  color: Color.fromARGB(255, 40, 38, 38),
+                                  color: Color.fromARGB(255, 250, 250, 250),
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
                             ),
@@ -215,7 +209,8 @@ class _RegisterState extends State<Register> {
                     const SizedBox(width: 5),
                     const Text(
                       'Already have an account?',
-                      style: TextStyle(color: Colors.white),
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
                     ),
                     const SizedBox(width: 20),
                     InkWell(
@@ -225,7 +220,7 @@ class _RegisterState extends State<Register> {
                         'Login here',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 204, 36, 68),
                         ),
                       ),
                     ),

@@ -7,3 +7,4 @@ export 'theaterInfo.dart';
 export 'ticket.dart';
 export 'user.dart';
 export 'token.dart';
+export 'enums.dart';

@@ -11,11 +11,11 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   Stripe.publishableKey =
+  Stripe.publishableKey =
       "pk_test_51NtWjdEDYm8POibPT31r3QwFT9jr7oT1eT5yHSjnxyTGdtLs1FNm9ytNJwylIdvHRaJBOFL97AkkR53eeYPSHCDE00nrXcw0rp";
   Stripe.merchantIdentifier = 'any string works';
   Stripe.urlScheme = "flutterstripe";
-  await Stripe.instance.applySettings(); 
+  await Stripe.instance.applySettings();
   runApp(
     MultiProvider(
       providers: [
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       title: 'eTheater',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 237, 241, 192)),
+            seedColor: const Color.fromARGB(255, 204, 36, 68)),
         useMaterial3: true,
       ),
       initialRoute: '/login',

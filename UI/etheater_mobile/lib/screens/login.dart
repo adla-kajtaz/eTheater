@@ -33,7 +33,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+      backgroundColor: const Color.fromARGB(255, 28, 28, 29),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
@@ -65,14 +65,12 @@ class _LoginState extends State<Login> {
                         }
                       },
                       style: const TextStyle(
-                          color: Color.fromARGB(255, 40, 38, 38)),
+                          color: Color.fromARGB(255, 250, 250, 250)),
                       decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
                         labelText: 'Email',
                         hintText: 'email@example.com',
                         hintStyle: const TextStyle(
-                            color: Color.fromARGB(255, 40, 38, 38)),
+                            color: Color.fromARGB(255, 250, 250, 250)),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)),
                       ),
@@ -97,12 +95,10 @@ class _LoginState extends State<Login> {
                       obscureText: true,
                       autocorrect: false,
                       style: const TextStyle(
-                          color: Color.fromARGB(255, 40, 38, 38)),
+                          color: Color.fromARGB(255, 250, 250, 250)),
                       decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
                           hintStyle: const TextStyle(
-                              color: Color.fromARGB(255, 40, 38, 38)),
+                              color: Color.fromARGB(255, 250, 250, 250)),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                           hintText: '*********',
@@ -118,7 +114,7 @@ class _LoginState extends State<Login> {
                 height: 50,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: const Color.fromARGB(255, 204, 36, 68),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: InkWell(
@@ -147,7 +143,7 @@ class _LoginState extends State<Login> {
                     child: Text(
                       'Login',
                       style: TextStyle(
-                          color: Color.fromARGB(255, 40, 38, 38),
+                          color: Color.fromARGB(255, 250, 250, 250),
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
@@ -160,7 +156,7 @@ class _LoginState extends State<Login> {
                   const SizedBox(width: 5),
                   const Text(
                     'Dont have an account?',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
                   ),
                   const SizedBox(width: 20),
                   InkWell(
@@ -170,7 +166,7 @@ class _LoginState extends State<Login> {
                       'Register here',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 204, 36, 68),
                       ),
                     ),
                   ),
