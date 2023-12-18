@@ -11,5 +11,6 @@ namespace eTheater.Services
 {
     public interface IShowService : IBaseCRUDService<Model.Show, ShowSearchObject, ShowUpsertRequest, ShowUpsertRequest>
     {
+        Model.RevenuesPerShow RevenuesPerShowReport(int showId);
     }
 }

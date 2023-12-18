@@ -60,16 +60,16 @@ namespace eTheater.Services
             return _mapper.Map<IList<Model.Purchase>>(list);
         }
 
-        public override Model.Purchase Insert(PurchaseUpsertRequest request)
+        public Model.Purchase Insert(int userId, PurchaseUpsertRequest request)
         {
-            var showSchedule = _context.Purchases.First(x => x.ShowScheduleId == request.ShowScheduleId);
+            var showSchedule = _context.ShowSchedules.First(x => x.ShowScheduleId == request.ShowScheduleId);
             if (showSchedule == null)
                 throw new Exception("Show schedule not found");
 
             Purchase purchase = new Purchase();
-            purchase.UserId = request.UserId;
+            purchase.UserId = userId;
             purchase.NumberOfTickets = request.Tickets.Count();
-            purchase.TotalPrice = request.TotalPrice;
+            purchase.TotalPrice = request.Tickets.Count() * showSchedule.TicketPrice.Value;
             purchase.ShowScheduleId = request.ShowScheduleId;
             _context.Add(purchase);
             _context.SaveChanges();
@@ -77,6 +77,26 @@ namespace eTheater.Services
             var paymentId = _stripeService.CreatePurchase(purchase.TotalPrice, $"Purchase for ({purchase.CreatedAt})");
             purchase.PaymentIntentId = paymentId;
 
+            _context.SaveChanges();
+            return _mapper.Map<Model.Purchase>(purchase);
+        }
+
+        public Model.Purchase ChangeTicketStatus(TicketChangeStatus tcs)
+        {
+            var tickets = _context.Tickets.Where(x => tcs.TicketList.Contains(x.TicketId));
+            var purchase = _context.Purchases.Include(x => x.User).Include(x => x.ShowSchedule).ThenInclude(x => x.Show).FirstOrDefault(x => x.PurchaseId == tcs.PurchaseId);
+            if (tickets == null)
+                return null;
+            else
+            {
+                foreach (Ticket ticket in tickets)
+                {
+                    ticket.IsActive = false;
+                    ticket.PurchaseId = tcs.PurchaseId;
+                }
+                if (purchase != null)
+                    purchase.IsPaid = true;
+            }
             _context.SaveChanges();
             return _mapper.Map<Model.Purchase>(purchase);
         }

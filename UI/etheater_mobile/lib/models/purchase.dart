@@ -11,9 +11,9 @@ class Purchase {
   bool isPaid;
   String? paymentIntentId;
   int? userId;
-  User user;
+  User? user;
   int? showScheduleId;
-  ShowSchedule showSchedule;
+  ShowSchedule? showSchedule;
   DateTime createdAt;
 
   Purchase(
@@ -23,9 +23,9 @@ class Purchase {
       required this.isPaid,
       this.paymentIntentId,
       this.userId,
-      required this.user,
+      this.user,
       this.showScheduleId,
-      required this.showSchedule,
+      this.showSchedule,
       required this.createdAt});
 
   factory Purchase.fromJson(Map<String, dynamic> json) =>

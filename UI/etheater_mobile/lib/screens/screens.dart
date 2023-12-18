@@ -7,3 +7,6 @@ export 'profile.dart';
 export 'profil_edit.dart';
 export 'recommendation.dart';
 export 'news_details.dart';
+export 'seats.dart';
+export 'show_details.dart';
+export 'successful_purchase.dart';

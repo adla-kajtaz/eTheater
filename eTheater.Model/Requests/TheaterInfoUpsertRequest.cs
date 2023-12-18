@@ -23,6 +23,7 @@ namespace eTheater.Model.Requests
         [Required(AllowEmptyStrings = false)]
         public string Email { get; set; }
 
+        [RegularExpression("^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$")]
         [Required(AllowEmptyStrings = false)]
         public string Webpage { get; set; }
 

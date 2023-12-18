@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eTheater.Model;
 using eTheater.Model.Enums;
 using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
@@ -56,6 +57,30 @@ namespace eTheater.Services
 
             _context.SaveChanges();
             return _mapper.Map<Model.Show>(entity);
+        }
+
+        public Model.RevenuesPerShow RevenuesPerShowReport(int showId)
+        {
+            var showSchedules = _context.ShowSchedules.Where(e => e.ShowId == showId).ToList();
+            int numberOfTickets = 0, price = 0, revenue = 0;
+            foreach (var showSchedule in showSchedules)
+            {
+                var tickets = _context.Tickets.Where(e => e.ShowScheduleId == showSchedule.ShowScheduleId && e.IsActive == false).ToList();
+
+                var counter = tickets.Count;
+                numberOfTickets += counter;
+                price = showSchedule.TicketPrice ?? 0;
+                revenue += (counter * price);
+            }
+
+            var report = new RevenuesPerShow()
+            {
+                NumberOfTickets = numberOfTickets,
+                NumberOfShowSchedules = showSchedules.Count,
+                TotalRevenues = revenue
+            };
+
+            return report;
         }
     }
 }

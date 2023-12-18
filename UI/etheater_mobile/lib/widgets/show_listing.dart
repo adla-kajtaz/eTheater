@@ -1,4 +1,5 @@
 import 'package:etheater_mobile/models/models.dart';
+import 'package:etheater_mobile/screens/show_details.dart';
 import 'package:flutter/material.dart';
 import '../utils/util.dart';
 
@@ -57,7 +58,15 @@ class ShowListing extends StatelessWidget {
                         const SizedBox(height: 30),
                         Center(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ShowDetails(showSchedule: showSchedule),
+                                ),
+                              );
+                            },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
                                     const Color.fromARGB(255, 40, 38, 38)),

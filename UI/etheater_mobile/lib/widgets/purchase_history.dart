@@ -40,7 +40,7 @@ class PurchaseHistory extends StatelessWidget {
                         Positioned.fill(
                           child: SizedBox.expand(
                             child: imageFromBase64String(
-                              purchase.showSchedule.show!.picture!,
+                              purchase.showSchedule!.show!.picture!,
                             ),
                           ),
                         )
@@ -55,12 +55,12 @@ class PurchaseHistory extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          purchase.showSchedule.show!.name,
+                          purchase.showSchedule!.show!.name,
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                         Text(
-                          '${purchase.showSchedule.showDate.toString().substring(0, 10)}, ${purchase.showSchedule.showTime.toString()}',
+                          '${purchase.showSchedule!.showDate.toString().substring(0, 10)}, ${purchase.showSchedule!.showTime.toString()}',
                           style: const TextStyle(fontSize: 12),
                         ),
                         const SizedBox(height: 10),

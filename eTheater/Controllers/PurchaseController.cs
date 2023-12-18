@@ -29,5 +29,25 @@ namespace eTheater.Controllers
         {
             throw new eTheaterException("Not allowed", "Deleting purchase is not allowed");
         }
+
+        public override Purchase Update(int id, [FromBody] PurchaseUpsertRequest update)
+        {
+            throw new eTheaterException("Not allowed", "Updating purchase is not allowed");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public override Model.Purchase Insert([FromBody] PurchaseUpsertRequest insert)
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            return _service.Insert(userId, insert);
+        }
+
+        [Authorize]
+        [HttpPatch()]
+        public Model.Purchase ChangeStatus([FromBody] TicketChangeStatus request)
+        {
+            return _service.ChangeTicketStatus(request);
+        }
     }
 }

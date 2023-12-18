@@ -15,13 +15,6 @@ namespace eTheater.Controllers
         }
 
         [Authorize]
-        [HttpPatch("{id}")]
-        public Model.Ticket ChangeStatus(int id, int PurchaseId)
-        {
-            return _service.ChangeStatus(id, PurchaseId);
-        }
-
-        [Authorize]
         [HttpGet("GetByShowScheduleId/{id}")]
         public IEnumerable<Model.Ticket> GetByShowScheduleId(int id)
         {

@@ -11,6 +11,8 @@ namespace eTheater.Services
 {
     public interface IPurchaseService : IBaseCRUDService<Model.Purchase, PurchaseSearchObject, PurchaseUpsertRequest, PurchaseUpsertRequest>
     {
+        Model.Purchase Insert(int userId, PurchaseUpsertRequest request);
         IEnumerable<Model.Purchase> GetByUserId(int id);
+        Model.Purchase ChangeTicketStatus(TicketChangeStatus tcs);
     }
 }

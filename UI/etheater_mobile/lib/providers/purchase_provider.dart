@@ -28,4 +28,21 @@ class PurchaseProvider extends BaseProvider<Purchase> {
       throw Exception("Something went wrong");
     }
   }
+
+  Future<Purchase> changeStatus(dynamic request) async {
+    var url = "$_baseUrl" + "Purchase/";
+    var uri = Uri.parse(url);
+
+    Map<String, String> headers = createHeaders();
+
+    var response =
+        await http!.patch(uri, headers: headers, body: jsonEncode(request));
+
+    if (isValidResponseCode(response)) {
+      var data = jsonDecode(response.body);
+      return fromJson(data);
+    } else {
+      throw Exception("Something went wrong");
+    }
+  }
 }

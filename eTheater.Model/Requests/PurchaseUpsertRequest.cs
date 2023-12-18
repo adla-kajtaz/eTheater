@@ -8,10 +8,6 @@ namespace eTheater.Model.Requests
 {
     public class PurchaseUpsertRequest
     {
-        public int TotalPrice { get; set; }
-
-        public int? UserId { get; set; }
-
         public int? ShowScheduleId { get; set; }
 
         public List<int> Tickets { get; set; }

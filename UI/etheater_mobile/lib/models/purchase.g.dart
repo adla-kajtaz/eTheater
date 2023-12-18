@@ -13,10 +13,13 @@ Purchase _$PurchaseFromJson(Map<String, dynamic> json) => Purchase(
       isPaid: json['isPaid'] as bool,
       paymentIntentId: json['paymentIntentId'] as String?,
       userId: json['userId'] as int?,
-      user: User.fromJson(json['user'] as Map<String, dynamic>),
+      user: json['user'] == null
+          ? null
+          : User.fromJson(json['user'] as Map<String, dynamic>),
       showScheduleId: json['showScheduleId'] as int?,
-      showSchedule:
-          ShowSchedule.fromJson(json['showSchedule'] as Map<String, dynamic>),
+      showSchedule: json['showSchedule'] == null
+          ? null
+          : ShowSchedule.fromJson(json['showSchedule'] as Map<String, dynamic>),
       createdAt: DateTime.parse(json['createdAt'] as String),
     );
 

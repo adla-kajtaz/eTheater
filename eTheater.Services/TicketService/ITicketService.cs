@@ -11,7 +11,6 @@ namespace eTheater.Services
 {
     public interface ITicketService : IBaseCRUDService<Model.Ticket, TicketSearchObject, TicketUpsertRequest, TicketUpsertRequest>
     {
-        Model.Ticket ChangeStatus(int id, int PurchaseId);
         IEnumerable<Model.Ticket> GetByShowScheduleId(int id);
     }
 }
