@@ -29,10 +29,8 @@ class ShowListing extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                   height: 400,
                   width: 400,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
                   child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
                     child: Stack(
                       children: [
                         Positioned.fill(
@@ -48,7 +46,8 @@ class ShowListing extends StatelessWidget {
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.65),
+                              color: const Color.fromARGB(255, 89, 89, 86)
+                                  .withOpacity(0.65),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Text(
