@@ -182,7 +182,8 @@ class _SeatsState extends State<Seats> {
                               padding: const EdgeInsets.all(8),
                               child: Container(
                                   decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: const Color.fromARGB(
+                                          255, 144, 135, 135),
                                       border: Border.all(
                                           color: Colors.grey,
                                           width: 1.0,
@@ -204,7 +205,7 @@ class _SeatsState extends State<Seats> {
                               child: Container(
                                   decoration: BoxDecoration(
                                       color: const Color.fromARGB(
-                                          255, 222, 175, 7),
+                                          255, 204, 36, 68),
                                       border: Border.all(
                                           color: Colors.grey,
                                           width: 1.0,
@@ -226,7 +227,7 @@ class _SeatsState extends State<Seats> {
                               child: Container(
                                   decoration: BoxDecoration(
                                       color: const Color.fromARGB(
-                                          255, 184, 32, 32),
+                                          255, 250, 250, 250),
                                       border: Border.all(
                                           color: const Color.fromARGB(
                                               255, 56, 41, 41),
@@ -281,11 +282,12 @@ class _SeatsState extends State<Seats> {
                                           color: (selectedSeats!
                                                   .contains(tickets[index]))
                                               ? const Color.fromARGB(
-                                                  255, 184, 32, 32)
+                                                  255, 204, 36, 68)
                                               : (seat.isActive)
-                                                  ? Colors.white
+                                                  ? const Color.fromARGB(
+                                                      255, 144, 135, 135)
                                                   : const Color.fromARGB(
-                                                      255, 222, 175, 7)),
+                                                      255, 250, 250, 250)),
                                       margin: const EdgeInsets.all(5),
                                       child: Center(
                                         child: Text(
@@ -307,7 +309,6 @@ class _SeatsState extends State<Seats> {
                       'Total:',
                       style: TextStyle(
                           color: Color.fromARGB(255, 227, 223, 223),
-                          fontWeight: FontWeight.bold,
                           fontSize: 20),
                     ),
                     const SizedBox(width: 250),

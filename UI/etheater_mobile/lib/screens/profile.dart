@@ -39,12 +39,12 @@ class _ProfileState extends State<Profile> {
         backgroundColor: const Color.fromARGB(255, 28, 28, 29),
         title: const Text(
           'Profile',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
         ),
         leading: IconButton(
           icon: const Icon(
             Icons.settings,
-            color: Colors.white,
+            color: Color.fromARGB(255, 250, 250, 250),
             size: 40,
           ),
           onPressed: () => Navigator.pushNamed(context, ProfilEdit.routeName),
@@ -54,7 +54,7 @@ class _ProfileState extends State<Profile> {
             padding: EdgeInsets.all(8.0),
             child: Icon(
               Icons.theater_comedy,
-              color: Colors.white,
+              color: Color.fromARGB(255, 250, 250, 250),
               size: 40,
             ),
           ),
@@ -72,7 +72,7 @@ class _ProfileState extends State<Profile> {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
+                    color: const Color.fromARGB(255, 204, 36, 68),
                   ),
                   height: 50,
                   child: const Center(
@@ -82,13 +82,14 @@ class _ProfileState extends State<Profile> {
                         Text(
                           'Logout',
                           style: TextStyle(
-                              color: Color.fromARGB(255, 40, 38, 38),
-                              fontSize: 20),
+                              color: Color.fromARGB(255, 250, 250, 250),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
                         ),
                         SizedBox(width: 10),
                         Icon(
                           Icons.logout_outlined,
-                          color: Color.fromARGB(255, 40, 38, 38),
+                          color: Color.fromARGB(255, 250, 250, 250),
                           size: 20,
                         ),
                       ],
@@ -102,7 +103,7 @@ class _ProfileState extends State<Profile> {
                 child: Text(
                   'Your purchases',
                   style: TextStyle(
-                    color: Color.fromARGB(255, 219, 209, 209),
+                    color: Color.fromARGB(255, 250, 250, 250),
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),

@@ -28,13 +28,15 @@ class SuccessfulPurchase extends StatelessWidget {
                           const SizedBox(height: 5),
                           const Text(
                             'Successful purchase',
-                            style: TextStyle(fontSize: 32, color: Colors.white),
+                            style: TextStyle(
+                                fontSize: 32,
+                                color: Color.fromARGB(255, 250, 250, 250)),
                           ),
                           const SizedBox(height: 10),
                           Icon(
                             _icon,
                             size: 30,
-                            color: Colors.white,
+                            color: const Color.fromARGB(255, 250, 250, 250),
                           ),
                           const SizedBox(height: 30),
                           Padding(
@@ -46,8 +48,7 @@ class SuccessfulPurchase extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5.0),
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(223, 217, 217, 217),
+                                  color: const Color.fromARGB(255, 204, 36, 68),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 height: 50,
@@ -56,7 +57,8 @@ class SuccessfulPurchase extends StatelessWidget {
                                   child: Text(
                                     'Go to the home page',
                                     style: TextStyle(
-                                        color: Color.fromARGB(255, 40, 38, 38),
+                                        color:
+                                            Color.fromARGB(255, 250, 250, 250),
                                         fontSize: 22),
                                   ),
                                 ),

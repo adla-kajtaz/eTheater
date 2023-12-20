@@ -57,7 +57,7 @@ class _RegisterState extends State<Register> {
                 const Center(
                   child: Icon(
                     Icons.theater_comedy,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 250, 250, 250),
                     size: 100,
                   ),
                 ),

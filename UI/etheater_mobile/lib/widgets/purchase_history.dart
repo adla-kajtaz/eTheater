@@ -13,7 +13,7 @@ class PurchaseHistory extends StatelessWidget {
         'You have no purchases!',
         style: TextStyle(
           fontSize: 15,
-          color: Color.fromARGB(255, 219, 209, 209),
+          color: Color.fromARGB(255, 250, 250, 250),
         ),
       );
     }

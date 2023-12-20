@@ -71,19 +71,19 @@ class _ProfilEditState extends State<ProfilEdit> {
           backgroundColor: const Color.fromARGB(255, 28, 28, 29),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new_rounded,
-                color: Colors.white),
+                color: Color.fromARGB(255, 250, 250, 250)),
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: const Text(
-            'Profile',
-            style: TextStyle(color: Colors.white),
+            'Profile settings',
+            style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
           ),
           actions: const [
             Padding(
               padding: EdgeInsets.all(8.0),
               child: Icon(
                 Icons.theater_comedy,
-                color: Colors.white,
+                color: Color.fromARGB(255, 250, 250, 250),
                 size: 40,
               ),
             ),
@@ -93,33 +93,33 @@ class _ProfilEditState extends State<ProfilEdit> {
           child: Text(
             'Loading ...',
             style: TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(255, 250, 250, 250),
             ),
           ),
         ),
       );
     }
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+      backgroundColor: const Color.fromARGB(255, 28, 28, 29),
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+        backgroundColor: const Color.fromARGB(255, 28, 28, 29),
         leading: IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded,
+              color: Color.fromARGB(255, 250, 250, 250)),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
-          'Profile',
-          style: TextStyle(color: Colors.white),
+          'Profile settings',
+          style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
         ),
         actions: const [
           Padding(
             padding: EdgeInsets.all(8.0),
             child: Icon(
               Icons.theater_comedy,
-              color: Colors.white,
+              color: Color.fromARGB(255, 250, 250, 250),
               size: 40,
             ),
           ),
