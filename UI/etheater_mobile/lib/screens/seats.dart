@@ -72,12 +72,14 @@ class _SeatsState extends State<Seats> {
           backgroundColor: const Color.fromARGB(255, 28, 28, 29),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new_rounded,
-                color: Colors.white),
+                color: Color.fromARGB(255, 250, 250, 250)),
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: const Text(
-            'Seats',
-            style: TextStyle(color: Colors.white),
+            'Select a seat',
+            style: TextStyle(
+                color: Color.fromARGB(255, 250, 250, 250),
+                fontWeight: FontWeight.bold),
           ),
         ),
         body: const Center(
@@ -91,19 +93,21 @@ class _SeatsState extends State<Seats> {
       );
     }
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+      backgroundColor: const Color.fromARGB(255, 28, 28, 29),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: const Color.fromARGB(255, 40, 38, 38),
+        backgroundColor: const Color.fromARGB(255, 28, 28, 29),
         leading: IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded,
+              color: Color.fromARGB(255, 250, 250, 250)),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
-          'Seats',
-          style: TextStyle(color: Colors.white),
+          'Select a seat',
+          style: TextStyle(
+              color: Color.fromARGB(255, 250, 250, 250),
+              fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
@@ -120,28 +124,55 @@ class _SeatsState extends State<Seats> {
                       Text(
                         _showSchedule!.show!.name,
                         style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                            color: Colors.white),
+                            fontSize: 20,
+                            color: Color.fromARGB(255, 144, 135, 135)),
                       ),
-                      Text(
-                          '${_showSchedule.showDate.toString().substring(0, 10)}, ${_showSchedule.showTime}',
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 227, 223, 223))),
-                      Text(_showSchedule.hall!.name,
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 227, 223, 223))),
-                      Text('Number of tickets: ${selectedSeats!.length}',
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 227, 223, 223))),
-                      Text(
-                          'Total price: ${(_showSchedule.ticketPrice! * selectedSeats!.length)} KM',
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 227, 223, 223))),
+                      const Text(
+                        "Narodno pozoriste Mostar",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Color.fromARGB(255, 144, 135, 135)),
+                      ),
+                      const Divider(
+                        color: Color.fromARGB(255, 144, 135, 135),
+                        thickness: 1.0,
+                        height: 20,
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                          height: 80,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: const Color.fromARGB(255, 144, 135, 135),
+                              width: 1.0,
+                            ),
+                          ),
+                          child: Column(children: [
+                            Text(
+                              _showSchedule.showDate
+                                  .toString()
+                                  .substring(0, 10),
+                              style: const TextStyle(
+                                  color: Color.fromARGB(255, 144, 135, 135),
+                                  fontSize: 18),
+                            ),
+                            Text(
+                              _showSchedule.showTime as String,
+                              style: const TextStyle(
+                                  color: Color.fromARGB(255, 144, 135, 135),
+                                  fontSize: 18),
+                            ),
+                            Text(_showSchedule.hall!.name,
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 144, 135, 135),
+                                    fontSize: 18))
+                          ])),
                     ],
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 15,
                   ),
                   Row(
                     children: [
@@ -271,12 +302,30 @@ class _SeatsState extends State<Seats> {
                     ),
                   ),
                   const SizedBox(height: 40),
+                  Row(children: [
+                    const Text(
+                      'Total:',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 227, 223, 223),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
+                    const SizedBox(width: 250),
+                    Text(
+                      '${(_showSchedule.ticketPrice! * selectedSeats!.length)} KM',
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 227, 223, 223),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
+                  ]),
+                  const SizedBox(height: 10),
                   Center(
                     child: Container(
                       height: 50,
                       width: 200,
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(223, 217, 217, 217),
+                        color: const Color.fromARGB(255, 204, 36, 68),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: InkWell(
@@ -299,9 +348,9 @@ class _SeatsState extends State<Seats> {
                           child: Text(
                             'Pay',
                             style: TextStyle(
-                              color: Color.fromARGB(225, 86, 81, 81),
-                              fontSize: 20,
-                            ),
+                                color: Color.fromARGB(255, 250, 250, 250),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),

@@ -1,4 +1,5 @@
-import 'package:etheater_mobile/models/showSchedule.dart';
+import 'package:etheater_mobile/models/models.dart';
+import 'package:etheater_mobile/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/showSchedule_provider.dart';
@@ -57,19 +58,23 @@ class _RecommendState extends State<Recommend> {
         scrollDirection: Axis.vertical,
         itemBuilder: (BuildContext context, int index) {
           final showSchedule = showSchedules[index];
-          return Container(
-            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            height: 150,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  height: 150,
-                  width: 120,
+          return GestureDetector(
+              onTap: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ShowDetails(showSchedule: showSchedule),
+                      ),
+                    )
+                  },
+              child: Container(
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                  height: 400,
+                  width: 400,
                   child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
                     child: Stack(
                       children: [
                         Positioned.fill(
@@ -78,47 +83,46 @@ class _RecommendState extends State<Recommend> {
                               showSchedule.show!.picture!,
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          showSchedule.show!.name,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
                         ),
-                        Text(
-                          '${showSchedule.showDate.toString().substring(0, 10)}, ${showSchedule.showTime.toString()}',
-                          style: const TextStyle(fontSize: 12),
+                        Positioned(
+                          top: 10,
+                          right: 10,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Text(
+                              ShowGenreString[showSchedule.show!.showGenre]
+                                  as String,
+                              style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 250, 250, 250)),
+                            ),
+                          ),
                         ),
-                        const SizedBox(height: 30),
-                        Center(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    const Color.fromARGB(255, 40, 38, 38)),
-                            child: const Text(
-                              'Read more',
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.white),
+                        Positioned(
+                          bottom: 10,
+                          left: 10,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Text(
+                              showSchedule.show!.name,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 250, 250, 250),
+                              ),
                             ),
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ),
-              ],
-            ),
-          );
+                  )));
         });
   }
 }

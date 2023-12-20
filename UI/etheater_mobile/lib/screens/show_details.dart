@@ -25,19 +25,21 @@ class _ShowDetailsState extends State<ShowDetails> {
         backgroundColor: const Color.fromARGB(255, 28, 28, 29),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              color: Color.fromARGB(225, 195, 178, 178)),
+              color: Color.fromARGB(255, 250, 250, 250)),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text(
-          'Show details',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          _showSchedule!.show!.name,
+          style: const TextStyle(
+              color: Color.fromARGB(255, 250, 250, 250),
+              fontWeight: FontWeight.bold),
         ),
         actions: const [
           Padding(
             padding: EdgeInsets.all(8.0),
             child: Icon(
               Icons.theater_comedy,
-              color: Colors.white,
+              color: Color.fromARGB(255, 250, 250, 250),
               size: 40,
             ),
           ),
@@ -61,35 +63,47 @@ class _ShowDetailsState extends State<ShowDetails> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    _showSchedule.show!.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                      color: Colors.white,
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 144, 135, 135),
+                        width: 1.0,
+                      ),
+                    ),
+                    child: Text(
+                      _showSchedule.show!.showGenre.name,
+                      style: const TextStyle(
+                          fontSize: 14,
+                          color: Color.fromARGB(255, 144, 135, 135)),
                     ),
                   ),
-                  Text(
-                    _showSchedule.show!.showGenre.name,
-                    style: const TextStyle(
-                        color: Color.fromARGB(255, 227, 223, 223)),
+                  const SizedBox(height: 10),
+                  const Text(
+                    "Description",
+                    style: TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
                   ),
-                  Text(
-                    "Director: ${_showSchedule.show!.director}",
-                    style: const TextStyle(
-                        color: Color.fromARGB(255, 227, 223, 223)),
-                  ),
-                  const SizedBox(height: 5),
                   Text(
                     _showSchedule.show!.description,
                     style: const TextStyle(
-                        color: Color.fromARGB(255, 227, 223, 223)),
+                        color: Color.fromARGB(255, 250, 250, 250)),
+                  ),
+                  const SizedBox(height: 5),
+                  const Text(
+                    "Director",
+                    style: TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
+                  ),
+                  Text(
+                    _showSchedule.show!.director!,
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
                   ),
                 ],
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             Padding(
               padding: const EdgeInsets.all(30.0),
@@ -97,8 +111,11 @@ class _ShowDetailsState extends State<ShowDetails> {
                 height: 150,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 78, 77, 77),
                   borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: const Color.fromARGB(255, 144, 135, 135),
+                    width: 1.0,
+                  ),
                 ),
                 child: Column(children: [
                   const SizedBox(
@@ -106,15 +123,18 @@ class _ShowDetailsState extends State<ShowDetails> {
                   ),
                   Text(
                     '${_showSchedule.showDate.toString().substring(0, 10)}, ${_showSchedule.showTime}',
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
                   ),
                   Text(
                     _showSchedule.hall!.name,
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
                   ),
                   Text(
                     'Cijena karte: ${_showSchedule.ticketPrice} KM',
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
                   ),
                   const SizedBox(
                     height: 15,
@@ -123,7 +143,7 @@ class _ShowDetailsState extends State<ShowDetails> {
                     height: 40,
                     width: 200,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(223, 217, 217, 217),
+                      color: const Color.fromARGB(255, 204, 36, 68),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: InkWell(
@@ -144,7 +164,7 @@ class _ShowDetailsState extends State<ShowDetails> {
                         child: Text(
                           'Buy',
                           style: TextStyle(
-                            color: Color.fromARGB(255, 40, 38, 38),
+                            color: Color.fromARGB(255, 250, 250, 250),
                             fontSize: 20,
                           ),
                         ),
