@@ -47,7 +47,9 @@ class _HomeState extends State<Home> {
             backgroundColor: const Color.fromARGB(255, 28, 28, 29),
             title: const Text(
               'Shows',
-              style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              style: TextStyle(
+                  color: Color.fromARGB(255, 250, 250, 250),
+                  fontWeight: FontWeight.bold),
             ),
             actions: const [
               Padding(

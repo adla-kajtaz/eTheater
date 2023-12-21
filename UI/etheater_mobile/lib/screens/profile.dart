@@ -39,7 +39,9 @@ class _ProfileState extends State<Profile> {
         backgroundColor: const Color.fromARGB(255, 28, 28, 29),
         title: const Text(
           'Profile',
-          style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          style: TextStyle(
+              color: Color.fromARGB(255, 250, 250, 250),
+              fontWeight: FontWeight.bold),
         ),
         leading: IconButton(
           icon: const Icon(

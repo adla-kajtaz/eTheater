@@ -26,7 +26,7 @@ class PurchaseHistory extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             height: 150,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: const Color.fromARGB(255, 47, 47, 48),
               borderRadius: BorderRadius.circular(5),
             ),
             child: Row(
@@ -57,22 +57,28 @@ class PurchaseHistory extends StatelessWidget {
                         Text(
                           purchase.showSchedule!.show!.name,
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                              color: Color.fromARGB(255, 250, 250, 250),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
                         ),
                         Text(
                           '${purchase.showSchedule!.showDate.toString().substring(0, 10)}, ${purchase.showSchedule!.showTime.toString()}',
-                          style: const TextStyle(fontSize: 12),
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 144, 135, 135),
+                              fontSize: 12),
                         ),
                         const SizedBox(height: 10),
                         Text(
                           'Number of tickets: ${purchase.numberOfTickets}',
                           style: const TextStyle(
+                            color: Color.fromARGB(255, 250, 250, 250),
                             fontSize: 17,
                           ),
                         ),
                         Text(
                           'Total price:  ${purchase.totalPrice} KM',
                           style: const TextStyle(
+                            color: Color.fromARGB(255, 250, 250, 250),
                             fontSize: 17,
                           ),
                         ),

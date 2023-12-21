@@ -76,7 +76,9 @@ class _ProfilEditState extends State<ProfilEdit> {
           ),
           title: const Text(
             'Profile settings',
-            style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+            style: TextStyle(
+                color: Color.fromARGB(255, 250, 250, 250),
+                fontWeight: FontWeight.bold),
           ),
           actions: const [
             Padding(
@@ -112,7 +114,9 @@ class _ProfilEditState extends State<ProfilEdit> {
         ),
         title: const Text(
           'Profile settings',
-          style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          style: TextStyle(
+              color: Color.fromARGB(255, 250, 250, 250),
+              fontWeight: FontWeight.bold),
         ),
         actions: const [
           Padding(

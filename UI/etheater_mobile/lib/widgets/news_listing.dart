@@ -18,7 +18,7 @@ class NewsListing extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             height: 150,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: const Color.fromARGB(255, 47, 47, 48),
               borderRadius: BorderRadius.circular(5),
             ),
             child: Row(
@@ -49,11 +49,15 @@ class NewsListing extends StatelessWidget {
                         Text(
                           notification!.title,
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 12),
+                              color: Color.fromARGB(255, 250, 250, 250),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12),
                         ),
                         Text(
                           '${notification.user.userName.toString()}, ${notification.createdAt.toString().substring(0, 10)}',
-                          style: const TextStyle(fontSize: 12),
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 144, 135, 135),
+                              fontSize: 12),
                         ),
                         const SizedBox(height: 20),
                         Center(
@@ -68,12 +72,14 @@ class NewsListing extends StatelessWidget {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    const Color.fromARGB(255, 40, 38, 38)),
+                              backgroundColor:
+                                  const Color.fromARGB(255, 204, 36, 68),
+                            ),
                             child: const Text(
                               'Read more',
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: Color.fromARGB(255, 250, 250, 250)),
                             ),
                           ),
                         ),
