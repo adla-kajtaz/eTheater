@@ -1,5 +1,5 @@
-export 'login_view.dart';
-export 'navigation.dart';
+export 'login_screen.dart';
+export 'main_navigation_screen.dart';
 export 'shows_view.dart';
 export 'schedule_view.dart';
 export 'notifications_view.dart';

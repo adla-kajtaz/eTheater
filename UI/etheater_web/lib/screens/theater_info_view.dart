@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class TheaterInfo extends StatefulWidget {
   static const routeName = '/profile';
@@ -20,15 +19,6 @@ class _TheaterInfoState extends State<TheaterInfo> {
   String? phoneNumber;
   String? webPage;
   // File? _file;
-
-  Future<File?> pickImage() async {
-    final myfile = await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    if (myfile != null) {
-      return File(myfile.path);
-    }
-    return null;
-  }
 
   @override
   void initState() {

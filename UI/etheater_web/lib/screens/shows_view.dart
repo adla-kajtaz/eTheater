@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:image/image.dart' as imgLib;
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 import '../utils/util.dart';
 
 class Shows extends StatefulWidget {
@@ -15,7 +14,6 @@ class Shows extends StatefulWidget {
 
 class _ShowsState extends State<Shows> {
   final formKey = GlobalKey<FormState>();
-  XFile? pickedImage;
   String? name;
   String? description;
   String? email;
@@ -27,18 +25,6 @@ class _ShowsState extends State<Shows> {
   @override
   void initState() {
     super.initState();
-  }
-
-  Future<void> pickImageAndUpload() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      final bytes = await pickedFile.readAsBytes();
-      final image = imgLib.decodeImage(bytes) as imgLib.Image;
-      final base64Image = base64Encode(imgLib.encodeJpg(image));
-      setState(() {});
-    }
   }
 
   @override
@@ -117,26 +103,7 @@ class _ShowsState extends State<Shows> {
                                             child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () =>
-                                                        pickImageAndUpload(),
-                                                    child: Stack(
-                                                      children: [
-                                                        ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          child: SizedBox(
-                                                              width: 200,
-                                                              height: 100,
-                                                              child:
-                                                                  profileImage),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ]),
+                                                children: []),
                                           ),
                                         ],
                                       ),

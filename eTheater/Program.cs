@@ -27,6 +27,16 @@ builder.Services.AddDbContext<ETheaterContext>(options =>
 
 builder.Services.AddSwaggerGen(sw => sw.SwaggerDoc("v1", new OpenApiInfo { Title = "eTheater", Version = "1.0"}));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAnyOrigin", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddSwaggerGen(s => s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
 {
     In = ParameterLocation.Header,
@@ -119,6 +129,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAnyOrigin");
 
 app.UseAuthentication();
 app.UseAuthorization();
