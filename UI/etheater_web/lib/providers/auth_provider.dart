@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:etheater_web/providers/base_provider.dart';
 import 'package:http/src/response.dart';
 import 'package:http/browser_client.dart';
@@ -8,10 +7,7 @@ import 'package:http/http.dart';
 import '../models/models.dart';
 
 class AuthProvider extends BaseProvider<Token> {
-  // HttpClient client = HttpClient();
-  //IOClient? http;
   static String? _baseUrl;
-  // HttpClient client = HttpClient();
   BrowserClient? http;
 
   AuthProvider() : super("Auth") {

@@ -1,3 +1,4 @@
+import 'package:etheater_web/screens/screens.dart';
 import 'package:flutter/material.dart';
 
 class NavigationItem {
@@ -21,8 +22,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   final List<NavigationItem> _navigationItems = [
-    NavigationItem(
-        label: 'Actors', widget: const Text('Actors', style: optionStyle)),
+    NavigationItem(label: 'Actors', widget: const ActorScreen()),
     NavigationItem(
         label: 'Shows', widget: const Text('Shows', style: optionStyle)),
     NavigationItem(

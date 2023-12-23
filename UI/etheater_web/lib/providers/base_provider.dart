@@ -1,20 +1,13 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:async';
 import 'package:etheater_web/providers/token_provider.dart';
 import 'package:http/browser_client.dart';
 import 'package:http/http.dart';
 import 'package:flutter/foundation.dart';
-import 'package:etheater_web/providers/token_provider.dart';
-/*import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:http/src/response.dart';
-import 'package:flutter/foundation.dart';*/
 
 abstract class BaseProvider<T> with ChangeNotifier {
   static String? _baseUrl;
   String? _endpoint;
-  // HttpClient client = HttpClient();
   BrowserClient? http;
 
   BaseProvider(String endpoint) {
@@ -27,7 +20,6 @@ abstract class BaseProvider<T> with ChangeNotifier {
     }
 
     _endpoint = endpoint;
-    // client.badCertificateCallback = (cert, host, port) => true;
     http = BrowserClient();
   }
 
@@ -131,137 +123,6 @@ abstract class BaseProvider<T> with ChangeNotifier {
   T fromJson(data) {
     throw Exception("Override method");
   }
-  /*static String? _baseUrl;
-  String? _endpoint;
-
-  http.Client get httpClient => http.Client();
-
-  BaseProvider(String endpoint) {
-    _baseUrl = const String.fromEnvironment("baseUrl",
-        defaultValue: "http://localhost:5192/");
-    print("baseurl: $_baseUrl");
-
-    if (_baseUrl!.endsWith("/") == false) {
-      _baseUrl = "${_baseUrl!}/";
-    }
-
-    _endpoint = endpoint;
-  }
-
-  Future<T> getById(int id, [dynamic additionalData]) async {
-    var url = Uri.parse("$_baseUrl$_endpoint/$id");
-
-    Map<String, String> headers = createHeaders();
-
-    var response = await httpClient.get(url, headers: headers);
-
-    if (isValidResponseCode(response)) {
-      var data = jsonDecode(response.body);
-      return fromJson(data);
-    } else {
-      throw Exception("Exception... handle this gracefully");
-    }
-  }
-
-  Future<List<T>> get([dynamic search]) async {
-    try {
-      var url = "$_baseUrl$_endpoint";
-
-      if (search != null) {
-        String queryString = getQueryString(search);
-        url = "$url?$queryString";
-      }
-
-      var uri = Uri.parse(url);
-
-      Map<String, String> headers = createHeaders();
-      print("get me");
-      var response = await httpClient.get(uri, headers: headers);
-      print("done $response");
-
-      if (isValidResponseCode(response)) {
-        var data = jsonDecode(response.body) as List<dynamic>;
-        return data.map((x) => fromJson(x)).toList();
-      } else {
-        throw Exception("Exception... handle this gracefully");
-      }
-    } catch (e) {
-      // Handle errors
-      print("Error: $e");
-      rethrow; // Rethrow the exception after handling
-    }
-  }
-
-  Future<T?> insert(dynamic request) async {
-    var url = "$_baseUrl$_endpoint";
-    var uri = Uri.parse(url);
-
-    Map<String, String> headers = createHeaders();
-    var jsonRequest = jsonEncode(request);
-    var response =
-        await httpClient.post(uri, headers: headers, body: jsonRequest);
-
-    if (isValidResponseCode(response)) {
-      var data = jsonDecode(response.body);
-      return fromJson(data);
-    } else {
-      return null;
-    }
-  }
-
-  Future<T?> update(int id, [dynamic request]) async {
-    var url = "$_baseUrl$_endpoint/$id";
-    var uri = Uri.parse(url);
-
-    Map<String, String> headers = createHeaders();
-
-    var response =
-        await httpClient.put(uri, headers: headers, body: jsonEncode(request));
-
-    if (isValidResponseCode(response)) {
-      var data = jsonDecode(response.body);
-      return fromJson(data);
-    } else {
-      return null;
-    }
-  }
-
-  Future<T?> remove(int id) async {
-    var url = "$_baseUrl$_endpoint/$id";
-    var uri = Uri.parse(url);
-
-    Map<String, String> headers = createHeaders();
-
-    try {
-      var response = await httpClient.delete(uri, headers: headers);
-
-      if (isValidResponseCode(response)) {
-        var data = jsonDecode(response.body);
-        return fromJson(data);
-      } else {
-        return null;
-      }
-    } catch (e) {
-      // Handle errors
-      print("Error: $e");
-      rethrow; // Rethrow the exception after handling
-    }
-  }
-
-  Map<String, String> createHeaders() {
-    String? jwtToken = TokenProvider.jwtToken;
-    String jwtAuth = "Bearer $jwtToken";
-
-    var headers = {
-      "Content-Type": "application/json",
-      "Authorization": jwtAuth
-    };
-    return headers;
-  }
-
-  T fromJson(data) {
-    throw Exception("Override method");
-  }*/
 
   String getQueryString(Map params,
       {String prefix = '&', bool inRecursion = false}) {
