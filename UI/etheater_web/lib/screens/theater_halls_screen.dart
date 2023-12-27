@@ -171,18 +171,34 @@ class _TheaterHallsState extends State<TheaterHalls> {
           ),
           const SizedBox(height: 16),
           SizedBox(
-            height: 520,
             width: double.infinity,
             child: SingleChildScrollView(
               child: DataTable(
+                columnSpacing: 0,
                 columns: const [
                   DataColumn(label: Text('Name')),
                   DataColumn(label: Text('Total seats'), numeric: true),
                   DataColumn(label: Text('Total rows'), numeric: true),
                   DataColumn(
                       label: Text('Number of seats per row'), numeric: true),
-                  DataColumn(label: Text('Edit')),
-                  DataColumn(label: Text('Delete')),
+                  DataColumn(
+                    numeric: false,
+                    label: Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Text("Edit")],
+                      ),
+                    ),
+                  ),
+                  DataColumn(
+                    numeric: false,
+                    label: Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Text("Delete")],
+                      ),
+                    ),
+                  ),
                   DataColumn(
                     numeric: false,
                     label: Expanded(
@@ -198,44 +214,53 @@ class _TheaterHallsState extends State<TheaterHalls> {
                         return DataRow(
                           cells: [
                             DataCell(
-                              Text(
-                                hall.name.length > 20
-                                    ? "${hall.name.substring(0, 20)} ..."
-                                    : hall.name,
+                              Tooltip(
+                                message: hall.name,
+                                child: Text(
+                                  hall.name.length > 20
+                                      ? "${hall.name.substring(0, 20)} ..."
+                                      : hall.name,
+                                ),
                               ),
                             ),
                             DataCell(Text(hall.totalSeats.toString())),
                             DataCell(Text(hall.totalRows.toString())),
                             DataCell(Text(hall.numberOfSeatsPerRow.toString())),
                             DataCell(
-                              IconButton(
-                                icon: Icon(Icons.edit,
-                                    color: Theme.of(context).primaryColor),
-                                onPressed: () {
-                                  openEditModal(hall);
-                                },
+                              Center(
+                                child: IconButton(
+                                  icon: Icon(Icons.edit,
+                                      color: Theme.of(context).primaryColor),
+                                  onPressed: () {
+                                    openEditModal(hall);
+                                  },
+                                ),
                               ),
                             ),
                             DataCell(
-                              IconButton(
-                                icon:
-                                    const Icon(Icons.delete, color: Colors.red),
-                                onPressed: () {
-                                  openDeleteModal(hall);
-                                },
+                              Center(
+                                child: IconButton(
+                                  icon: const Icon(Icons.delete,
+                                      color: Colors.red),
+                                  onPressed: () {
+                                    openDeleteModal(hall);
+                                  },
+                                ),
                               ),
                             ),
                             DataCell(
-                              IconButton(
-                                icon: Icon(Icons.date_range_rounded,
-                                    color: Theme.of(context).primaryColor),
-                                onPressed: () {
-                                  /*Navigator.pushNamed(
+                              Center(
+                                child: IconButton(
+                                  icon: Icon(Icons.date_range_rounded,
+                                      color: Theme.of(context).primaryColor),
+                                  onPressed: () {
+                                    /*Navigator.pushNamed(
                                       context,
                                       TerminiScreen.routeName,
                                       arguments: sala.salaId,
                                     );*/
-                                },
+                                  },
+                                ),
                               ),
                             ),
                           ],

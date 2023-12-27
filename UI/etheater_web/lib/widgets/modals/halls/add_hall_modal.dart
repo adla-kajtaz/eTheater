@@ -117,7 +117,7 @@ class _AddHallModalState extends State<AddHallModal> {
             if (formKey.currentState!.validate()) {
               dynamic request = {
                 'name': name,
-                'numberOfRows': numberOfRows,
+                'totalRows': numberOfRows,
                 'numberOfSeatsPerRow': numberOfSeatsPerRow
               };
               widget.handleAdd(request);
