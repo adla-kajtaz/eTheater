@@ -9,6 +9,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => ActorProvider()),
+        ChangeNotifierProvider(create: (_) => HallProvider()),
       ],
       child: const MyApp(),
     ),

@@ -31,9 +31,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     NavigationItem(
         label: 'Notifications',
         widget: const Text('Notifications', style: optionStyle)),
-    NavigationItem(
-        label: 'Theater halls',
-        widget: const Text('Theater halls', style: optionStyle)),
+    NavigationItem(label: 'Theater halls', widget: const TheaterHalls()),
     NavigationItem(
         label: 'Purchases',
         widget: const Text('Purchases', style: optionStyle)),

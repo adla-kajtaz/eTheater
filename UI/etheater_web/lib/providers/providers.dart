@@ -7,3 +7,4 @@ export 'ticket_provider.dart';
 export 'token_provider.dart';
 export 'user_provider.dart';
 export 'actor_provider.dart';
+export 'hall_provider.dart';
