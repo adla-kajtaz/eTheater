@@ -199,15 +199,6 @@ class _TheaterHallsState extends State<TheaterHalls> {
                       ),
                     ),
                   ),
-                  DataColumn(
-                    numeric: false,
-                    label: Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("Show schedules")],
-                      ),
-                    ),
-                  ),
                 ],
                 rows: _halls!.isNotEmpty
                     ? _halls!.map((hall) {
@@ -248,21 +239,6 @@ class _TheaterHallsState extends State<TheaterHalls> {
                                 ),
                               ),
                             ),
-                            DataCell(
-                              Center(
-                                child: IconButton(
-                                  icon: Icon(Icons.date_range_rounded,
-                                      color: Theme.of(context).primaryColor),
-                                  onPressed: () {
-                                    /*Navigator.pushNamed(
-                                      context,
-                                      TerminiScreen.routeName,
-                                      arguments: sala.salaId,
-                                    );*/
-                                  },
-                                ),
-                              ),
-                            ),
                           ],
                         );
                       }).toList()
@@ -272,7 +248,6 @@ class _TheaterHallsState extends State<TheaterHalls> {
                           DataCell(Text('')),
                           DataCell(Text('')),
                           DataCell(Center(child: Text('No search results'))),
-                          DataCell(Text('')),
                           DataCell(Text('')),
                           DataCell(Text('')),
                         ])

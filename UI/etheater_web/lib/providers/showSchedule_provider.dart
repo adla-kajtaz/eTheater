@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:etheater_web/models/models.dart';
 import 'package:etheater_web/providers/base_provider.dart';
 
-/*class ShowScheduleProvider extends BaseProvider<ShowSchedule> {
+class ShowScheduleProvider extends BaseProvider<ShowSchedule> {
   static String? _baseUrl;
   ShowScheduleProvider() : super("ShowSchedule") {
     _baseUrl = const String.fromEnvironment("baseUrl",
@@ -26,4 +26,3 @@ import 'package:etheater_web/providers/base_provider.dart';
     throw Exception("Error on the server");
   }
 }
-*/

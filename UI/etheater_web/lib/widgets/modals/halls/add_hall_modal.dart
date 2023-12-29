@@ -89,7 +89,7 @@ class _AddHallModalState extends State<AddHallModal> {
               },
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'This field is required';
+                  return 'This field is required!';
                 }
                 return null;
               },
