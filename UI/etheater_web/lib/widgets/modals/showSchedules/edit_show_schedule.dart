@@ -1,6 +1,5 @@
 import 'package:etheater_web/models/models.dart';
 import 'package:etheater_web/providers/providers.dart';
-import 'package:etheater_web/providers/show_provider.dart';
 import 'package:etheater_web/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,9 +24,13 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
   HallProvider? _hallProvider;
   List<Show> _shows = [];
   List<Hall> _halls = [];
+  List<String> _slots = [];
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String selectedTime = "";
   Show? _selectedShow;
   Hall? _selectedHall;
+  bool _showTimeSlotList = true;
+  int selectedSlot = -1;
   bool displayError = false;
   late TextEditingController ticketPriceController;
   late DateTime _showDate;
@@ -43,6 +46,7 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
     _showDate = widget.showSchedule.showDate;
     loadShows();
     loadHalls();
+    //loadSlots();
   }
 
   loadShows() async {
@@ -116,6 +120,34 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            DropdownButtonFormField<Hall>(
+              decoration: InputDecoration(
+                labelText: 'Hall',
+                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                ),
+              ),
+              value: _selectedHall,
+              onChanged: (Hall? h) {
+                setState(() {
+                  _selectedHall = h!;
+                });
+              },
+              validator: (value) {
+                if (value == null) {
+                  return 'This field is required!';
+                }
+                return null;
+              },
+              items: _halls.map<DropdownMenuItem<Hall>>((Hall h) {
+                return DropdownMenuItem<Hall>(
+                  value: h,
+                  child: Text(h.name),
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 16),
             DropdownButtonFormField<Show>(
               decoration: InputDecoration(
                 labelText: 'Show',
@@ -143,6 +175,7 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
                 );
               }).toList(),
             ),
+            const SizedBox(height: 16),
             TextFormField(
               controller: ticketPriceController,
               keyboardType: TextInputType.number,
@@ -176,7 +209,17 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
               ),
             ),
             const SizedBox(height: 16),
-            const SizedBox(height: 16),
+            TextFormField(
+              //controller: //vrijemeOdrzavanjaController,
+              decoration: const InputDecoration(
+                  labelText: 'Show time', hintText: ''),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'This field is required!';
+                }
+                return null;
+              },
+            ),
             const SizedBox(height: 16),
             if (displayError)
               const Text('The hall for this date and time is occupied.',

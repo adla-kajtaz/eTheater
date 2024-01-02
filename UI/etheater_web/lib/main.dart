@@ -10,6 +10,9 @@ void main() {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => ActorProvider()),
         ChangeNotifierProvider(create: (_) => HallProvider()),
+        ChangeNotifierProvider(create: (_) => ShowScheduleProvider()),
+        ChangeNotifierProvider(create: (_) => ShowProvider()),
+
       ],
       child: const MyApp(),
     ),

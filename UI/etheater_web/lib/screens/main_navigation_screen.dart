@@ -27,7 +27,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         label: 'Shows', widget: const Text('Shows', style: optionStyle)),
     NavigationItem(
         label: 'Schedules',
-        widget: const Text('Schedules', style: optionStyle)),
+        widget: const ScheduleScreen()),
     NavigationItem(
         label: 'Notifications',
         widget: const Text('Notifications', style: optionStyle)),

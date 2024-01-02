@@ -271,7 +271,7 @@ namespace eTheater.Services.Database
                 new ShowSchedule()
                 {
                     ShowScheduleId = 1,
-                    HallId = 1,
+                    HallId = 2,
                     ShowId = 1,
                     TicketPrice = 20,
                     ShowDate = DateTime.Now.Date,
@@ -280,7 +280,7 @@ namespace eTheater.Services.Database
                 new ShowSchedule()
                 {
                     ShowScheduleId = 2,
-                    HallId = 2,
+                    HallId = 1,
                     ShowId = 2,
                     TicketPrice = 10,
                     ShowDate = DateTime.Now.Date.AddDays(2),
@@ -289,7 +289,7 @@ namespace eTheater.Services.Database
                 new ShowSchedule()
                 {
                     ShowScheduleId = 3,
-                    HallId = 2,
+                    HallId = 1,
                     ShowId = 3,
                     TicketPrice = 20,
                     ShowDate = DateTime.Now.Date.AddDays(3),
@@ -298,7 +298,7 @@ namespace eTheater.Services.Database
                 new ShowSchedule()
                 {
                     ShowScheduleId = 4,
-                    HallId = 2,
+                    HallId = 1,
                     ShowId = 4,
                     TicketPrice = 20,
                     ShowDate = DateTime.Now.Date.AddDays(2),
@@ -307,7 +307,7 @@ namespace eTheater.Services.Database
                 new ShowSchedule()
                 {
                     ShowScheduleId = 5,
-                    HallId = 2,
+                    HallId = 1,
                     ShowId = 5,
                     TicketPrice = 10,
                     ShowDate = DateTime.Now.Date,
@@ -316,7 +316,7 @@ namespace eTheater.Services.Database
                 new ShowSchedule()
                 {
                     ShowScheduleId = 6,
-                    HallId = 2,
+                    HallId = 1,
                     ShowId = 6,
                     TicketPrice = 10,
                     ShowDate = DateTime.Now.Date.AddDays(3),
