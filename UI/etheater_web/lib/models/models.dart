@@ -9,3 +9,4 @@ export 'user.dart';
 export 'token.dart';
 export 'enums.dart';
 export 'actor.dart';
+export 'showActor.dart';

@@ -275,7 +275,7 @@ namespace eTheater.Services.Database
                     ShowId = 1,
                     TicketPrice = 20,
                     ShowDate = DateTime.Now.Date,
-                    ShowTime = "20:00"
+                    ShowTime = "20:00-22:00"
                 },
                 new ShowSchedule()
                 {
@@ -284,7 +284,7 @@ namespace eTheater.Services.Database
                     ShowId = 2,
                     TicketPrice = 10,
                     ShowDate = DateTime.Now.Date.AddDays(2),
-                    ShowTime = "20:00"
+                    ShowTime = "20:00-22:00"
                 },
                 new ShowSchedule()
                 {
@@ -293,7 +293,7 @@ namespace eTheater.Services.Database
                     ShowId = 3,
                     TicketPrice = 20,
                     ShowDate = DateTime.Now.Date.AddDays(3),
-                    ShowTime = "20:00"
+                    ShowTime = "20:00-22:00"
                 },
                 new ShowSchedule()
                 {
@@ -302,7 +302,7 @@ namespace eTheater.Services.Database
                     ShowId = 4,
                     TicketPrice = 20,
                     ShowDate = DateTime.Now.Date.AddDays(2),
-                    ShowTime = "18:00"
+                    ShowTime = "18:00-20:00"
                 },
                 new ShowSchedule()
                 {
@@ -311,7 +311,7 @@ namespace eTheater.Services.Database
                     ShowId = 5,
                     TicketPrice = 10,
                     ShowDate = DateTime.Now.Date,
-                    ShowTime = "18:00"
+                    ShowTime = "18:00-20:00"
                 },
                 new ShowSchedule()
                 {
@@ -320,7 +320,7 @@ namespace eTheater.Services.Database
                     ShowId = 6,
                     TicketPrice = 10,
                     ShowDate = DateTime.Now.Date.AddDays(3),
-                    ShowTime = "18:00"
+                    ShowTime = "18:00-20:00"
                 }
             });
 

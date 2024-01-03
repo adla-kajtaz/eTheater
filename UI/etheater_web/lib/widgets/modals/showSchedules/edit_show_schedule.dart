@@ -29,7 +29,6 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
   String selectedTime = "";
   Show? _selectedShow;
   Hall? _selectedHall;
-  bool _showTimeSlotList = true;
   int selectedSlot = -1;
   bool displayError = false;
   late TextEditingController ticketPriceController;
@@ -46,7 +45,6 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
     _showDate = widget.showSchedule.showDate;
     loadShows();
     loadHalls();
-    //loadSlots();
   }
 
   loadShows() async {
@@ -209,7 +207,7 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
               ),
             ),
             const SizedBox(height: 16),
-            TextFormField(
+            /*TextFormField(
               //controller: //vrijemeOdrzavanjaController,
               decoration: const InputDecoration(
                   labelText: 'Show time', hintText: ''),
@@ -219,7 +217,7 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
                 }
                 return null;
               },
-            ),
+            ),*/
             const SizedBox(height: 16),
             if (displayError)
               const Text('The hall for this date and time is occupied.',
@@ -241,7 +239,7 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
               dynamic request = {
                 'ticketPrice': ticketPriceController.text,
                 'showDate': _showDate.toIso8601String(),
-                'showTime': '',
+                'showTime': '20:00-22:00',
                 'showId': _selectedShow!.showId,
                 'hallId': _selectedHall!.hallId
               };

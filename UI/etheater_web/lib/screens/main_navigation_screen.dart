@@ -24,7 +24,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   final List<NavigationItem> _navigationItems = [
     NavigationItem(label: 'Actors', widget: const ActorScreen()),
     NavigationItem(
-        label: 'Shows', widget: const Text('Shows', style: optionStyle)),
+        label: 'Shows', widget: const ShowScreen()),
     NavigationItem(
         label: 'Schedules',
         widget: const ScheduleScreen()),

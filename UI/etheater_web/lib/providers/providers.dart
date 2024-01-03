@@ -9,3 +9,4 @@ export 'user_provider.dart';
 export 'actor_provider.dart';
 export 'hall_provider.dart';
 export 'show_provider.dart';
+export 'show_actor_provider.dart';

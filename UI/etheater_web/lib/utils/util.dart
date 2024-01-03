@@ -3,10 +3,12 @@ import 'dart:typed_data';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
-Image imageFromBase64String(String base64String) {
+Image imageFromBase64String(String base64String, int? width, int? height) {
   return Image.memory(
     base64Decode(base64String),
     fit: BoxFit.cover,
+     width: width?.toDouble(),
+    height: height?.toDouble(),
   );
 }
 

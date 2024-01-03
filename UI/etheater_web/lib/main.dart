@@ -12,6 +12,8 @@ void main() {
         ChangeNotifierProvider(create: (_) => HallProvider()),
         ChangeNotifierProvider(create: (_) => ShowScheduleProvider()),
         ChangeNotifierProvider(create: (_) => ShowProvider()),
+        ChangeNotifierProvider(create: (_) => ShowActorProvider()),
+
 
       ],
       child: const MyApp(),

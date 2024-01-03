@@ -18,13 +18,15 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
   ShowScheduleProvider? _scheduleProvider;
   ShowProvider? _showProvider;
   HallProvider? _hallProvider;
+  int selectedSlot = -1;
+  String showTime = "20:00-22:00";
+  List<String> _slots = [];
   List<Show> _shows = [];
   List<Hall> _halls = [];
   Show? _selectedShow;
   Hall? _selectedHall;
   int ticketPrice = 0;
   DateTime showDate = DateTime.now();
-  String showTime = '20:00';
   bool displayError = false;
 
    @override
@@ -48,6 +50,20 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
     var data = await _hallProvider!.get();
     setState(() {
       _halls = data;
+    });
+  }
+
+  void fetchSlots() async {
+    var data = await _scheduleProvider!
+        .getTimeSlotsForDate({'hallId': _selectedHall!.hallId, 'date': showDate});
+    setState(() {
+      _slots = data;
+    });
+  }
+
+  void setSlotIndex(int index) {
+    setState(() {
+      selectedSlot = index;
     });
   }
 
@@ -78,6 +94,7 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
       setState(() {
         showDate = picked;
       });
+      fetchSlots();
     }
   }
 
@@ -104,6 +121,7 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
                 setState(() {
                   _selectedHall = h!;
                 });
+                fetchSlots();
               },
               validator: (value) {
                 if (value == null) {
@@ -186,23 +204,7 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
               ),
             ),
             const SizedBox(height: 16),
-            TextFormField(
-              initialValue: '20:00',
-              decoration: const InputDecoration(
-                labelText: 'Show time',
-              ),
-              onChanged: (String value) {
-                setState(() {
-                  showTime = value;
-                });
-              },
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'This field is required!';
-                }
-                return null;
-              },
-            ),
+            const Text("Time "),
             const SizedBox(height: 16),
             if (displayError)
               const Text('The hall for this date and time is occupied.',

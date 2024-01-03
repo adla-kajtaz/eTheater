@@ -16,7 +16,7 @@ namespace eTheater.Controllers
         }
 
         [HttpGet("getTimeSlotsForDate")]
-        public List<string> GetTimeSlotsForDate(int hallId, string date)
+        public List<string> GetTimeSlotsForDate(int hallId, DateTime date)
         {
             return _service.GetTimeSlotsForDate(hallId, date);
         }
