@@ -42,4 +42,15 @@ class ShowScheduleProvider extends BaseProvider<ShowSchedule> {
     }
     return [];
   }
+
+  Future<bool> deleteTickets(int id) async {
+    var url = "$_baseUrl" + "ShowSchedule/deleteTickets/$id";
+    var headers = createHeaders();
+    var uri = Uri.parse(url);
+    var response = await http!.get(uri, headers: headers);
+    if (isValidResponseCode(response)) {
+      return true;
+    }
+    throw Exception("Error on the server");
+  }
 }

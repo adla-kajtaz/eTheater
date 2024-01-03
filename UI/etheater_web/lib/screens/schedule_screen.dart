@@ -2,6 +2,7 @@ import 'package:etheater_web/models/models.dart';
 import 'package:etheater_web/providers/hall_provider.dart';
 import 'package:etheater_web/providers/showSchedule_provider.dart';
 import 'package:etheater_web/providers/show_provider.dart';
+import 'package:etheater_web/screens/screens.dart';
 import 'package:etheater_web/utils/util.dart';
 import 'package:etheater_web/widgets/modals/showSchedules/add_show_schedule.dart';
 import 'package:etheater_web/widgets/modals/showSchedules/edit_show_schedule.dart';
@@ -355,9 +356,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                             icon: Icon(Icons.apps_sharp,
                                 color: Theme.of(context).primaryColor),
                             onPressed: () {
-                              /*Navigator.pushNamed(
-                                  context, KarteScreen.routeName,
-                                  arguments: termin.terminId);*/
+                              Navigator.pushNamed(
+                                  context, TicketsScreen.routeName,
+                                  arguments: showSchedule.showScheduleId);
                             },
                           )),
                           DataCell(

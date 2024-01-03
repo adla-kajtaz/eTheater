@@ -3,7 +3,7 @@ export 'main_navigation_screen.dart';
 export 'shows_screen.dart';
 export 'schedule_screen.dart';
 export 'notifications_view.dart';
-export 'tickets_view.dart';
+export 'tickets_screen.dart';
 export 'theater_halls_screen.dart';
 export 'purchases_view.dart';
 export 'users_view.dart';

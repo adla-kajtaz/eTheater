@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:etheater_web/models/models.dart';
 import 'package:etheater_web/providers/base_provider.dart';
 
-/*class TicketProvider extends BaseProvider<Ticket> {
+class TicketProvider extends BaseProvider<Ticket> {
   static String? _baseUrl;
   TicketProvider() : super("Ticket") {
     _baseUrl = const String.fromEnvironment("baseUrl",
@@ -28,4 +28,4 @@ import 'package:etheater_web/providers/base_provider.dart';
       throw Exception("Something went wrong");
     }
   }
-}*/
+}

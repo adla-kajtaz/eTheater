@@ -13,8 +13,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ShowScheduleProvider()),
         ChangeNotifierProvider(create: (_) => ShowProvider()),
         ChangeNotifierProvider(create: (_) => ShowActorProvider()),
-
-
+        ChangeNotifierProvider(create: (_) => TicketProvider()),
       ],
       child: const MyApp(),
     ),
@@ -42,6 +41,8 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName: (context) => const LoginScreen(),
         MainNavigationScreen.routeName: (context) =>
             const MainNavigationScreen(),
+         TicketsScreen.routeName: (context) => TicketsScreen(
+            showScheduleId: ModalRoute.of(context)!.settings.arguments as int),
         ActorListScreen.routeName: (context) {
           final args = ModalRoute.of(context)!.settings.arguments
           as Map<String, dynamic>;
