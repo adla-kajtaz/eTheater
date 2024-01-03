@@ -42,13 +42,17 @@ namespace eTheater.Services
             {
                 return null;
             }
-            else if (showActors != null && showActors.Any())
-            {
-                return null;
-            }
             else if (entity == null)
             {
                 return null;
+            }
+            else if (showActors != null && showActors.Any())
+            {
+                foreach (var actor in showActors)
+                {
+                    actor.IsDeleted = true;
+                }
+                entity.IsDeleted = true;
             }
             else
             {
