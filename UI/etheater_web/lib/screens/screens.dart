@@ -10,3 +10,4 @@ export 'users_view.dart';
 export 'profile_view.dart';
 export 'theater_info_view.dart';
 export 'actor_screen.dart';
+export 'actor_list_screen.dart';

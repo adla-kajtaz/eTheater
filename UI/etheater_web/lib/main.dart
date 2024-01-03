@@ -42,6 +42,14 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName: (context) => const LoginScreen(),
         MainNavigationScreen.routeName: (context) =>
             const MainNavigationScreen(),
+        ActorListScreen.routeName: (context) {
+          final args = ModalRoute.of(context)!.settings.arguments
+          as Map<String, dynamic>;
+          return ActorListScreen(
+            showId: args['showId'] as int,
+            name: args['name'] as String,
+          );
+        },
       },
     );
   }
