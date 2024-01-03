@@ -48,9 +48,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       return const Center(
         child: Text(
           'Loading ...',
-          style: TextStyle(
-            color: Color.fromARGB(225, 195, 178, 178),
-          ),
         ),
       );
     }

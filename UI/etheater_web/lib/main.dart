@@ -15,6 +15,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ShowActorProvider()),
         ChangeNotifierProvider(create: (_) => TicketProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => TheaterInfoProvider()),
       ],
       child: const MyApp(),
     ),

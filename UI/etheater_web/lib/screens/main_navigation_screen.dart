@@ -40,7 +40,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         label: 'Users', widget: const Text('Users', style: optionStyle)),
     NavigationItem(
         label: 'Theater info',
-        widget: const Text('Theater info', style: optionStyle)),
+        widget: const TheaterInfoScreen()),
     NavigationItem(
         label: 'Revenue', widget: const Text('Revenue', style: optionStyle)),
     NavigationItem(
