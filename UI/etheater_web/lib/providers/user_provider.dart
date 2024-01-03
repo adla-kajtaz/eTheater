@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:etheater_web/models/models.dart';
 import 'package:etheater_web/providers/providers.dart';
 
-/*class UserProvider extends BaseProvider<User> {
+class UserProvider extends BaseProvider<User> {
   static String? _baseUrl;
   UserProvider() : super("User") {
     _baseUrl = const String.fromEnvironment("baseUrl",
@@ -45,4 +45,3 @@ import 'package:etheater_web/providers/providers.dart';
     return null;
   }
 }
-*/

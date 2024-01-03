@@ -1,3 +1,4 @@
+import 'package:etheater_web/screens/profile_screen.dart';
 import 'package:etheater_web/screens/screens.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +44,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     NavigationItem(
         label: 'Revenue', widget: const Text('Revenue', style: optionStyle)),
     NavigationItem(
-        label: 'Profile', widget: const Text('Profile', style: optionStyle)),
+        label: 'Profile', widget: const ProfileScreen()),
   ];
 
   void _onItemTapped(int index) {
