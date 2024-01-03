@@ -13,4 +13,19 @@ class ShowProvider extends BaseProvider<Show> {
   Show fromJson(data) {
     return Show.fromJson(data);
   }
+
+  Future<RevenuesPerShow> getRevenue(int id) async {
+    var url = "${_baseUrl}Show/revenuesPerShowReport/$id";
+    var uri = Uri.parse(url);
+    Map<String, String> headers = createHeaders();
+
+    var response = await http!.get(uri, headers: headers);
+
+    if (isValidResponseCode(response)) {
+      var data = jsonDecode(response.body);
+      return RevenuesPerShow.fromJson(data);
+    } else {
+      throw Exception("Exception... handle this gracefully");
+    }
+  }
 }

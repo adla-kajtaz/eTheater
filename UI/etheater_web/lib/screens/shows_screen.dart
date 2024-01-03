@@ -4,6 +4,7 @@ import 'package:etheater_web/screens/screens.dart';
 import 'package:etheater_web/widgets/modals/shows/add_actor_show_modal.dart';
 import 'package:etheater_web/widgets/modals/shows/add_show_modal.dart';
 import 'package:etheater_web/widgets/modals/shows/edit_show_modal.dart';
+import 'package:etheater_web/widgets/show_revenue.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -301,17 +302,17 @@ class _ShowScreenState extends State<ShowScreen> {
                               icon: Icon(Icons.addchart,
                                   color: Theme.of(context).primaryColor),
                               onPressed: () {
-                                /*showDialog(
+                                showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
                                     return AlertDialog(
-                                      title: const Text('Zarada po predstavi'),
-                                      content: PredstavaZarada(
-                                        predstavaId: predstava.predstavaId,
+                                      title: const Text('Revenue per show'),
+                                      content: ShowRevenue(
+                                        showId: show.showId,
                                       ),
                                     );
                                   },
-                                );*/
+                                );
                               },
                             ),
                           ),

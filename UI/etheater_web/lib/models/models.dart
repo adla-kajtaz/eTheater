@@ -10,3 +10,4 @@ export 'token.dart';
 export 'enums.dart';
 export 'actor.dart';
 export 'showActor.dart';
+export 'revenuesPerShow.dart';
