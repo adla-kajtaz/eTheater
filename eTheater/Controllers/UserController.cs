@@ -29,5 +29,13 @@ namespace eTheater.Controllers
         {
             throw new eTheaterException("Not allowed", "Manually inserting users in the system is not allowed");
         }
+
+
+        [Authorize]
+        [HttpGet("userReport/{id}")]
+        public Model.UserReport UserPurchaseReport(int id)
+        {
+            return _service.UserPurchaseReport(id);
+        }
     }
 }

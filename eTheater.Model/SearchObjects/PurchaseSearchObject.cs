@@ -9,5 +9,6 @@ namespace eTheater.Model.SearchObjects
     public class PurchaseSearchObject : BaseSearchObject
     {
         public int? UserId { get; set; }
+        public int? PurchaseId { get; set; }
     }
 }

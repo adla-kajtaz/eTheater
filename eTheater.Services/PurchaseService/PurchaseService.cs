@@ -33,6 +33,8 @@ namespace eTheater.Services
 
             if (search.UserId != null)
                 filteredQuery = filteredQuery.Where(x => x.UserId == search.UserId);
+            if(search.PurchaseId != null)
+                filteredQuery = filteredQuery.Where(x => x.PurchaseId == search.PurchaseId);
             filteredQuery = filteredQuery.Where(x => x.IsDeleted == false);
             return filteredQuery;
         }

@@ -4,6 +4,7 @@ using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
 using eTheater.Services.BaseService;
 using eTheater.Services.Database;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,32 @@ namespace eTheater.Services
         {
             var user = _context.Users.Find(id);
             return _mapper.Map<Model.User>(user);
+        }
+
+        public Model.UserReport UserPurchaseReport(int userId)
+        {
+            var purchases = _context.Purchases.Include(x=>x.ShowSchedule).ThenInclude(x=>x.Show).Where(e => e.UserId == userId).ToList();
+            int price = 0;
+            List<UserPurchases> userPurchasesList = new List<UserPurchases>();
+            foreach (var purchase in purchases)
+            {
+                var userPurchase = new UserPurchases
+                {
+                    ShowName = purchase.ShowSchedule.Show.Name,
+                    NumberOfTickets = purchase.NumberOfTickets,
+                    Price = purchase.TotalPrice
+                };
+                userPurchasesList.Add(userPurchase);
+                price += purchase.TotalPrice;
+            }
+
+            var report = new UserReport()
+            {
+                Purchases = userPurchasesList,
+                TotalPrice = price
+            };
+
+            return report;
         }
     }
 }
