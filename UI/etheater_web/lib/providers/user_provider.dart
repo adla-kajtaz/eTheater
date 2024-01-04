@@ -44,4 +44,19 @@ class UserProvider extends BaseProvider<User> {
     }
     return null;
   }
+
+  Future<UserReport> userReport(int id) async {
+    var url = "${_baseUrl}User/userReport/$id";
+    var uri = Uri.parse(url);
+    Map<String, String> headers = createHeaders();
+
+    var response = await http!.get(uri, headers: headers);
+
+    if (isValidResponseCode(response)) {
+      var data = jsonDecode(response.body);
+      return UserReport.fromJson(data);
+    } else {
+      throw Exception("Exception... handle this gracefully");
+    }
+  }
 }

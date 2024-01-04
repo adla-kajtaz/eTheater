@@ -11,3 +11,5 @@ export 'enums.dart';
 export 'actor.dart';
 export 'showActor.dart';
 export 'revenuesPerShow.dart';
+export 'userReport.dart';
+export 'userPurchases.dart';

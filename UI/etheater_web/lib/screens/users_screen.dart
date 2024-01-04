@@ -1,5 +1,6 @@
 import 'package:etheater_web/models/models.dart';
 import 'package:etheater_web/providers/providers.dart';
+import 'package:etheater_web/widgets/purchase_report.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -122,15 +123,8 @@ class _UsersScreenState extends State<UsersScreen> {
                 columns: const [
                   DataColumn(label: Text('Username')),
                   DataColumn(label: Text('Email')),
-                  DataColumn(
-                    numeric: false,
-                    label: Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("Delete")],
-                      ),
-                    ),
-                  ),
+                  DataColumn(label: Text('Delete')),
+                  DataColumn(label: Text('Report')),
                 ],
                 rows: _users!.isNotEmpty
                     ? _users!.map((user) {
@@ -158,6 +152,25 @@ class _UsersScreenState extends State<UsersScreen> {
                                 ),
                               ),
                             ),
+                            DataCell(
+                              IconButton(
+                                icon: Icon(Icons.addchart,
+                                    color: Theme.of(context).primaryColor),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('Purchase report'),
+                                        content: PurchaseReport(
+                                          userId: user.id,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
                           ],
                         );
                       }).toList()
@@ -165,6 +178,7 @@ class _UsersScreenState extends State<UsersScreen> {
                         const DataRow(cells: [
                           DataCell(Text('')),
                           DataCell(Center(child: Text('No search results'))),
+                          DataCell(Text('')),
                           DataCell(Text('')),
                         ])
                       ],
