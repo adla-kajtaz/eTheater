@@ -7,3 +7,4 @@ export 'theater_halls_screen.dart';
 export 'actor_screen.dart';
 export 'actor_list_screen.dart';
 export 'theater_info_screen.dart';
+export 'revenue_screen.dart';

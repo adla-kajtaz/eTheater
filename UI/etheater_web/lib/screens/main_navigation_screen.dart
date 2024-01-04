@@ -42,7 +42,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         label: 'Theater info',
         widget: const TheaterInfoScreen()),
     NavigationItem(
-        label: 'Revenue', widget: const Text('Revenue', style: optionStyle)),
+        label: 'Revenue', widget: const RevenueScreen()),
     NavigationItem(
         label: 'Profile', widget: const ProfileScreen()),
   ];
