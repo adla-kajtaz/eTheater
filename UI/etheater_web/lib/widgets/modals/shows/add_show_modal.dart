@@ -238,18 +238,18 @@ class _AddShowModalState extends State<AddShowModal> {
         ),
         ElevatedButton(
           onPressed: () async {
-            setState(() {
+            /*setState(() {
               pictureError = false;
-            });
+            });*/
             if (formKey.currentState!.validate()) {
-              if (_selectedImage == null) {
+              /*if (_selectedImage == null) {
                 setState(() {
                   pictureError = true;
                 });
                 return;
               }
               final bytes = await _selectedImage!.readAsBytes();
-              final image = base64Encode(bytes);
+              final image = base64Encode(bytes);*/
               dynamic request = {
                 'name': name,
                 'description': description,
