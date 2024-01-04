@@ -30,10 +30,7 @@ class _ShowScreenState extends State<ShowScreen> {
 
   void loadData() async {
     String showGenre = _showGenre == 'All' ? '' : _showGenre;
-    dynamic request = {
-      'ShowGenre': showGenre,
-      'Name': _searchController.text
-    };
+    dynamic request = {'ShowGenre': showGenre, 'Name': _searchController.text};
     var data = await _showProvider!.get(request);
     setState(() {
       _shows = data;
@@ -101,8 +98,7 @@ class _ShowScreenState extends State<ShowScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         backgroundColor: Colors.red,
-                        content: Text(
-                            'You cannot delete a show!'),
+                        content: Text('You cannot delete a show!'),
                       ),
                     );
                   }
@@ -175,8 +171,8 @@ class _ShowScreenState extends State<ShowScreen> {
                   ),
                 ),
                 const SizedBox(width: 16.0),
-                 Expanded(
-                  child:DropdownButtonFormField<String>(
+                Expanded(
+                  child: DropdownButtonFormField<String>(
                     decoration: InputDecoration(
                       labelText: 'Show genre',
                       labelStyle:
@@ -191,23 +187,22 @@ class _ShowScreenState extends State<ShowScreen> {
                       setState(() {
                         _showGenre = value ?? 'All';
                       });
-          
                     },
                     items: <String>[
-              'All',
-              'Drama',
-              'Komedija',
-              'Opera',
-              'Mjuzikl',
-              'Balet',
-            ].map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-              }).toList(),
-              ),
-              ),
+                      'All',
+                      'Drama',
+                      'Komedija',
+                      'Opera',
+                      'Mjuzikl',
+                      'Balet',
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+                ),
                 const SizedBox(width: 16.0),
                 ElevatedButton(
                   onPressed: () {
@@ -323,8 +318,7 @@ class _ShowScreenState extends State<ShowScreen> {
                           DataCell(Text('')),
                           DataCell(Text('')),
                           DataCell(Text('')),
-                          DataCell(
-                              Center(child: Text('No search results'))),
+                          DataCell(Center(child: Text('No search results'))),
                           DataCell(Text('')),
                           DataCell(Text('')),
                           DataCell(Text('')),

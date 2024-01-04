@@ -57,8 +57,7 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextFormField(
-                          onSaved: (newValue) =>
-                              _theaterInfo!.name = newValue!,
+                          onSaved: (newValue) => _theaterInfo!.name = newValue!,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "This field is required!";
@@ -67,9 +66,8 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                           },
                           initialValue: _theaterInfo!.name,
                           decoration: const InputDecoration(
-                            labelText: 'Name',
-                            hintText: 'Enter the name of the theater'
-                          ),
+                              labelText: 'Name',
+                              hintText: 'Enter the name of the theater'),
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
@@ -83,18 +81,17 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                           },
                           initialValue: _theaterInfo!.adress,
                           decoration: const InputDecoration(
-                            labelText: 'Adress',
-                            hintText: 'Enter the adress of the theater'
-                          ),
+                              labelText: 'Adress',
+                              hintText: 'Enter the adress of the theater'),
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
-                          onSaved: (newValue) => _theaterInfo!.email = newValue!,
+                          onSaved: (newValue) =>
+                              _theaterInfo!.email = newValue!,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "This field is required!";
-                            }
-                            else if (!RegExp(patternEmail).hasMatch(value)) {
+                            } else if (!RegExp(patternEmail).hasMatch(value)) {
                               return 'Please enter a valid email address!';
                             }
                             return null;
@@ -107,12 +104,12 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
-                          onSaved: (newValue) => _theaterInfo!.webpage = newValue!,
+                          onSaved: (newValue) =>
+                              _theaterInfo!.webpage = newValue!,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "This field is required!";
-                            }
-                            else if (!RegExp(patternUrl).hasMatch(value)) {
+                            } else if (!RegExp(patternUrl).hasMatch(value)) {
                               return 'Please enter a valid url(https://page.com)!';
                             }
                             return null;
@@ -125,12 +122,12 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
-                          onSaved: (newValue) => _theaterInfo!.phoneNumber = newValue!,
+                          onSaved: (newValue) =>
+                              _theaterInfo!.phoneNumber = newValue!,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "This field is required!";
-                            }
-                            else if (!RegExp(patternPhone).hasMatch(value)) {
+                            } else if (!RegExp(patternPhone).hasMatch(value)) {
                               return 'The phone format must be xxx-xxx-xxx !';
                             }
                             return null;

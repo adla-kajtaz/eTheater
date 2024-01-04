@@ -16,7 +16,9 @@ NotificationEtheater _$NotificationEtheaterFromJson(
       notificationCategory: NotificationEtheater.notificationCategoryFromJson(
           json['notificationCategory'] as int),
       userId: json['userId'] as int?,
-      user: User.fromJson(json['user'] as Map<String, dynamic>),
+      user: json['user'] == null
+          ? null
+          : User.fromJson(json['user'] as Map<String, dynamic>),
       createdAt: DateTime.parse(json['createdAt'] as String),
       isDeleted: json['isDeleted'] as bool?,
     );

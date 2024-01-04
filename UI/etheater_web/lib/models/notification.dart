@@ -14,7 +14,7 @@ class NotificationEtheater {
       toJson: notificationCategoryToJson)
   NotificationCategory notificationCategory;
   int? userId;
-  User user;
+  User? user;
   DateTime createdAt;
   bool? isDeleted;
 

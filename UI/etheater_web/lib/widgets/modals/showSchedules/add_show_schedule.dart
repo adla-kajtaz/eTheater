@@ -29,7 +29,7 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
   DateTime showDate = DateTime.now();
   bool displayError = false;
 
-   @override
+  @override
   void initState() {
     super.initState();
     _scheduleProvider = context.read<ShowScheduleProvider>();
@@ -54,8 +54,8 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
   }
 
   void fetchSlots() async {
-    var data = await _scheduleProvider!
-        .getTimeSlotsForDate({'hallId': _selectedHall!.hallId, 'date': showDate});
+    var data = await _scheduleProvider!.getTimeSlotsForDate(
+        {'hallId': _selectedHall!.hallId, 'date': showDate});
     setState(() {
       _slots = data;
     });

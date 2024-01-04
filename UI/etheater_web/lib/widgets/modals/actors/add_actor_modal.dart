@@ -15,6 +15,7 @@ class _AddActorModalState extends State<AddActorModal> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String? firstName;
   String? lastName;
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

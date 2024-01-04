@@ -33,9 +33,10 @@ class _EditShowModalState extends State<EditShowModal> {
   void initState() {
     super.initState();
     nameController = TextEditingController(text: widget.show.name);
-    descriptionController = TextEditingController(text: widget.show.description);
-    durationController = TextEditingController(
-        text: widget.show.duration.toString());
+    descriptionController =
+        TextEditingController(text: widget.show.description);
+    durationController =
+        TextEditingController(text: widget.show.duration.toString());
     directorController = TextEditingController(text: widget.show.director);
     _selectedImage = widget.show.picture;
     _showGenre = widget.show.showGenre;
@@ -189,35 +190,38 @@ class _EditShowModalState extends State<EditShowModal> {
                     SizedBox(
                       width: double.infinity,
                       child: DropdownButtonFormField<ShowGenre>(
-                    decoration: InputDecoration(
-                      labelText: 'Show genre',
-                      labelStyle:
-                          TextStyle(color: Theme.of(context).primaryColor),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Theme.of(context).primaryColor),
-                      ),
-                    ),
-                    value: _showGenre,
-                    validator: (value) {
-                if (value == null) {
-                  return 'This field is required!';
-                }
-                return null;
-              },
-                    onChanged: (value) {
-                      setState(() {
-                        _showGenre = value!;
-                      });
-          
-                    },
-                    items: ShowGenre.values.where((genre) => genre != ShowGenre.zeroPlaceholder).map<DropdownMenuItem<ShowGenre>>((ShowGenre entry) {
-      return DropdownMenuItem<ShowGenre>(
-        value: entry,
-        child: Text(entry.toString().split('.').last),
-      );
-                          }).toList(),
+                        decoration: InputDecoration(
+                          labelText: 'Show genre',
+                          labelStyle:
+                              TextStyle(color: Theme.of(context).primaryColor),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor),
+                          ),
                         ),
+                        value: _showGenre,
+                        validator: (value) {
+                          if (value == null) {
+                            return 'This field is required!';
+                          }
+                          return null;
+                        },
+                        onChanged: (value) {
+                          setState(() {
+                            _showGenre = value!;
+                          });
+                        },
+                        items: ShowGenre.values
+                            .where(
+                                (genre) => genre != ShowGenre.zeroPlaceholder)
+                            .map<DropdownMenuItem<ShowGenre>>(
+                                (ShowGenre entry) {
+                          return DropdownMenuItem<ShowGenre>(
+                            value: entry,
+                            child: Text(entry.toString().split('.').last),
+                          );
+                        }).toList(),
+                      ),
                     ),
                   ],
                 ),

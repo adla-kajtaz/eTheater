@@ -24,8 +24,7 @@ class _RevenueScreenState extends State<RevenueScreen> {
   }
 
   void loadData() async {
-    var data =
-        await _showProvider!.getRevenue(_selectedShow!.showId);
+    var data = await _showProvider!.getRevenue(_selectedShow!.showId);
     setState(() {
       _revenue = data;
     });
@@ -74,8 +73,7 @@ class _RevenueScreenState extends State<RevenueScreen> {
                                   });
                                 },
                                 items: _shows!
-                                    .map<DropdownMenuItem<Show>>(
-                                        (Show s) {
+                                    .map<DropdownMenuItem<Show>>((Show s) {
                                   return DropdownMenuItem<Show>(
                                     value: s,
                                     child: Text(s.name),

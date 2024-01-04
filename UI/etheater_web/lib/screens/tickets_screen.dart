@@ -46,7 +46,8 @@ class _TicketsScreenState extends State<TicketsScreen> {
     int sold = _tickets.where((k) => !k.isActive).toList().length;
     int numberOfSeats = _tickets[0].showSchedule!.hall!.totalSeats;
     int numberOfRows = _tickets[0].showSchedule!.hall!.totalRows;
-    int numberOfSeatsPerRow = _tickets[0].showSchedule!.hall!.numberOfSeatsPerRow;
+    int numberOfSeatsPerRow =
+        _tickets[0].showSchedule!.hall!.numberOfSeatsPerRow;
 
     showDialog(
       context: context,
@@ -87,8 +88,8 @@ class _TicketsScreenState extends State<TicketsScreen> {
             ElevatedButton(
               onPressed: () async {
                 try {
-                  var deleteT =
-                      await _showScheduleProvider!.deleteTickets(widget.showScheduleId);
+                  var deleteT = await _showScheduleProvider!
+                      .deleteTickets(widget.showScheduleId);
 
                   if (deleteT && context.mounted) {
                     Navigator.pop(context);
@@ -266,8 +267,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                     : [
                         const DataRow(cells: [
                           DataCell(Text('')),
-                          DataCell(
-                              Center(child: Text('No search results'))),
+                          DataCell(Center(child: Text('No search results'))),
                           DataCell(Text('')),
                           DataCell(Text('')),
                         ])

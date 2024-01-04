@@ -53,7 +53,8 @@ class TicketView extends StatelessWidget {
                 return Container(
                   margin: const EdgeInsets.all(2.0),
                   decoration: BoxDecoration(
-                    color: _tickets[index].isActive ? Colors.yellow : Colors.red,
+                    color:
+                        _tickets[index].isActive ? Colors.yellow : Colors.red,
                     border: Border.all(color: Colors.black),
                   ),
                   child: Center(

@@ -190,33 +190,36 @@ class _AddShowModalState extends State<AddShowModal> {
                       SizedBox(
                         width: double.infinity,
                         child: DropdownButtonFormField<ShowGenre>(
-                    decoration: InputDecoration(
-                      labelText: 'Show genre',
-                      labelStyle:
-                          TextStyle(color: Theme.of(context).primaryColor),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Theme.of(context).primaryColor),
-                      ),
-                    ),
-                    value: _showGenre,
-                    validator: (value) {
-                if (value == null) {
-                  return 'This field is required!';
-                }
-                return null;
-              },
-                    onChanged: (value) {
-                      setState(() {
-                        _showGenre = value!;
-                      });
-          
-                    },
-                    items: ShowGenre.values.where((genre) => genre != ShowGenre.zeroPlaceholder).map<DropdownMenuItem<ShowGenre>>((ShowGenre entry) {
-      return DropdownMenuItem<ShowGenre>(
-        value: entry,
-        child: Text(entry.toString().split('.').last),
-      );
+                          decoration: InputDecoration(
+                            labelText: 'Show genre',
+                            labelStyle: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).primaryColor),
+                            ),
+                          ),
+                          value: _showGenre,
+                          validator: (value) {
+                            if (value == null) {
+                              return 'This field is required!';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) {
+                            setState(() {
+                              _showGenre = value!;
+                            });
+                          },
+                          items: ShowGenre.values
+                              .where(
+                                  (genre) => genre != ShowGenre.zeroPlaceholder)
+                              .map<DropdownMenuItem<ShowGenre>>(
+                                  (ShowGenre entry) {
+                            return DropdownMenuItem<ShowGenre>(
+                              value: entry,
+                              child: Text(entry.toString().split('.').last),
+                            );
                           }).toList(),
                         ),
                       ),

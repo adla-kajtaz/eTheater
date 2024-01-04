@@ -65,8 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextFormField(
-                          onSaved: (newValue) =>
-                              _user!.userName = newValue!,
+                          onSaved: (newValue) => _user!.userName = newValue!,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "This field is required!";
@@ -148,7 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           onPressed: () async {
                             Navigator.pushReplacementNamed(
                                 context, LoginScreen.routeName);
-                                TokenProvider.jwtToken = null;
+                            TokenProvider.jwtToken = null;
                           },
                           child: const Text('Logout',
                               style: TextStyle(fontSize: 20)),

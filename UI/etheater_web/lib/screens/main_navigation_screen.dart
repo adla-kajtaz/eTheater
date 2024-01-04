@@ -24,27 +24,18 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   final List<NavigationItem> _navigationItems = [
     NavigationItem(label: 'Actors', widget: const ActorScreen()),
-    NavigationItem(
-        label: 'Shows', widget: const ShowScreen()),
-    NavigationItem(
-        label: 'Schedules',
-        widget: const ScheduleScreen()),
-    NavigationItem(
-        label: 'Notifications',
-        widget: const Text('Notifications', style: optionStyle)),
+    NavigationItem(label: 'Shows', widget: const ShowScreen()),
+    NavigationItem(label: 'Schedules', widget: const ScheduleScreen()),
+    NavigationItem(label: 'Notifications', widget: const NotificationScreen()),
     NavigationItem(label: 'Theater halls', widget: const TheaterHalls()),
     NavigationItem(
         label: 'Purchases',
         widget: const Text('Purchases', style: optionStyle)),
     NavigationItem(
         label: 'Users', widget: const Text('Users', style: optionStyle)),
-    NavigationItem(
-        label: 'Theater info',
-        widget: const TheaterInfoScreen()),
-    NavigationItem(
-        label: 'Revenue', widget: const RevenueScreen()),
-    NavigationItem(
-        label: 'Profile', widget: const ProfileScreen()),
+    NavigationItem(label: 'Theater info', widget: const TheaterInfoScreen()),
+    NavigationItem(label: 'Revenue', widget: const RevenueScreen()),
+    NavigationItem(label: 'Profile', widget: const ProfileScreen()),
   ];
 
   void _onItemTapped(int index) {

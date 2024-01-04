@@ -139,7 +139,8 @@ class _ActorListScreenState extends State<ActorListScreen> {
                 rows: _actors!.isNotEmpty
                     ? _actors!.map((actor) {
                         return DataRow(cells: [
-                          DataCell(Text('${actor.actor!.firstName} ${actor.actor!.lastName}')),
+                          DataCell(Text(
+                              '${actor.actor!.firstName} ${actor.actor!.lastName}')),
                           DataCell(IconButton(
                             icon: const Icon(Icons.delete, color: Colors.red),
                             onPressed: () {
