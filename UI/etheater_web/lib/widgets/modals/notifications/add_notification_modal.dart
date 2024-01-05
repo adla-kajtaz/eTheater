@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:etheater_web/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -203,7 +202,7 @@ class _AddNotificationModalState extends State<AddNotificationModal> {
               pictureError = false;
             });
 
-            if (_imageFile == null) {
+            if (_imageFile.isEmpty) {
               setState(() {
                 pictureError = true;
               });

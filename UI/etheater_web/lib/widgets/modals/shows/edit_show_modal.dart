@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:etheater_web/models/models.dart';
-import 'package:etheater_web/utils/util.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,7 +26,9 @@ class _EditShowModalState extends State<EditShowModal> {
   late TextEditingController directorController;
   bool pictureError = false;
   ShowGenre? _showGenre;
-  String? _selectedImage;
+  String? _imageFile;
+  Uint8List? selectedImageInBytes;
+
   @override
   void initState() {
     super.initState();
@@ -38,7 +38,9 @@ class _EditShowModalState extends State<EditShowModal> {
     durationController =
         TextEditingController(text: widget.show.duration.toString());
     directorController = TextEditingController(text: widget.show.director);
-    _selectedImage = widget.show.picture;
+    _imageFile = widget.show.picture;
+    List<int> imageBytes = base64.decode(widget.show.picture!);
+    selectedImageInBytes = Uint8List.fromList(imageBytes);
     _showGenre = widget.show.showGenre;
   }
 
@@ -46,12 +48,10 @@ class _EditShowModalState extends State<EditShowModal> {
     FilePickerResult? result =
         await FilePicker.platform.pickFiles(type: FileType.image);
 
-    if (result != null) {
-      final file = File(result.files.single.path!);
-      final bytes = await file.readAsBytes();
-      final image = base64Encode(bytes);
+    if (result != null && result.files.isNotEmpty) {
       setState(() {
-        _selectedImage = image;
+        _imageFile = result.files.first.name;
+        selectedImageInBytes = result.files.first.bytes;
         pictureError = false;
       });
     }
@@ -133,7 +133,7 @@ class _EditShowModalState extends State<EditShowModal> {
                 width: 220,
                 child: Column(
                   children: [
-                    /*Column(
+                    Column(
                       children: [
                         Container(
                           height: 200,
@@ -141,7 +141,7 @@ class _EditShowModalState extends State<EditShowModal> {
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: Theme.of(context).primaryColor,
-                              style: _selectedImage == null
+                              style: _imageFile == null || _imageFile!.isEmpty
                                   ? BorderStyle.solid
                                   : BorderStyle.none,
                             ),
@@ -149,7 +149,7 @@ class _EditShowModalState extends State<EditShowModal> {
                           ),
                           child: InkWell(
                             onTap: selectImage,
-                            child: _selectedImage == null
+                            child: _imageFile == null || _imageFile!.isEmpty
                                 ? SizedBox(
                                     width: double.infinity,
                                     child: Column(
@@ -172,10 +172,11 @@ class _EditShowModalState extends State<EditShowModal> {
                                       ],
                                     ),
                                   )
-                                : imageFromBase64String(
-                                    _selectedImage!,
-                                    200,
-                                    200,
+                                : Image.memory(
+                                    selectedImageInBytes!,
+                                    height: 200,
+                                    width: 200,
+                                    fit: BoxFit.contain,
                                   ),
                           ),
                         ),
@@ -185,7 +186,7 @@ class _EditShowModalState extends State<EditShowModal> {
                             style: TextStyle(color: Colors.red),
                           )
                       ],
-                    ),*/
+                    ),
                     const SizedBox(height: 16),
                     SizedBox(
                       width: double.infinity,
@@ -240,17 +241,20 @@ class _EditShowModalState extends State<EditShowModal> {
             setState(() {
               pictureError = false;
             });
+
+            if (_imageFile == null) {
+              setState(() {
+                pictureError = true;
+              });
+              return;
+            }
+
             if (formKey.currentState!.validate()) {
-              if (_selectedImage == null) {
-                setState(() {
-                  pictureError = true;
-                });
-                return;
-              }
+              final image = base64Encode(selectedImageInBytes!);
               dynamic request = {
                 'name': nameController.text,
                 'description': descriptionController.text,
-                'picture': '_selectedImage',
+                'picture': image,
                 'duration': int.parse(durationController.text),
                 'director': directorController.text,
                 'showGenre': _showGenre?.index,

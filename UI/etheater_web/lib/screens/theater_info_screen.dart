@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:etheater_web/models/models.dart';
 import 'package:etheater_web/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 
 String patternUrl =
     r'^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$';
@@ -19,6 +23,8 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
   final formKey = GlobalKey<FormState>();
   TheaterInfoProvider? _theaterInfoProvider;
   TheaterInfo? _theaterInfo;
+  String? _imageFile;
+  Uint8List? selectedImageInBytes;
 
   @override
   void initState() {
@@ -31,7 +37,22 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
     var data = await _theaterInfoProvider!.getById(1);
     setState(() {
       _theaterInfo = data;
+      _imageFile = _theaterInfo!.logo;
+      List<int> imageBytes = base64.decode(_theaterInfo!.logo!);
+      selectedImageInBytes = Uint8List.fromList(imageBytes);
     });
+  }
+
+  void selectImage() async {
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(type: FileType.image);
+
+    if (result != null && result.files.isNotEmpty) {
+      setState(() {
+        _imageFile = result.files.first.name;
+        selectedImageInBytes = result.files.first.bytes;
+      });
+    }
   }
 
   @override
@@ -56,6 +77,57 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Column(
+                          children: [
+                            Container(
+                              height: 200,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Theme.of(context).primaryColor,
+                                  style:
+                                      _imageFile == null || _imageFile!.isEmpty
+                                          ? BorderStyle.solid
+                                          : BorderStyle.none,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: InkWell(
+                                onTap: selectImage,
+                                child: _imageFile == null || _imageFile!.isEmpty
+                                    ? SizedBox(
+                                        width: double.infinity,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.cloud_upload,
+                                              size: 48,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                            ),
+                                            const SizedBox(height: 8),
+                                            Text(
+                                              'Select an image',
+                                              style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    : Image.memory(
+                                        selectedImageInBytes!,
+                                        height: 200,
+                                        width: 200,
+                                        fit: BoxFit.contain,
+                                      ),
+                              ),
+                            ),
+                          ],
+                        ),
                         TextFormField(
                           onSaved: (newValue) => _theaterInfo!.name = newValue!,
                           validator: (value) {
@@ -146,9 +218,10 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                               formKey.currentState!.save();
+                              final image = base64Encode(selectedImageInBytes!);
                               Map<String, dynamic> data = {
                                 "name": _theaterInfo!.name,
-                                "logo": _theaterInfo!.logo,
+                                "logo": image,
                                 "adress": _theaterInfo!.adress,
                                 "email": _theaterInfo!.email,
                                 "webpage": _theaterInfo!.webpage,

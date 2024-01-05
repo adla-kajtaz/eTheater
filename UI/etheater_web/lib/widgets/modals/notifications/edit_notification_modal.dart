@@ -1,10 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:etheater_web/models/models.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:provider/provider.dart';
 
 class EditNotificationModal extends StatefulWidget {
   final NotificationEtheater notification;
@@ -36,6 +34,8 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
     contentController =
         TextEditingController(text: widget.notification.content);
     _imageFile = widget.notification.picture;
+    List<int> imageBytes = base64.decode(widget.notification.picture!);
+    selectedImageInBytes = Uint8List.fromList(imageBytes);
     _notificationCategory = widget.notification.notificationCategory;
   }
 
@@ -133,7 +133,7 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    /*Column(
+                    Column(
                       children: [
                         Container(
                           height: 200,
@@ -186,7 +186,7 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                             style: TextStyle(color: Colors.red),
                           )
                       ],
-                    ),*/
+                    ),
                   ],
                 ),
               )
@@ -201,7 +201,7 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
         ),
         ElevatedButton(
           onPressed: () async {
-            /*setState(() {
+            setState(() {
               pictureError = false;
             });
 
@@ -210,16 +210,16 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                 pictureError = true;
               });
               return;
-            }*/
+            }
             if (formKey.currentState!.validate()) {
-              // final image = base64Encode(selectedImageInBytes!);
+              final image = base64Encode(selectedImageInBytes!);
               int? notificationC = _notificationCategory?.index;
               widget.handleEdit(
                   widget.notification.notificationId,
                   titleController.text,
                   contentController.text,
                   notificationC,
-                  widget.notification.picture);
+                  image);
             }
           },
           child: const Text('Save changes'),
