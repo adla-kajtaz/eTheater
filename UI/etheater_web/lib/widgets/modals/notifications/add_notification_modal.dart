@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:etheater_web/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:file_picker/file_picker.dart';
 
 class AddNotificationModal extends StatefulWidget {
@@ -20,7 +22,8 @@ class _AddNotificationModalState extends State<AddNotificationModal> {
   String? content;
   NotificationCategory? _notificationCategory;
   bool pictureError = false;
-  File? _selectedImage;
+  String _imageFile = '';
+  Uint8List? selectedImageInBytes;
 
   @override
   void initState() {
@@ -33,7 +36,8 @@ class _AddNotificationModalState extends State<AddNotificationModal> {
 
     if (result != null) {
       setState(() {
-        _selectedImage = File(result.files.single.path!);
+        _imageFile = result.files.first.name;
+        selectedImageInBytes = result.files.first.bytes;
         pictureError = false;
       });
     } else {
@@ -127,7 +131,7 @@ class _AddNotificationModalState extends State<AddNotificationModal> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    /*Column(
+                    Column(
                       children: [
                         Container(
                             height: 200,
@@ -135,7 +139,7 @@ class _AddNotificationModalState extends State<AddNotificationModal> {
                             decoration: BoxDecoration(
                               border: Border.all(
                                 color: Theme.of(context).primaryColor,
-                                style: _selectedImage == null
+                                style: _imageFile.isEmpty
                                     ? BorderStyle.solid
                                     : BorderStyle.none,
                               ),
@@ -143,7 +147,7 @@ class _AddNotificationModalState extends State<AddNotificationModal> {
                             ),
                             child: InkWell(
                               onTap: selectImage,
-                              child: _selectedImage == null
+                              child: _imageFile.isEmpty
                                   ? SizedBox(
                                       width: double.infinity,
                                       child: Column(
@@ -167,8 +171,8 @@ class _AddNotificationModalState extends State<AddNotificationModal> {
                                         ],
                                       ),
                                     )
-                                  : Image.file(
-                                      _selectedImage!,
+                                  : Image.memory(
+                                      selectedImageInBytes!,
                                       height: 200,
                                       width: 200,
                                       fit: BoxFit.contain,
@@ -180,7 +184,7 @@ class _AddNotificationModalState extends State<AddNotificationModal> {
                             style: TextStyle(color: Colors.red),
                           )
                       ],
-                    ),*/
+                    ),
                   ],
                 ),
               )
@@ -195,21 +199,20 @@ class _AddNotificationModalState extends State<AddNotificationModal> {
         ),
         ElevatedButton(
           onPressed: () async {
-            /* setState(() {
+            setState(() {
               pictureError = false;
             });
 
-            if (_selectedImage == null) {
+            if (_imageFile == null) {
               setState(() {
                 pictureError = true;
               });
               return;
-            }*/
+            }
             if (formKey.currentState!.validate()) {
-              /*final bytes = await _selectedImage!.readAsBytes();
-              final image = base64Encode(bytes);*/
+              final image = base64Encode(selectedImageInBytes!);
               int? notificationC = _notificationCategory?.index;
-              widget.handleAdd(title, content, notificationC, 'image');
+              widget.handleAdd(title, content, notificationC, image);
             }
           },
           child: const Text('Add'),

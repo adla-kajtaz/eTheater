@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:etheater_web/models/models.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 
 class EditNotificationModal extends StatefulWidget {
@@ -25,7 +26,8 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
   late TextEditingController contentController;
   bool pictureError = false;
   NotificationCategory? _notificationCategory;
-  String? _selectedImage;
+  String? _imageFile;
+  Uint8List? selectedImageInBytes;
 
   @override
   void initState() {
@@ -33,7 +35,7 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
     titleController = TextEditingController(text: widget.notification.title);
     contentController =
         TextEditingController(text: widget.notification.content);
-    _selectedImage = widget.notification.picture;
+    _imageFile = widget.notification.picture;
     _notificationCategory = widget.notification.notificationCategory;
   }
 
@@ -41,12 +43,10 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
     FilePickerResult? result =
         await FilePicker.platform.pickFiles(type: FileType.image);
 
-    if (result != null) {
-      final file = File(result.files.single.path!);
-      final bytes = await file!.readAsBytes();
-      final image = base64Encode(bytes);
+    if (result != null && result.files.isNotEmpty) {
       setState(() {
-        _selectedImage = image;
+        _imageFile = result.files.first.name;
+        selectedImageInBytes = result.files.first.bytes;
         pictureError = false;
       });
     }
@@ -141,7 +141,7 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: Theme.of(context).primaryColor,
-                              style: _selectedImage == null
+                              style: _imageFile == null || _imageFile!.isEmpty
                                   ? BorderStyle.solid
                                   : BorderStyle.none,
                             ),
@@ -149,7 +149,7 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                           ),
                           child: InkWell(
                             onTap: selectImage,
-                            child: _selectedImage == null
+                            child: _imageFile == null || _imageFile!.isEmpty
                                 ? SizedBox(
                                     width: double.infinity,
                                     child: Column(
@@ -172,10 +172,11 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                                       ],
                                     ),
                                   )
-                                : imageFromBase64String(
-                                    _selectedImage!,
-                                    200,
-                                    200,
+                                : Image.memory(
+                                    selectedImageInBytes!,
+                                    height: 200,
+                                    width: 200,
+                                    fit: BoxFit.contain,
                                   ),
                           ),
                         ),
@@ -200,25 +201,25 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
         ),
         ElevatedButton(
           onPressed: () async {
-            setState(() {
+            /*setState(() {
               pictureError = false;
             });
 
-            if (_selectedImage == null) {
+            if (_imageFile == null) {
               setState(() {
                 pictureError = true;
               });
               return;
-            }
+            }*/
             if (formKey.currentState!.validate()) {
-              String image = _selectedImage!;
+              // final image = base64Encode(selectedImageInBytes!);
               int? notificationC = _notificationCategory?.index;
               widget.handleEdit(
                   widget.notification.notificationId,
                   titleController.text,
                   contentController.text,
                   notificationC,
-                  'image');
+                  widget.notification.picture);
             }
           },
           child: const Text('Save changes'),

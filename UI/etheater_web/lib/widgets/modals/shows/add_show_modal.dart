@@ -23,7 +23,8 @@ class _AddShowModalState extends State<AddShowModal> {
   String? duration;
   String? director;
   bool pictureError = false;
-  File? _selectedImage;
+  String _imageFile = '';
+  Uint8List? selectedImageInBytes;
   ShowGenre? _showGenre;
 
   @override
@@ -37,7 +38,8 @@ class _AddShowModalState extends State<AddShowModal> {
 
     if (result != null) {
       setState(() {
-        _selectedImage = File(result.files.single.path!);
+        _imageFile = result.files.first.name;
+        selectedImageInBytes = result.files.first.bytes;
         pictureError = false;
       });
     } else {
@@ -132,7 +134,7 @@ class _AddShowModalState extends State<AddShowModal> {
                   width: 220,
                   child: Column(
                     children: [
-                      /*Column(
+                      Column(
                         children: [
                           Container(
                               height: 200,
@@ -140,7 +142,7 @@ class _AddShowModalState extends State<AddShowModal> {
                               decoration: BoxDecoration(
                                 border: Border.all(
                                   color: Theme.of(context).primaryColor,
-                                  style: _selectedImage == null
+                                  style: _imageFile.isEmpty
                                       ? BorderStyle.solid
                                       : BorderStyle.none,
                                 ),
@@ -148,7 +150,7 @@ class _AddShowModalState extends State<AddShowModal> {
                               ),
                               child: InkWell(
                                 onTap: selectImage,
-                                child: _selectedImage == null
+                                child: _imageFile.isEmpty
                                     ? SizedBox(
                                         width: double.infinity,
                                         child: Column(
@@ -172,8 +174,8 @@ class _AddShowModalState extends State<AddShowModal> {
                                           ],
                                         ),
                                       )
-                                    : Image.file(
-                                        _selectedImage!,
+                                    : Image.memory(
+                                        selectedImageInBytes!,
                                         height: 200,
                                         width: 200,
                                         fit: BoxFit.contain,
@@ -185,7 +187,7 @@ class _AddShowModalState extends State<AddShowModal> {
                               style: TextStyle(color: Colors.red),
                             )
                         ],
-                      ),*/
+                      ),
                       const SizedBox(height: 16),
                       SizedBox(
                         width: double.infinity,
@@ -238,22 +240,22 @@ class _AddShowModalState extends State<AddShowModal> {
         ),
         ElevatedButton(
           onPressed: () async {
-            /*setState(() {
+            setState(() {
               pictureError = false;
-            });*/
+            });
+
+            if (_imageFile == null) {
+              setState(() {
+                pictureError = true;
+              });
+              return;
+            }
             if (formKey.currentState!.validate()) {
-              /*if (_selectedImage == null) {
-                setState(() {
-                  pictureError = true;
-                });
-                return;
-              }
-              final bytes = await _selectedImage!.readAsBytes();
-              final image = base64Encode(bytes);*/
+              final image = base64Encode(selectedImageInBytes!);
               dynamic request = {
                 'name': name,
                 'description': description,
-                'picture': 'image',
+                'picture': image,
                 'duration': int.parse(duration.toString()),
                 'director': director,
                 'showGenre': _showGenre?.index,
