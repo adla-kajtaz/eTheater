@@ -18,8 +18,7 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
   ShowScheduleProvider? _scheduleProvider;
   ShowProvider? _showProvider;
   HallProvider? _hallProvider;
-  int selectedSlot = -1;
-  String showTime = "20:00-22:00";
+  String? showTime;
   List<String> _slots = [];
   List<Show> _shows = [];
   List<Hall> _halls = [];
@@ -61,12 +60,6 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
     });
   }
 
-  void setSlotIndex(int index) {
-    setState(() {
-      selectedSlot = index;
-    });
-  }
-
   void handleAdd(dynamic request) async {
     try {
       await _scheduleProvider!.insert(request);
@@ -90,11 +83,15 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
+
     if (picked != null && picked != showDate) {
       setState(() {
         showDate = picked;
       });
-      fetchSlots();
+
+      if (_selectedHall != null) {
+        fetchSlots();
+      }
     }
   }
 
@@ -204,7 +201,38 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
               ),
             ),
             const SizedBox(height: 16),
-            const Text("Time "),
+            if (_selectedHall == null) const Text("Select hall!"),
+            if (_selectedHall != null && _slots.isNotEmpty)
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  labelText: 'List of available times',
+                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Theme.of(context).primaryColor),
+                  ),
+                ),
+                value: showTime,
+                onChanged: (value) {
+                  setState(() {
+                    showTime = value;
+                  });
+                },
+                validator: (value) {
+                  if (value == null) {
+                    return 'This field is required!';
+                  }
+                  return null;
+                },
+                items: _slots.map<DropdownMenuItem<String>>((String s) {
+                  return DropdownMenuItem<String>(
+                    value: s,
+                    child: Text(s),
+                  );
+                }).toList(),
+              ),
+            if (_selectedHall != null && _slots.isEmpty)
+              const Text("Choose another date!"),
             const SizedBox(height: 16),
             if (displayError)
               const Text('The hall for this date and time is occupied.',

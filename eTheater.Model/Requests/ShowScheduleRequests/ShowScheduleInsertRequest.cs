@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eTheater.Model.Requests
 {
-    public class ShowScheduleUpsertRequest
+    public class ShowScheduleInsertRequest
     {
         [Range(10, double.MaxValue, ErrorMessage = "Price cannot be less then or equal to 10.")]
         [Required]

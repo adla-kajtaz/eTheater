@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace eTheater.Controllers
 {
-    public class ShowScheduleController : BaseCRUDController<Model.ShowSchedule, ShowScheduleSearchObject, ShowScheduleUpsertRequest, ShowScheduleUpsertRequest>
+    public class ShowScheduleController : BaseCRUDController<Model.ShowSchedule, ShowScheduleSearchObject, ShowScheduleInsertRequest, ShowScheduleUpdateRequest>
     {
         public IShowScheduleService _service { get; set; }
         public ShowScheduleController(IShowScheduleService service) : base(service)

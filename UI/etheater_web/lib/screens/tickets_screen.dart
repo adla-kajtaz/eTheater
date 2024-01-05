@@ -96,15 +96,13 @@ class _TicketsScreenState extends State<TicketsScreen> {
                     loadData();
                   }
                 } catch (e) {
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                            'You cannot delete tickets because some have already been purchased!'),
-                      ),
-                    );
-                  }
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                          'You cannot delete tickets because some have already been purchased!'),
+                    ),
+                  );
                 }
               },
               child: const Text(

@@ -1,4 +1,5 @@
-﻿using eTheater.Model.Requests;
+﻿using eTheater.Model;
+using eTheater.Model.Requests;
 using eTheater.Model.SearchObjects;
 using eTheater.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -19,6 +20,13 @@ namespace eTheater.Controllers
         public IEnumerable<Model.Ticket> GetByShowScheduleId(int id)
         {
             return _service.GetByShowScheduleId(id);
+        }
+
+        [Authorize]
+        [HttpPut("{id}")]
+        public override Ticket Update(int id, [FromBody] TicketUpsertRequest insert)
+        {
+            throw new eTheaterException("Not allowed", "Manually editing tickets in the system is not allowed");
         }
     }
 }

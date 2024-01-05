@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace eTheater.Services
 {
-    public class ShowScheduleService : BaseCRUDService<Model.ShowSchedule, Database.ShowSchedule, ShowScheduleSearchObject, ShowScheduleUpsertRequest, ShowScheduleUpsertRequest>, IShowScheduleService
+    public class ShowScheduleService : BaseCRUDService<Model.ShowSchedule, Database.ShowSchedule, ShowScheduleSearchObject, ShowScheduleInsertRequest, ShowScheduleUpdateRequest>, IShowScheduleService
     {
         ITicketService _ticketService { get; set; }
 
@@ -67,7 +67,7 @@ namespace eTheater.Services
             return _mapper.Map<Model.ShowSchedule>(entity);
         }
 
-        public override Model.ShowSchedule Insert(ShowScheduleUpsertRequest request)
+        public override Model.ShowSchedule Insert(ShowScheduleInsertRequest request)
         {
             var show = _context.Shows.First(x => x.ShowId == request.ShowId);
             if (show == null)
@@ -123,7 +123,7 @@ namespace eTheater.Services
 
         public List<string> GetTimeSlotsForDate(int hallId, DateTime date)
         {
-            var showSchedules = _context.ShowSchedules.Where(e => e.ShowDate == date && e.HallId == hallId);
+            var showSchedules = _context.ShowSchedules.Where(e => e.ShowDate.Date == date.Date && e.HallId == hallId);
             List<string> slots = Helper.getTimeSlots();
             List<string> responseSlots = new List<string> { };
             foreach (string slot in slots)

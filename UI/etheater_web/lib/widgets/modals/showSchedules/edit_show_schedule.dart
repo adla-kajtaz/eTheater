@@ -21,15 +21,11 @@ class EditShowScheduleModal extends StatefulWidget {
 class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
   ShowScheduleProvider? _scheduleProvider;
   ShowProvider? _showProvider;
-  HallProvider? _hallProvider;
   List<Show> _shows = [];
-  List<Hall> _halls = [];
   List<String> _slots = [];
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String selectedTime = "";
+  String? selectedTime;
   Show? _selectedShow;
-  Hall? _selectedHall;
-  int selectedSlot = -1;
   bool displayError = false;
   late TextEditingController ticketPriceController;
   late DateTime _showDate;
@@ -39,12 +35,11 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
     super.initState();
     _scheduleProvider = context.read<ShowScheduleProvider>();
     _showProvider = context.read<ShowProvider>();
-    _hallProvider = context.read<HallProvider>();
     ticketPriceController =
         TextEditingController(text: widget.showSchedule.ticketPrice.toString());
     _showDate = widget.showSchedule.showDate;
     loadShows();
-    loadHalls();
+    fetchSlots();
   }
 
   loadShows() async {
@@ -59,15 +54,11 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
     });
   }
 
-  loadHalls() async {
-    var data = await _hallProvider!.get();
-    _halls = data;
-    int index = data
-        .indexWhere((element) => element.hallId == widget.showSchedule.hallId);
-
+  void fetchSlots() async {
+    var data = await _scheduleProvider!.getTimeSlotsForDate(
+        {'hallId': widget.showSchedule.hallId, 'date': _showDate});
     setState(() {
-      _halls = data;
-      _selectedHall = data[index];
+      _slots = data;
     });
   }
 
@@ -104,6 +95,7 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
       setState(() {
         _showDate = picked;
       });
+      fetchSlots();
     }
   }
 
@@ -118,34 +110,6 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            DropdownButtonFormField<Hall>(
-              decoration: InputDecoration(
-                labelText: 'Hall',
-                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).primaryColor),
-                ),
-              ),
-              value: _selectedHall,
-              onChanged: (Hall? h) {
-                setState(() {
-                  _selectedHall = h!;
-                });
-              },
-              validator: (value) {
-                if (value == null) {
-                  return 'This field is required!';
-                }
-                return null;
-              },
-              items: _halls.map<DropdownMenuItem<Hall>>((Hall h) {
-                return DropdownMenuItem<Hall>(
-                  value: h,
-                  child: Text(h.name),
-                );
-              }).toList(),
-            ),
-            const SizedBox(height: 16),
             DropdownButtonFormField<Show>(
               decoration: InputDecoration(
                 labelText: 'Show',
@@ -207,17 +171,33 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
               ),
             ),
             const SizedBox(height: 16),
-            /*TextFormField(
-              //controller: //vrijemeOdrzavanjaController,
-              decoration: const InputDecoration(
-                  labelText: 'Show time', hintText: ''),
+            DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                labelText: 'List of available times',
+                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                ),
+              ),
+              value: selectedTime,
+              onChanged: (value) {
+                setState(() {
+                  selectedTime = value;
+                });
+              },
               validator: (value) {
-                if (value == null || value.isEmpty) {
+                if (value == null) {
                   return 'This field is required!';
                 }
                 return null;
               },
-            ),*/
+              items: _slots.map<DropdownMenuItem<String>>((String s) {
+                return DropdownMenuItem<String>(
+                  value: s,
+                  child: Text(s),
+                );
+              }).toList(),
+            ),
             const SizedBox(height: 16),
             if (displayError)
               const Text('The hall for this date and time is occupied.',
@@ -239,9 +219,8 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
               dynamic request = {
                 'ticketPrice': ticketPriceController.text,
                 'showDate': _showDate.toIso8601String(),
-                'showTime': '20:00-22:00',
+                'showTime': selectedTime,
                 'showId': _selectedShow!.showId,
-                'hallId': _selectedHall!.hallId
               };
               handleEdit(widget.showSchedule.showScheduleId, request);
             }

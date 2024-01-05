@@ -26,7 +26,8 @@ namespace eTheater.Services.Mapping
             CreateMap<HallInsertRequest, Database.Hall>();
             CreateMap<HallUpdateRequest, Database.Hall>();
             CreateMap<ShowUpsertRequest, Database.Show>();
-            CreateMap<ShowScheduleUpsertRequest, Database.ShowSchedule>();
+            CreateMap<ShowScheduleInsertRequest, Database.ShowSchedule>();
+            CreateMap<ShowScheduleUpdateRequest, Database.ShowSchedule>();
             CreateMap<TicketUpsertRequest, Database.Ticket>();
             CreateMap<TheaterInfoUpsertRequest, Database.TheaterInfo>();
             CreateMap<UserUpdateRequest, Database.User>();

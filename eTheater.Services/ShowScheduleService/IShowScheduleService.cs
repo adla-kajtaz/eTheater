@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace eTheater.Services
 {
-    public interface IShowScheduleService : IBaseCRUDService<Model.ShowSchedule, ShowScheduleSearchObject, ShowScheduleUpsertRequest, ShowScheduleUpsertRequest>
+    public interface IShowScheduleService : IBaseCRUDService<Model.ShowSchedule, ShowScheduleSearchObject, ShowScheduleInsertRequest, ShowScheduleUpdateRequest>
     {
         List<string> GetTimeSlotsForDate(int hallId, DateTime date);
         List<Model.ShowSchedule> ShowScheduleRecommenderSystem(int userId);
