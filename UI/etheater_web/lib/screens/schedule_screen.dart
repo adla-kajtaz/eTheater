@@ -25,7 +25,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   List<Show> _shows = [
     Show(
       showId: 0,
-      name: 'Sve',
+      name: 'All',
       director: '',
       description: '',
       duration: 30,
@@ -37,7 +37,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   List<Hall> _halls = [
     Hall(
       hallId: 0,
-      name: 'Sve',
+      name: 'All',
       totalRows: 10,
       totalSeats: 100,
       numberOfSeatsPerRow: 10,

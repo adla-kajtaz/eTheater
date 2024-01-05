@@ -10,3 +10,4 @@ export 'theater_info_screen.dart';
 export 'revenue_screen.dart';
 export 'notification_screen.dart';
 export 'users_screen.dart';
+export 'purchases_screen.dart';

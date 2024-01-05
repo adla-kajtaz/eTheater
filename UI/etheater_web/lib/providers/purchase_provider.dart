@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:etheater_web/models/models.dart';
 import 'package:etheater_web/providers/base_provider.dart';
 
-/*class PurchaseProvider extends BaseProvider<Purchase> {
+class PurchaseProvider extends BaseProvider<Purchase> {
   static String? _baseUrl;
   PurchaseProvider() : super("Purchase") {
     _baseUrl = const String.fromEnvironment("baseUrl",
@@ -45,4 +45,4 @@ import 'package:etheater_web/providers/base_provider.dart';
       throw Exception("Something went wrong");
     }
   }
-}*/
+}
