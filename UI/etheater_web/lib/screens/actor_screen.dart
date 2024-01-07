@@ -42,9 +42,9 @@ class _ActorScreenState extends State<ActorScreen> {
       Navigator.pop(context);
       loadData();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          content: const Text('You have successfully modified the actor!'),
+        const SnackBar(
+          backgroundColor: Color.fromARGB(249, 21, 136, 38),
+          content: Text('You have successfully modified the actor!'),
         ),
       );
     }
@@ -121,9 +121,9 @@ class _ActorScreenState extends State<ActorScreen> {
       resetSearch();
       loadData();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          content: const Text('You have successfully added a new actor!'),
+        const SnackBar(
+          backgroundColor: Color.fromARGB(249, 21, 136, 38),
+          content: Text('You have successfully added a new actor!'),
         ),
       );
     }
@@ -152,6 +152,8 @@ class _ActorScreenState extends State<ActorScreen> {
               Expanded(
                 child: TextFormField(
                   controller: _searchController,
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 250, 250, 250)),
                   decoration: const InputDecoration(
                     labelText: 'Actor',
                     hintText: 'Enter the name of the actor',

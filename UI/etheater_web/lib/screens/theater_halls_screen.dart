@@ -41,9 +41,9 @@ class _TheaterHallsState extends State<TheaterHalls> {
       Navigator.pop(context);
       loadData();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          content: const Text('You have successfully modified the hall!'),
+        const SnackBar(
+          backgroundColor: Color.fromARGB(249, 21, 136, 38),
+          content: Text('You have successfully modified the hall!'),
         ),
       );
     }
@@ -115,9 +115,9 @@ class _TheaterHallsState extends State<TheaterHalls> {
       resetSearch();
       loadData();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          content: const Text('You have successfully added a new hall!'),
+        const SnackBar(
+          backgroundColor: Color.fromARGB(249, 21, 136, 38),
+          content: Text('You have successfully added a new hall!'),
         ),
       );
     }
@@ -146,6 +146,8 @@ class _TheaterHallsState extends State<TheaterHalls> {
               Expanded(
                 child: TextFormField(
                   controller: _searchController,
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 250, 250, 250)),
                   decoration: const InputDecoration(
                     labelText: 'Hall',
                     hintText: 'Enter the name of the hall',

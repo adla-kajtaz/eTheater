@@ -98,6 +98,8 @@ class _UsersScreenState extends State<UsersScreen> {
               Expanded(
                 child: TextFormField(
                   controller: _searchController,
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 250, 250, 250)),
                   decoration: const InputDecoration(
                     labelText: 'User',
                     hintText: 'Enter the username',

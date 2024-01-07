@@ -57,6 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                       return null;
                     },
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
                     decoration: const InputDecoration(
                       labelText: 'Email',
                       hintText: 'email@example.com',
@@ -81,6 +83,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     obscureText: true,
                     autocorrect: false,
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
                     decoration: const InputDecoration(
                       labelText: 'Password',
                       hintText: '********',

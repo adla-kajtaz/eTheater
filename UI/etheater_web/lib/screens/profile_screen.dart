@@ -79,6 +79,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             return null;
                           },
                           initialValue: _user!.userName,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 250, 250, 250)),
                           decoration: const InputDecoration(
                             labelText: 'Username',
                           ),
@@ -96,6 +98,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             return null;
                           },
                           initialValue: _user!.email,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 250, 250, 250)),
                           decoration: const InputDecoration(
                             labelText: 'Email',
                             hintText: 'Email',
@@ -119,11 +123,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     .updateProfile(_user!.id, data);
                                 if (context.mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                       backgroundColor:
-                                          Theme.of(context).primaryColor,
-                                      content: const Text(
-                                          'Profile updated successfully!'),
+                                          Color.fromARGB(249, 21, 136, 38),
+                                      content:
+                                          Text('Profile updated successfully!'),
                                     ),
                                   );
                                 }

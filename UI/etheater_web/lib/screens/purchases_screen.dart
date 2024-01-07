@@ -71,6 +71,8 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
                   controller: _searchController,
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 250, 250, 250)),
                   decoration: const InputDecoration(
                     labelText: 'Purchase',
                     hintText: 'Enter the purchase ID',

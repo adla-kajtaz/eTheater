@@ -137,6 +137,8 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                             return null;
                           },
                           initialValue: _theaterInfo!.name,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 250, 250, 250)),
                           decoration: const InputDecoration(
                               labelText: 'Name',
                               hintText: 'Enter the name of the theater'),
@@ -152,6 +154,8 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                             return null;
                           },
                           initialValue: _theaterInfo!.adress,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 250, 250, 250)),
                           decoration: const InputDecoration(
                               labelText: 'Adress',
                               hintText: 'Enter the adress of the theater'),
@@ -169,6 +173,8 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                             return null;
                           },
                           initialValue: _theaterInfo!.email,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 250, 250, 250)),
                           decoration: const InputDecoration(
                             labelText: 'Email',
                             hintText: 'Enter the email of the theater',
@@ -187,6 +193,8 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                             return null;
                           },
                           initialValue: _theaterInfo!.webpage,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 250, 250, 250)),
                           decoration: const InputDecoration(
                             labelText: 'Webpage',
                             hintText: 'Enter the webpage of the theater',
@@ -205,6 +213,8 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                             return null;
                           },
                           initialValue: _theaterInfo!.phoneNumber,
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 250, 250, 250)),
                           decoration: const InputDecoration(
                             labelText: 'Phone number',
                             hintText: 'Enter the phone number of the theater',
@@ -232,10 +242,10 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                                     .update(_theaterInfo!.theaterInfoId, data);
                                 if (context.mounted) {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                       backgroundColor:
-                                          Theme.of(context).primaryColor,
-                                      content: const Text(
+                                          Color.fromARGB(249, 21, 136, 38),
+                                      content: Text(
                                           'Theater info updated successfully!'),
                                     ),
                                   );

@@ -32,12 +32,35 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'eTheater Admin',
       theme: ThemeData(
+        primaryColor: const Color.fromARGB(255, 250, 250, 250),
+        appBarTheme: const AppBarTheme(
+            backgroundColor: Color.fromARGB(255, 28, 28, 29),
+            titleTextStyle: TextStyle(
+                color: Color.fromARGB(255, 250, 250, 250),
+                fontWeight: FontWeight.bold,
+                fontSize: 22)),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 28, 28, 29),
         dataTableTheme: DataTableThemeData(
-          headingRowColor:
-              MaterialStateColor.resolveWith((states) => Colors.indigo),
-          headingTextStyle: const TextStyle(color: Colors.white),
+          headingRowColor: MaterialStateColor.resolveWith(
+              (states) => const Color.fromARGB(255, 204, 36, 68)),
+          headingTextStyle:
+              const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          dataTextStyle: const TextStyle(
+            color: Color.fromARGB(255, 250, 250, 250),
+          ),
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 204, 36, 68),
+            foregroundColor: const Color.fromARGB(255, 250, 250, 250),
+          ),
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          hintStyle: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          labelStyle: TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
+        ),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 204, 36, 68)),
         useMaterial3: true,
       ),
       initialRoute: LoginScreen.routeName,

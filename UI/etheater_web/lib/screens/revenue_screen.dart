@@ -56,6 +56,10 @@ class _RevenueScreenState extends State<RevenueScreen> {
                           children: [
                             Expanded(
                               child: DropdownButtonFormField<Show>(
+                                dropdownColor:
+                                    const Color.fromARGB(255, 51, 51, 52),
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 250, 250, 250)),
                                 decoration: InputDecoration(
                                   labelText: 'Show',
                                   labelStyle: TextStyle(
@@ -87,7 +91,7 @@ class _RevenueScreenState extends State<RevenueScreen> {
                         Container(
                             width: double.infinity,
                             height: 120,
-                            color: Theme.of(context).primaryColor,
+                            color: const Color.fromARGB(255, 51, 51, 52),
                             child: Column(
                               children: [
                                 Text(
@@ -95,7 +99,8 @@ class _RevenueScreenState extends State<RevenueScreen> {
                                   style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white),
+                                      color:
+                                          Color.fromARGB(255, 250, 250, 250)),
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
@@ -103,7 +108,8 @@ class _RevenueScreenState extends State<RevenueScreen> {
                                   style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white),
+                                      color:
+                                          Color.fromARGB(255, 250, 250, 250)),
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
@@ -111,7 +117,8 @@ class _RevenueScreenState extends State<RevenueScreen> {
                                   style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white),
+                                      color:
+                                          Color.fromARGB(255, 250, 250, 250)),
                                 ),
                               ],
                             ))

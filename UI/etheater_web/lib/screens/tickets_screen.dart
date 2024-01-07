@@ -99,6 +99,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
                   Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
+                      backgroundColor: Colors.red,
                       content: Text(
                           'You cannot delete tickets because some have already been purchased!'),
                     ),

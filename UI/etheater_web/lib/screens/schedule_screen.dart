@@ -113,9 +113,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       Navigator.pop(context);
       loadData();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          content: const Text('You have successfully modified the schedule!'),
+        const SnackBar(
+          backgroundColor: Color.fromARGB(249, 21, 136, 38),
+          content: Text('You have successfully modified the schedule!'),
         ),
       );
     }
@@ -189,10 +189,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
             resetState(),
             loadData(),
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Theme.of(context).primaryColor,
-                content:
-                    const Text('You have successfully added a new schedule!'),
+              const SnackBar(
+                backgroundColor: Color.fromARGB(249, 21, 136, 38),
+                content: Text('You have successfully added a new schedule!'),
               ),
             ),
           },

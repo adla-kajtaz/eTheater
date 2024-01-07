@@ -62,10 +62,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
       Navigator.pop(context);
       loadData();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          content:
-              const Text('You have successfully modified the notification!'),
+        const SnackBar(
+          backgroundColor: Color.fromARGB(249, 21, 136, 38),
+          content: Text('You have successfully modified the notification!'),
         ),
       );
     }
@@ -143,10 +142,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
       resetSearch();
       loadData();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          content:
-              const Text('You have successfully added a new notification!'),
+        const SnackBar(
+          backgroundColor: Color.fromARGB(249, 21, 136, 38),
+          content: Text('You have successfully added a new notification!'),
         ),
       );
     }
@@ -176,6 +174,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 Expanded(
                   child: TextFormField(
                     controller: _searchController,
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
                     decoration: const InputDecoration(
                       labelText: 'Notification',
                       hintText: 'Enter the title of the notification',

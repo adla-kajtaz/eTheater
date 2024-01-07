@@ -44,23 +44,32 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_navigationItems[_selectedIndex].label)),
+      appBar: AppBar(
+        title: Text(
+          _navigationItems[_selectedIndex].label,
+        ),
+      ),
       body: Center(
         child: _navigationItems[_selectedIndex].widget,
       ),
       drawer: Drawer(
-        child: ListView.builder(
-          itemCount: _navigationItems.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              title: Text(_navigationItems[index].label),
-              selected: _selectedIndex == index,
-              onTap: () {
-                _onItemTapped(index);
-                Navigator.pop(context);
-              },
-            );
-          },
+        child: Container(
+          color: const Color.fromARGB(255, 28, 28, 29),
+          child: ListView.builder(
+            itemCount: _navigationItems.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text(_navigationItems[index].label,
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250))),
+                selected: _selectedIndex == index,
+                onTap: () {
+                  _onItemTapped(index);
+                  Navigator.pop(context);
+                },
+              );
+            },
+          ),
         ),
       ),
     );
