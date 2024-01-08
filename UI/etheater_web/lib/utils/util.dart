@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Image imageFromBase64String(String base64String, int? width, int? height) {
   return Image.memory(
     base64Decode(base64String),
     fit: BoxFit.cover,
-     width: width?.toDouble(),
+    width: width?.toDouble(),
     height: height?.toDouble(),
   );
 }
@@ -60,4 +61,14 @@ String formatDateTime(DateTime dateTime) {
   final year = dateTime.year;
 
   return '$dayOfWeek, $day. $month $year.';
+}
+
+Future<bool> saveUserToken(String token) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.setString('token', token);
+}
+
+Future<String> getUserToken() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getString('token') ?? '';
 }

@@ -1,5 +1,6 @@
 import 'package:etheater_web/providers/providers.dart';
 import 'package:etheater_web/screens/screens.dart';
+import 'package:etheater_web/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -109,6 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         try {
                           var data = await _authProvider!.loginAdmin(loginData);
                           TokenProvider.jwtToken = data!.token;
+                          saveUserToken(data.token);
                           if (context.mounted) {
                             Navigator.pushReplacementNamed(
                                 context, MainNavigationScreen.routeName);

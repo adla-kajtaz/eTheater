@@ -1,9 +1,14 @@
 import 'package:etheater_web/providers/providers.dart';
+import 'package:etheater_web/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/screens.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  String token = await getUserToken();
+  TokenProvider.jwtToken = token;
+
   runApp(
     MultiProvider(
       providers: [
@@ -56,10 +61,10 @@ class MyApp extends StatelessWidget {
           ),
         ),
         inputDecorationTheme: const InputDecorationTheme(
-          hintStyle: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          hintStyle: TextStyle(color: Color.fromARGB(255, 84, 77, 77)),
           labelStyle: TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.red),
+            borderSide: BorderSide(color: Color.fromARGB(255, 144, 135, 135)),
           ),
         ),
         colorScheme: ColorScheme.fromSeed(

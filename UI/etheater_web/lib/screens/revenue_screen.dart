@@ -56,6 +56,8 @@ class _RevenueScreenState extends State<RevenueScreen> {
                           children: [
                             Expanded(
                               child: DropdownButtonFormField<Show>(
+                                iconEnabledColor:
+                                    const Color.fromARGB(255, 204, 36, 68),
                                 dropdownColor:
                                     const Color.fromARGB(255, 51, 51, 52),
                                 style: const TextStyle(

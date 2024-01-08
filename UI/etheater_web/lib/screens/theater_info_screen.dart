@@ -122,12 +122,13 @@ class _TheaterInfoScreenState extends State<TheaterInfoScreen> {
                                         selectedImageInBytes!,
                                         height: 200,
                                         width: 200,
-                                        fit: BoxFit.contain,
+                                        fit: BoxFit.cover,
                                       ),
                               ),
                             ),
                           ],
                         ),
+                        const SizedBox(height: 20),
                         TextFormField(
                           onSaved: (newValue) => _theaterInfo!.name = newValue!,
                           validator: (value) {
