@@ -175,6 +175,9 @@ class _ShowScreenState extends State<ShowScreen> {
                 const SizedBox(width: 16.0),
                 Expanded(
                   child: DropdownButtonFormField<String>(
+                    dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
                     decoration: InputDecoration(
                       labelText: 'Show genre',
                       labelStyle:

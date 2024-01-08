@@ -58,6 +58,9 @@ class MyApp extends StatelessWidget {
         inputDecorationTheme: const InputDecorationTheme(
           hintStyle: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
           labelStyle: TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.red),
+          ),
         ),
         colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromARGB(255, 204, 36, 68)),

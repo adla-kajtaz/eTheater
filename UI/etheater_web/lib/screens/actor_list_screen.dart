@@ -119,6 +119,8 @@ class _ActorListScreenState extends State<ActorListScreen> {
                 child: TextFormField(
                   enabled: false,
                   controller: showController,
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 250, 250, 250)),
                   decoration: const InputDecoration(
                     labelText: 'Show',
                   ),
@@ -151,8 +153,7 @@ class _ActorListScreenState extends State<ActorListScreen> {
                       }).toList()
                     : [
                         const DataRow(cells: [
-                          DataCell(
-                              Center(child: Text('Nema rezultata pretrage'))),
+                          DataCell(Center(child: Text('No search results'))),
                           DataCell(Text('')),
                         ])
                       ],
