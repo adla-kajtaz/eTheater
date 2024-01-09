@@ -35,6 +35,7 @@ class _AddHallModalState extends State<AddHallModal> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               decoration: const InputDecoration(
                 labelText: 'Halls name',
               ),
@@ -49,6 +50,7 @@ class _AddHallModalState extends State<AddHallModal> {
               },
             ),
             TextFormField(
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               initialValue: '10',
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -72,6 +74,7 @@ class _AddHallModalState extends State<AddHallModal> {
               },
             ),
             TextFormField(
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               initialValue: '10',
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -95,6 +98,7 @@ class _AddHallModalState extends State<AddHallModal> {
               },
             ),
             TextFormField(
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               controller: totalSeatsController,
               keyboardType: TextInputType.number,
               enabled: false,
@@ -110,7 +114,10 @@ class _AddHallModalState extends State<AddHallModal> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Cancel'),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          ),
         ),
         ElevatedButton(
           onPressed: () {

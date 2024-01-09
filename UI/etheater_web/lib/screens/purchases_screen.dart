@@ -18,8 +18,6 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
   User? _selectedUser;
   List<Purchase>? _purchases;
 
-  final TextEditingController _searchController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
@@ -31,7 +29,6 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
   }
 
   void resetSearch() {
-    _searchController.text = '';
     _selectedUser = _users[0];
   }
 
@@ -45,9 +42,6 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
   void loadData() async {
     dynamic request = {
       'UserId': _selectedUser!.id == 0 ? null : _selectedUser!.id,
-      'PurchaseId': _searchController.text == ''
-          ? null
-          : int.parse(_searchController.text)
     };
     var data = await _purchaseProvider!.get(request);
     setState(() {
@@ -67,28 +61,18 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
             children: [
               const SizedBox(width: 16.0),
               Expanded(
-                child: TextFormField(
-                  controller: _searchController,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                child: DropdownButtonFormField<User>(
+                  iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
+                  dropdownColor: const Color.fromARGB(255, 51, 51, 52),
                   style: const TextStyle(
                       color: Color.fromARGB(255, 250, 250, 250)),
                   decoration: const InputDecoration(
-                    labelText: 'Purchase',
-                    hintText: 'Enter the purchase ID',
-                  ),
-                ),
-              ),
-              const SizedBox(width: 16.0),
-              Expanded(
-                child: DropdownButtonFormField<User>(
-                  decoration: InputDecoration(
                     labelText: 'User',
                     labelStyle:
-                        TextStyle(color: Theme.of(context).primaryColor),
+                        TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
                     enabledBorder: UnderlineInputBorder(
                       borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor),
+                          BorderSide(color: Color.fromARGB(255, 144, 135, 135)),
                     ),
                   ),
                   value: _selectedUser,
@@ -122,7 +106,6 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
               child: DataTable(
                 columnSpacing: 0,
                 columns: const [
-                  DataColumn(label: Text('Purchase ID')),
                   DataColumn(label: Text('User')),
                   DataColumn(label: Text('Show')),
                   DataColumn(label: Text('Number of tickets')),
@@ -132,7 +115,6 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
                     ? _purchases!.map((purchase) {
                         return DataRow(
                           cells: [
-                            DataCell(Text(purchase.purchaseId.toString())),
                             DataCell(Text(purchase.user!.userName)),
                             DataCell(
                               Tooltip(
@@ -151,7 +133,6 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
                       }).toList()
                     : [
                         const DataRow(cells: [
-                          DataCell(Text('')),
                           DataCell(Text('')),
                           DataCell(Center(child: Text('No search results'))),
                           DataCell(Text('')),

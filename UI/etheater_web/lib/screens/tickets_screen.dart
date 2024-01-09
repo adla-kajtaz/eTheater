@@ -75,7 +75,10 @@ class _TicketsScreenState extends State<TicketsScreen> {
           content: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Are you sure you want to delete tickets?'),
+              Text(
+                'Are you sure you want to delete tickets?',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ],
           ),
           actions: [
@@ -83,7 +86,10 @@ class _TicketsScreenState extends State<TicketsScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancel'),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -96,19 +102,21 @@ class _TicketsScreenState extends State<TicketsScreen> {
                     loadData();
                   }
                 } catch (e) {
-                  Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      backgroundColor: Colors.red,
-                      content: Text(
-                          'You cannot delete tickets because some have already been purchased!'),
-                    ),
-                  );
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text(
+                            'You cannot delete tickets because some have already been purchased!'),
+                      ),
+                    );
+                  }
                 }
               },
               child: const Text(
                 'Delete',
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               ),
             ),
           ],
@@ -162,7 +170,11 @@ class _TicketsScreenState extends State<TicketsScreen> {
                     ),
                   ),
                   const SizedBox(width: 16),
-                  Text('Free tickets: ${active.toString()}')
+                  Text(
+                    'Free tickets: ${active.toString()}',
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
+                  )
                 ],
               ),
               const SizedBox(height: 5),
@@ -177,7 +189,11 @@ class _TicketsScreenState extends State<TicketsScreen> {
                     ),
                   ),
                   const SizedBox(width: 16),
-                  Text('Sold tickets: ${inactive.toString()}')
+                  Text(
+                    'Sold tickets: ${inactive.toString()}',
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
+                  )
                 ],
               )
             ],
@@ -205,7 +221,10 @@ class _TicketsScreenState extends State<TicketsScreen> {
                   },
                   activeColor: Theme.of(context).primaryColor,
                 ),
-                const Text('Active'),
+                const Text(
+                  'Active',
+                  style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+                ),
                 const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: () {

@@ -29,15 +29,26 @@ class TicketView extends StatelessWidget {
             children: [
               Container(width: 20, height: 20, color: Colors.yellow),
               const SizedBox(width: 10),
-              Text('Free: $free')
+              Text(
+                'Free: $free',
+                style:
+                    const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              )
             ],
           ),
           const SizedBox(height: 16),
           Row(
             children: [
-              Container(width: 20, height: 20, color: Colors.red),
+              Container(
+                  width: 20,
+                  height: 20,
+                  color: const Color.fromARGB(255, 204, 36, 68)),
               const SizedBox(width: 10),
-              Text('Sold: $sold')
+              Text(
+                'Sold: $sold',
+                style:
+                    const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              )
             ],
           ),
           const SizedBox(height: 16),
@@ -53,8 +64,9 @@ class TicketView extends StatelessWidget {
                 return Container(
                   margin: const EdgeInsets.all(2.0),
                   decoration: BoxDecoration(
-                    color:
-                        _tickets[index].isActive ? Colors.yellow : Colors.red,
+                    color: _tickets[index].isActive
+                        ? Colors.yellow
+                        : const Color.fromARGB(255, 204, 36, 68),
                     border: Border.all(color: Colors.black),
                   ),
                   child: Center(

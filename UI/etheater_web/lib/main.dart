@@ -45,6 +45,10 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 22)),
         scaffoldBackgroundColor: const Color.fromARGB(255, 28, 28, 29),
+        dialogTheme: const DialogTheme(
+            backgroundColor: Color.fromARGB(255, 51, 51, 52),
+            titleTextStyle: TextStyle(
+                color: Color.fromARGB(255, 250, 250, 250), fontSize: 20)),
         dataTableTheme: DataTableThemeData(
           headingRowColor: MaterialStateColor.resolveWith(
               (states) => const Color.fromARGB(255, 204, 36, 68)),

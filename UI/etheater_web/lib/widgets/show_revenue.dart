@@ -44,25 +44,25 @@ class _ShowRevenueState extends State<ShowRevenue> {
         Text(
           'Revenue: ${_revenue!.totalRevenues} KM',
           style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 250, 250, 250)),
         ),
         const SizedBox(height: 10),
         Text(
           'Number of schedules: ${_revenue!.numberOfShowSchedules}',
           style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 250, 250, 250)),
         ),
         const SizedBox(height: 10),
         Text(
           'Number of sold tickets: ${_revenue!.numberOfTickets}',
           style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 250, 250, 250)),
         ),
       ],
     );

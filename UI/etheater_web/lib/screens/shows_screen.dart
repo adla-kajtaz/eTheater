@@ -74,7 +74,10 @@ class _ShowScreenState extends State<ShowScreen> {
           content: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Are you sure you want to delete the show?'),
+              Text(
+                'Are you sure you want to delete the show?',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ],
           ),
           actions: [
@@ -82,7 +85,10 @@ class _ShowScreenState extends State<ShowScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancel'),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -106,7 +112,7 @@ class _ShowScreenState extends State<ShowScreen> {
               },
               child: const Text(
                 'Delete',
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               ),
             ),
           ],
@@ -175,16 +181,17 @@ class _ShowScreenState extends State<ShowScreen> {
                 const SizedBox(width: 16.0),
                 Expanded(
                   child: DropdownButtonFormField<String>(
+                    iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
                     dropdownColor: const Color.fromARGB(255, 51, 51, 52),
                     style: const TextStyle(
                         color: Color.fromARGB(255, 250, 250, 250)),
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Show genre',
                       labelStyle:
-                          TextStyle(color: Theme.of(context).primaryColor),
+                          TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
                       enabledBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Theme.of(context).primaryColor),
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 144, 135, 135)),
                       ),
                     ),
                     value: _showGenre,

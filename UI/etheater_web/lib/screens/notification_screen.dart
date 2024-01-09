@@ -88,7 +88,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
           content: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Are you sure you want to delete the notification?'),
+              Text(
+                'Are you sure you want to delete the notification?',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ],
           ),
           actions: [
@@ -96,7 +99,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancel'),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -107,18 +113,20 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     loadData();
                   }
                 } catch (e) {
-                  Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      backgroundColor: Colors.red,
-                      content: Text('You cannot delete a notification!'),
-                    ),
-                  );
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text('You cannot delete a notification!'),
+                      ),
+                    );
+                  }
                 }
               },
               child: const Text(
                 'Delete',
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               ),
             ),
           ],
@@ -185,13 +193,17 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 const SizedBox(width: 16.0),
                 Expanded(
                   child: DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
+                    iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
+                    dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
+                    decoration: const InputDecoration(
                       labelText: 'Notification category',
                       labelStyle:
-                          TextStyle(color: Theme.of(context).primaryColor),
+                          TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
                       enabledBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Theme.of(context).primaryColor),
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 144, 135, 135)),
                       ),
                     ),
                     value: _notificationCategory,
@@ -213,6 +225,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     }).toList(),
                   ),
                 ),
+                const SizedBox(width: 16.0, height: 16),
                 ElevatedButton(
                   onPressed: () {
                     loadData();

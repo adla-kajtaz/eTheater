@@ -139,7 +139,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           content: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Are you sure you want to delete the schedule?'),
+              Text(
+                'Are you sure you want to delete the schedule?',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ],
           ),
           actions: [
@@ -147,7 +150,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancel'),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -171,7 +177,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               },
               child: const Text(
                 'Delete',
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               ),
             ),
           ],
@@ -233,13 +239,17 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               const SizedBox(width: 16.0, height: 16),
               Expanded(
                 child: DropdownButtonFormField<Show>(
-                  decoration: InputDecoration(
+                  iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
+                  dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 250, 250, 250)),
+                  decoration: const InputDecoration(
                     labelText: 'Show',
                     labelStyle:
-                        TextStyle(color: Theme.of(context).primaryColor),
+                        TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
                     enabledBorder: UnderlineInputBorder(
                       borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor),
+                          BorderSide(color: Color.fromARGB(255, 144, 135, 135)),
                     ),
                   ),
                   value: _selectedShow,
@@ -259,13 +269,17 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               const SizedBox(width: 16.0, height: 16),
               Expanded(
                 child: DropdownButtonFormField<Hall>(
-                  decoration: InputDecoration(
+                  iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
+                  dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 250, 250, 250)),
+                  decoration: const InputDecoration(
                     labelText: 'Hall',
                     labelStyle:
-                        TextStyle(color: Theme.of(context).primaryColor),
+                        TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
                     enabledBorder: UnderlineInputBorder(
                       borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor),
+                          BorderSide(color: Color.fromARGB(255, 144, 135, 135)),
                     ),
                   ),
                   value: _selectedHall,

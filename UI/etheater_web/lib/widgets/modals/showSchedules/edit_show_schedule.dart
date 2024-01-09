@@ -111,11 +111,16 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             DropdownButtonFormField<Show>(
-              decoration: InputDecoration(
+              iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
+              dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              decoration: const InputDecoration(
                 labelText: 'Show',
-                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                labelStyle:
+                    TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
                 enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                  borderSide:
+                      BorderSide(color: Color.fromARGB(255, 144, 135, 135)),
                 ),
               ),
               value: _selectedShow,
@@ -139,6 +144,7 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
             ),
             const SizedBox(height: 16),
             TextFormField(
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               controller: ticketPriceController,
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -154,10 +160,15 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
               },
             ),
             const SizedBox(height: 16),
+            const Text(
+              'Show date',
+              style: TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
+            ),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: Colors.black, width: 1),
+                border: Border.all(
+                    color: const Color.fromARGB(255, 144, 135, 135), width: 1),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -172,11 +183,16 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<String>(
-              decoration: InputDecoration(
+              iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
+              dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              decoration: const InputDecoration(
                 labelText: 'List of available times',
-                labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                labelStyle:
+                    TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
                 enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                  borderSide:
+                      BorderSide(color: Color.fromARGB(255, 144, 135, 135)),
                 ),
               ),
               value: selectedTime,
@@ -211,7 +227,8 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Cancel'),
+          child: const Text('Cancel',
+              style: TextStyle(color: Color.fromARGB(255, 250, 250, 250))),
         ),
         ElevatedButton(
           onPressed: () async {

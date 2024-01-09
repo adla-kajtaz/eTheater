@@ -26,6 +26,7 @@ class _AddActorModalState extends State<AddActorModal> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               decoration: const InputDecoration(
                 labelText: 'First name',
               ),
@@ -40,6 +41,7 @@ class _AddActorModalState extends State<AddActorModal> {
               },
             ),
             TextFormField(
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               decoration: const InputDecoration(
                 labelText: 'Last name',
               ),
@@ -61,7 +63,10 @@ class _AddActorModalState extends State<AddActorModal> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Cancel'),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          ),
         ),
         ElevatedButton(
           onPressed: () {

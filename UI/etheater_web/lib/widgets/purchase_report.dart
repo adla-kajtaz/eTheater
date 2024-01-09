@@ -54,7 +54,8 @@ class _PurchaseReportState extends State<PurchaseReport> {
                 ? _report!.purchases!.map((purchase) {
                     return DataRow(cells: [
                       DataCell(Text(purchase.showName)),
-                      DataCell(Text(purchase.numberOfTickets.toString())),
+                      DataCell(Center(
+                          child: Text(purchase.numberOfTickets.toString()))),
                       DataCell(Text(purchase.price.toString())),
                     ]);
                   }).toList()
@@ -69,8 +70,9 @@ class _PurchaseReportState extends State<PurchaseReport> {
         ),
         const SizedBox(height: 10),
         Text(
-          'Total: ${_report!.totalPrice}',
+          'Total: ${_report!.totalPrice} KM',
           style: const TextStyle(
+            color: Color.fromARGB(255, 250, 250, 250),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),

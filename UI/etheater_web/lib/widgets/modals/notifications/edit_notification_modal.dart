@@ -64,6 +64,8 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                 child: Column(
                   children: [
                     TextFormField(
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 250, 250, 250)),
                       controller: titleController,
                       decoration: const InputDecoration(
                         labelText: 'Title',
@@ -77,6 +79,8 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                       },
                     ),
                     TextFormField(
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 250, 250, 250)),
                       controller: contentController,
                       maxLines: 5,
                       decoration: const InputDecoration(
@@ -99,13 +103,18 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                     SizedBox(
                       width: double.infinity,
                       child: DropdownButtonFormField<NotificationCategory>(
-                        decoration: InputDecoration(
+                        iconEnabledColor:
+                            const Color.fromARGB(255, 204, 36, 68),
+                        dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 250, 250, 250)),
+                        decoration: const InputDecoration(
                           labelText: 'Notification category',
-                          labelStyle:
-                              TextStyle(color: Theme.of(context).primaryColor),
+                          labelStyle: TextStyle(
+                              color: Color.fromARGB(255, 144, 135, 135)),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor),
+                                color: Color.fromARGB(255, 144, 135, 135)),
                           ),
                         ),
                         value: _notificationCategory,
@@ -140,7 +149,7 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                           width: 200,
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Theme.of(context).primaryColor,
+                              color: const Color.fromARGB(255, 144, 135, 135),
                               style: _imageFile == null || _imageFile!.isEmpty
                                   ? BorderStyle.solid
                                   : BorderStyle.none,
@@ -150,7 +159,7 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                           child: InkWell(
                             onTap: selectImage,
                             child: _imageFile == null || _imageFile!.isEmpty
-                                ? SizedBox(
+                                ? const SizedBox(
                                     width: double.infinity,
                                     child: Column(
                                       mainAxisAlignment:
@@ -159,15 +168,15 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
                                         Icon(
                                           Icons.cloud_upload,
                                           size: 48,
-                                          color: Theme.of(context).primaryColor,
+                                          color: Color.fromARGB(
+                                              255, 144, 135, 135),
                                         ),
-                                        const SizedBox(height: 8),
+                                        SizedBox(height: 8),
                                         Text(
                                           'Select an image',
                                           style: TextStyle(
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                          ),
+                                              color: Color.fromARGB(
+                                                  255, 144, 135, 135)),
                                         ),
                                       ],
                                     ),
@@ -197,7 +206,10 @@ class _EditNotificationModalState extends State<EditNotificationModal> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Cancel'),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          ),
         ),
         ElevatedButton(
           onPressed: () async {

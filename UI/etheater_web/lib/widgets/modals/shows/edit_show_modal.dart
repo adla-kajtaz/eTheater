@@ -70,6 +70,8 @@ class _EditShowModalState extends State<EditShowModal> {
                 child: Column(
                   children: [
                     TextFormField(
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 250, 250, 250)),
                       controller: nameController,
                       decoration: const InputDecoration(
                         labelText: 'Name',
@@ -83,6 +85,8 @@ class _EditShowModalState extends State<EditShowModal> {
                       },
                     ),
                     TextFormField(
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 250, 250, 250)),
                       controller: descriptionController,
                       maxLines: 6,
                       decoration: const InputDecoration(
@@ -97,6 +101,8 @@ class _EditShowModalState extends State<EditShowModal> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 250, 250, 250)),
                       controller: durationController,
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -113,6 +119,8 @@ class _EditShowModalState extends State<EditShowModal> {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 250, 250, 250)),
                       controller: directorController,
                       decoration: const InputDecoration(
                         labelText: 'Director',
@@ -140,7 +148,7 @@ class _EditShowModalState extends State<EditShowModal> {
                           width: 200,
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Theme.of(context).primaryColor,
+                              color: const Color.fromARGB(255, 144, 135, 135),
                               style: _imageFile == null || _imageFile!.isEmpty
                                   ? BorderStyle.solid
                                   : BorderStyle.none,
@@ -150,7 +158,7 @@ class _EditShowModalState extends State<EditShowModal> {
                           child: InkWell(
                             onTap: selectImage,
                             child: _imageFile == null || _imageFile!.isEmpty
-                                ? SizedBox(
+                                ? const SizedBox(
                                     width: double.infinity,
                                     child: Column(
                                       mainAxisAlignment:
@@ -159,14 +167,15 @@ class _EditShowModalState extends State<EditShowModal> {
                                         Icon(
                                           Icons.cloud_upload,
                                           size: 48,
-                                          color: Theme.of(context).primaryColor,
+                                          color: Color.fromARGB(
+                                              255, 144, 135, 135),
                                         ),
-                                        const SizedBox(height: 8),
+                                        SizedBox(height: 8),
                                         Text(
                                           'Select an image',
                                           style: TextStyle(
-                                            color:
-                                                Theme.of(context).primaryColor,
+                                            color: Color.fromARGB(
+                                                255, 144, 135, 135),
                                           ),
                                         ),
                                       ],
@@ -191,13 +200,18 @@ class _EditShowModalState extends State<EditShowModal> {
                     SizedBox(
                       width: double.infinity,
                       child: DropdownButtonFormField<ShowGenre>(
-                        decoration: InputDecoration(
+                        iconEnabledColor:
+                            const Color.fromARGB(255, 204, 36, 68),
+                        dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 250, 250, 250)),
+                        decoration: const InputDecoration(
                           labelText: 'Show genre',
-                          labelStyle:
-                              TextStyle(color: Theme.of(context).primaryColor),
+                          labelStyle: TextStyle(
+                              color: Color.fromARGB(255, 144, 135, 135)),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor),
+                                color: Color.fromARGB(255, 144, 135, 135)),
                           ),
                         ),
                         value: _showGenre,
@@ -234,7 +248,10 @@ class _EditShowModalState extends State<EditShowModal> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Cancel'),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          ),
         ),
         ElevatedButton(
           onPressed: () async {

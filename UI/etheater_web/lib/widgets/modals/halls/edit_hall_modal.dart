@@ -41,6 +41,7 @@ class _EditHallModalState extends State<EditHallModal> {
           children: [
             TextFormField(
               controller: _nameController,
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               decoration: const InputDecoration(
                 labelText: 'Name',
                 hintText: 'Enter the halls name',
@@ -60,7 +61,10 @@ class _EditHallModalState extends State<EditHallModal> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Cancel'),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          ),
         ),
         ElevatedButton(
           onPressed: () {

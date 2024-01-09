@@ -68,6 +68,7 @@ class _AddActorShowModalState extends State<AddActorShowModal> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               enabled: false,
               controller: nameController,
               decoration: const InputDecoration(
@@ -83,12 +84,17 @@ class _AddActorShowModalState extends State<AddActorShowModal> {
             SizedBox(
               width: double.infinity,
               child: DropdownButtonFormField<Actor>(
-                decoration: InputDecoration(
+                iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
+                dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                style:
+                    const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+                decoration: const InputDecoration(
                   labelText: 'Actor',
-                  labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+                  labelStyle:
+                      TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
                   enabledBorder: UnderlineInputBorder(
                     borderSide:
-                        BorderSide(color: Theme.of(context).primaryColor),
+                        BorderSide(color: Color.fromARGB(255, 144, 135, 135)),
                   ),
                 ),
                 value: _selectedActor,
@@ -115,6 +121,15 @@ class _AddActorShowModalState extends State<AddActorShowModal> {
         ),
       ),
       actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text(
+            'Cancel',
+            style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          ),
+        ),
         ElevatedButton(
           onPressed: () {
             if (formKey.currentState!.validate()) {

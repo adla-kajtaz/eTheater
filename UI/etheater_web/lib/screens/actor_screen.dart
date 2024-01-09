@@ -71,7 +71,10 @@ class _ActorScreenState extends State<ActorScreen> {
           content: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Are you sure you want to delete the actor?'),
+              Text(
+                'Are you sure you want to delete the actor?',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ],
           ),
           actions: [
@@ -79,7 +82,10 @@ class _ActorScreenState extends State<ActorScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancel'),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -104,7 +110,7 @@ class _ActorScreenState extends State<ActorScreen> {
               },
               child: const Text(
                 'Delete',
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               ),
             ),
           ],

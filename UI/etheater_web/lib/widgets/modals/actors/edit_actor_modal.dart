@@ -43,6 +43,7 @@ class _EditActorModalState extends State<EditActorModal> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               controller: _firstNameController,
               decoration: const InputDecoration(
                 labelText: 'First name ',
@@ -56,6 +57,7 @@ class _EditActorModalState extends State<EditActorModal> {
               },
             ),
             TextFormField(
+              style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               controller: _lastNameController,
               decoration: const InputDecoration(
                 labelText: 'Last name',
@@ -76,7 +78,10 @@ class _EditActorModalState extends State<EditActorModal> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Cancel'),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+          ),
         ),
         ElevatedButton(
           onPressed: () {

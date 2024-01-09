@@ -43,7 +43,10 @@ class _UsersScreenState extends State<UsersScreen> {
           content: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Are you sure you want to delete the user?'),
+              Text(
+                'Are you sure you want to delete the user?',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ],
           ),
           actions: [
@@ -51,7 +54,10 @@ class _UsersScreenState extends State<UsersScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancel'),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+              ),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -75,7 +81,7 @@ class _UsersScreenState extends State<UsersScreen> {
               },
               child: const Text(
                 'Delete',
-                style: TextStyle(color: Colors.red),
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               ),
             ),
           ],
@@ -144,14 +150,12 @@ class _UsersScreenState extends State<UsersScreen> {
                             ),
                             DataCell(Text(user.email.toString())),
                             DataCell(
-                              Center(
-                                child: IconButton(
-                                  icon: const Icon(Icons.delete,
-                                      color: Colors.red),
-                                  onPressed: () {
-                                    openDeleteModal(user);
-                                  },
-                                ),
+                              IconButton(
+                                icon:
+                                    const Icon(Icons.delete, color: Colors.red),
+                                onPressed: () {
+                                  openDeleteModal(user);
+                                },
                               ),
                             ),
                             DataCell(

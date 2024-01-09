@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:etheater_web/models/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -61,6 +60,8 @@ class _AddShowModalState extends State<AddShowModal> {
                   child: Column(
                     children: [
                       TextFormField(
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 250, 250, 250)),
                         decoration: const InputDecoration(
                           labelText: 'Name',
                           hintText: 'Enter the shows name',
@@ -76,6 +77,8 @@ class _AddShowModalState extends State<AddShowModal> {
                         },
                       ),
                       TextFormField(
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 250, 250, 250)),
                         maxLines: 6,
                         decoration: const InputDecoration(
                             labelText: 'Description',
@@ -92,6 +95,8 @@ class _AddShowModalState extends State<AddShowModal> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 250, 250, 250)),
                         keyboardType: TextInputType.number,
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly
@@ -112,6 +117,8 @@ class _AddShowModalState extends State<AddShowModal> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 250, 250, 250)),
                         decoration: const InputDecoration(
                           labelText: 'Director',
                           hintText: 'Enter shows director',
@@ -141,7 +148,8 @@ class _AddShowModalState extends State<AddShowModal> {
                               width: 200,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: Theme.of(context).primaryColor,
+                                  color:
+                                      const Color.fromARGB(255, 144, 135, 135),
                                   style: _imageFile.isEmpty
                                       ? BorderStyle.solid
                                       : BorderStyle.none,
@@ -151,7 +159,7 @@ class _AddShowModalState extends State<AddShowModal> {
                               child: InkWell(
                                 onTap: selectImage,
                                 child: _imageFile.isEmpty
-                                    ? SizedBox(
+                                    ? const SizedBox(
                                         width: double.infinity,
                                         child: Column(
                                           mainAxisAlignment:
@@ -160,15 +168,15 @@ class _AddShowModalState extends State<AddShowModal> {
                                             Icon(
                                               Icons.cloud_upload,
                                               size: 48,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
+                                              color: Color.fromARGB(
+                                                  255, 144, 135, 135),
                                             ),
-                                            const SizedBox(height: 8),
+                                            SizedBox(height: 8),
                                             Text(
                                               'Select an image',
                                               style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .primaryColor,
+                                                color: Color.fromARGB(
+                                                    255, 144, 135, 135),
                                               ),
                                             ),
                                           ],
@@ -192,13 +200,18 @@ class _AddShowModalState extends State<AddShowModal> {
                       SizedBox(
                         width: double.infinity,
                         child: DropdownButtonFormField<ShowGenre>(
-                          decoration: InputDecoration(
+                          iconEnabledColor:
+                              const Color.fromARGB(255, 204, 36, 68),
+                          dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 250, 250, 250)),
+                          decoration: const InputDecoration(
                             labelText: 'Show genre',
                             labelStyle: TextStyle(
-                                color: Theme.of(context).primaryColor),
+                                color: Color.fromARGB(255, 144, 135, 135)),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Theme.of(context).primaryColor),
+                                  color: Color.fromARGB(255, 144, 135, 135)),
                             ),
                           ),
                           value: _showGenre,
@@ -236,7 +249,8 @@ class _AddShowModalState extends State<AddShowModal> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Cancel'),
+          child: const Text('Cancel',
+              style: TextStyle(color: Color.fromARGB(255, 250, 250, 250))),
         ),
         ElevatedButton(
           onPressed: () async {
@@ -244,7 +258,7 @@ class _AddShowModalState extends State<AddShowModal> {
               pictureError = false;
             });
 
-            if (_imageFile == null) {
+            if (_imageFile.isEmpty) {
               setState(() {
                 pictureError = true;
               });
