@@ -231,7 +231,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                     onTap: () => handleSelectDate(context),
                     child: Text(
                       formatDateTime(_selectedDate ?? DateTime.now()),
-                      style: const TextStyle(fontSize: 16),
+                      style: const TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 250, 250, 250)),
                     ),
                   ),
                 ),

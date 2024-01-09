@@ -210,7 +210,9 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
                   onTap: () => handleSelectDate(context),
                   child: Text(
                     formatDateTime(showDate),
-                    style: const TextStyle(fontSize: 16),
+                    style: const TextStyle(
+                        fontSize: 16,
+                        color: Color.fromARGB(255, 250, 250, 250)),
                   ),
                 ),
               ),

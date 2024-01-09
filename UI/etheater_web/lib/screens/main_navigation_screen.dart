@@ -19,8 +19,6 @@ class MainNavigationScreen extends StatefulWidget {
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   final List<NavigationItem> _navigationItems = [
     NavigationItem(label: 'Actors', widget: const ActorScreen()),
