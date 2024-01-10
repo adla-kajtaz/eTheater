@@ -96,102 +96,105 @@ class _UsersScreenState extends State<UsersScreen> {
       return const Center(child: CircularProgressIndicator());
     }
     return Scaffold(
-      body: Column(
-        children: [
-          Row(
-            children: [
-              const SizedBox(width: 16.0),
-              Expanded(
-                child: TextFormField(
-                  controller: _searchController,
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 250, 250, 250)),
-                  decoration: const InputDecoration(
-                    labelText: 'User',
-                    hintText: 'Enter the username',
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const SizedBox(width: 16.0),
+                Expanded(
+                  child: TextFormField(
+                    controller: _searchController,
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
+                    decoration: const InputDecoration(
+                      labelText: 'User',
+                      hintText: 'Enter the username',
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  loadData();
-                },
-                child: const Text('Search'),
-              ),
-              const SizedBox(width: 16.0),
-            ],
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            width: double.infinity,
-            child: SingleChildScrollView(
-              child: DataTable(
-                columnSpacing: 0,
-                columns: const [
-                  DataColumn(label: Text('Username')),
-                  DataColumn(label: Text('Email')),
-                  DataColumn(label: Text('Delete')),
-                  DataColumn(label: Text('Report')),
-                ],
-                rows: _users!.isNotEmpty
-                    ? _users!.map((user) {
-                        return DataRow(
-                          cells: [
-                            DataCell(
-                              Tooltip(
-                                message: user.userName,
-                                child: Text(
-                                  user.userName.length > 20
-                                      ? "${user.userName.substring(0, 20)} ..."
-                                      : user.userName,
+                const SizedBox(width: 16.0),
+                ElevatedButton(
+                  onPressed: () {
+                    loadData();
+                  },
+                  child: const Text('Search'),
+                ),
+                const SizedBox(width: 16.0),
+              ],
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: SingleChildScrollView(
+                child: DataTable(
+                  columnSpacing: 0,
+                  columns: const [
+                    DataColumn(label: Text('Username')),
+                    DataColumn(label: Text('Email')),
+                    DataColumn(label: Text('Delete')),
+                    DataColumn(label: Text('Report')),
+                  ],
+                  rows: _users!.isNotEmpty
+                      ? _users!.map((user) {
+                          return DataRow(
+                            cells: [
+                              DataCell(
+                                Tooltip(
+                                  message: user.userName,
+                                  child: Text(
+                                    user.userName.length > 20
+                                        ? "${user.userName.substring(0, 20)} ..."
+                                        : user.userName,
+                                  ),
                                 ),
                               ),
-                            ),
-                            DataCell(Text(user.email.toString())),
-                            DataCell(
-                              IconButton(
-                                icon:
-                                    const Icon(Icons.delete, color: Colors.red),
-                                onPressed: () {
-                                  openDeleteModal(user);
-                                },
+                              DataCell(Text(user.email.toString())),
+                              DataCell(
+                                IconButton(
+                                  icon: const Icon(Icons.delete,
+                                      color: Colors.red),
+                                  onPressed: () {
+                                    openDeleteModal(user);
+                                  },
+                                ),
                               ),
-                            ),
-                            DataCell(
-                              IconButton(
-                                icon: Icon(Icons.addchart,
-                                    color: Theme.of(context).primaryColor),
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: const Text('Purchase report'),
-                                        content: PurchaseReport(
-                                          userId: user.id,
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
+                              DataCell(
+                                IconButton(
+                                  icon: Icon(Icons.addchart,
+                                      color: Theme.of(context).primaryColor),
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text('Purchase report'),
+                                          content: PurchaseReport(
+                                            userId: user.id,
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
-                          ],
-                        );
-                      }).toList()
-                    : [
-                        const DataRow(cells: [
-                          DataCell(Text('')),
-                          DataCell(Center(child: Text('No search results'))),
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                        ])
-                      ],
+                            ],
+                          );
+                        }).toList()
+                      : [
+                          const DataRow(cells: [
+                            DataCell(Text('')),
+                            DataCell(Center(child: Text('No search results'))),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                          ])
+                        ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

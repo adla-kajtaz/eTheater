@@ -55,94 +55,99 @@ class _PurchasesScreenState extends State<PurchasesScreen> {
       return const Center(child: CircularProgressIndicator());
     }
     return Scaffold(
-      body: Column(
-        children: [
-          Row(
-            children: [
-              const SizedBox(width: 16.0),
-              Expanded(
-                child: DropdownButtonFormField<User>(
-                  iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
-                  dropdownColor: const Color.fromARGB(255, 51, 51, 52),
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 250, 250, 250)),
-                  decoration: const InputDecoration(
-                    labelText: 'User',
-                    labelStyle:
-                        TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 144, 135, 135)),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const SizedBox(width: 16.0),
+                Expanded(
+                  child: DropdownButtonFormField<User>(
+                    iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
+                    dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
+                    decoration: const InputDecoration(
+                      labelText: 'User',
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 144, 135, 135)),
+                      ),
                     ),
+                    value: _selectedUser,
+                    onChanged: (User? u) {
+                      setState(() {
+                        _selectedUser = u!;
+                      });
+                    },
+                    items: _users.map<DropdownMenuItem<User>>((User u) {
+                      return DropdownMenuItem<User>(
+                        value: u,
+                        child: Text(u.userName),
+                      );
+                    }).toList(),
                   ),
-                  value: _selectedUser,
-                  onChanged: (User? u) {
-                    setState(() {
-                      _selectedUser = u!;
-                    });
-                  },
-                  items: _users.map<DropdownMenuItem<User>>((User u) {
-                    return DropdownMenuItem<User>(
-                      value: u,
-                      child: Text(u.userName),
-                    );
-                  }).toList(),
                 ),
-              ),
-              const SizedBox(width: 16.0, height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  loadData();
-                },
-                child: const Text('Search'),
-              ),
-              const SizedBox(width: 16.0),
-            ],
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            width: double.infinity,
-            child: SingleChildScrollView(
-              child: DataTable(
-                columnSpacing: 0,
-                columns: const [
-                  DataColumn(label: Text('User')),
-                  DataColumn(label: Text('Show')),
-                  DataColumn(label: Text('Number of tickets')),
-                  DataColumn(label: Text('Total price')),
-                ],
-                rows: _purchases!.isNotEmpty
-                    ? _purchases!.map((purchase) {
-                        return DataRow(
-                          cells: [
-                            DataCell(Text(purchase.user!.userName)),
-                            DataCell(
-                              Tooltip(
-                                message: purchase.showSchedule!.show!.name,
-                                child: Text(
-                                  purchase.showSchedule!.show!.name.length > 20
-                                      ? "${purchase.showSchedule!.show!.name.substring(0, 20)} ..."
-                                      : purchase.showSchedule!.show!.name,
+                const SizedBox(width: 16.0, height: 16),
+                ElevatedButton(
+                  onPressed: () {
+                    loadData();
+                  },
+                  child: const Text('Search'),
+                ),
+                const SizedBox(width: 16.0),
+              ],
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: SingleChildScrollView(
+                child: DataTable(
+                  columnSpacing: 0,
+                  columns: const [
+                    DataColumn(label: Text('User')),
+                    DataColumn(label: Text('Show')),
+                    DataColumn(label: Text('Number of tickets')),
+                    DataColumn(label: Text('Total price')),
+                  ],
+                  rows: _purchases!.isNotEmpty
+                      ? _purchases!.map((purchase) {
+                          return DataRow(
+                            cells: [
+                              DataCell(Text(purchase.user!.userName)),
+                              DataCell(
+                                Tooltip(
+                                  message: purchase.showSchedule!.show!.name,
+                                  child: Text(
+                                    purchase.showSchedule!.show!.name.length >
+                                            20
+                                        ? "${purchase.showSchedule!.show!.name.substring(0, 20)} ..."
+                                        : purchase.showSchedule!.show!.name,
+                                  ),
                                 ),
                               ),
-                            ),
-                            DataCell(Text(purchase.numberOfTickets.toString())),
-                            DataCell(Text(purchase.totalPrice.toString())),
-                          ],
-                        );
-                      }).toList()
-                    : [
-                        const DataRow(cells: [
-                          DataCell(Text('')),
-                          DataCell(Center(child: Text('No search results'))),
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                        ])
-                      ],
+                              DataCell(
+                                  Text(purchase.numberOfTickets.toString())),
+                              DataCell(Text(purchase.totalPrice.toString())),
+                            ],
+                          );
+                        }).toList()
+                      : [
+                          const DataRow(cells: [
+                            DataCell(Text('')),
+                            DataCell(Center(child: Text('No search results'))),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                          ])
+                        ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

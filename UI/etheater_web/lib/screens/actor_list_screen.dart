@@ -115,58 +115,61 @@ class _ActorListScreenState extends State<ActorListScreen> {
       appBar: AppBar(
         title: const Text('List of actors'),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          Row(
-            children: [
-              const SizedBox(width: 16.0),
-              Expanded(
-                child: TextFormField(
-                  enabled: false,
-                  controller: showController,
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 250, 250, 250)),
-                  decoration: const InputDecoration(
-                    labelText: 'Show',
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                const SizedBox(width: 16.0),
+                Expanded(
+                  child: TextFormField(
+                    enabled: false,
+                    controller: showController,
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
+                    decoration: const InputDecoration(
+                      labelText: 'Show',
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            height: 300,
-            width: double.infinity,
-            child: SingleChildScrollView(
-              child: DataTable(
-                columns: const [
-                  DataColumn(label: Text('Actor')),
-                  DataColumn(label: Text('Delete')),
-                ],
-                rows: _actors!.isNotEmpty
-                    ? _actors!.map((actor) {
-                        return DataRow(cells: [
-                          DataCell(Text(
-                              '${actor.actor!.firstName} ${actor.actor!.lastName}')),
-                          DataCell(IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {
-                              openDeleteModal(actor);
-                            },
-                          )),
-                        ]);
-                      }).toList()
-                    : [
-                        const DataRow(cells: [
-                          DataCell(Center(child: Text('No search results'))),
-                          DataCell(Text('')),
-                        ])
-                      ],
+              ],
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 300,
+              width: double.infinity,
+              child: SingleChildScrollView(
+                child: DataTable(
+                  columns: const [
+                    DataColumn(label: Text('Actor')),
+                    DataColumn(label: Text('Delete')),
+                  ],
+                  rows: _actors!.isNotEmpty
+                      ? _actors!.map((actor) {
+                          return DataRow(cells: [
+                            DataCell(Text(
+                                '${actor.actor!.firstName} ${actor.actor!.lastName}')),
+                            DataCell(IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                openDeleteModal(actor);
+                              },
+                            )),
+                          ]);
+                        }).toList()
+                      : [
+                          const DataRow(cells: [
+                            DataCell(Center(child: Text('No search results'))),
+                            DataCell(Text('')),
+                          ])
+                        ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

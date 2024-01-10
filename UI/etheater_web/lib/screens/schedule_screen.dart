@@ -73,6 +73,19 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       initialDate: _selectedDate,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.dark().copyWith(
+            colorScheme: const ColorScheme.dark(
+              primary: Color.fromARGB(255, 204, 36, 68),
+              onPrimary: Color.fromARGB(255, 250, 250, 250),
+              surface: Color.fromARGB(255, 51, 51, 52),
+              onSurface: Color.fromARGB(255, 250, 250, 250),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
     if (picked != null && picked != _selectedDate) {
       setState(() {
@@ -212,201 +225,205 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       return const Center(child: CircularProgressIndicator());
     }
     return Scaffold(
-      body: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(width: 16.0),
-              Expanded(
-                  child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(
-                      color: Theme.of(context).primaryColor, width: 1),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () => handleSelectDate(context),
-                    child: Text(
-                      formatDateTime(_selectedDate ?? DateTime.now()),
-                      style: const TextStyle(
-                          fontSize: 16,
-                          color: Color.fromARGB(255, 250, 250, 250)),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(width: 16.0),
+                Expanded(
+                    child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                        color: Theme.of(context).primaryColor, width: 1),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () => handleSelectDate(context),
+                      child: Text(
+                        formatDateTime(_selectedDate ?? DateTime.now()),
+                        style: const TextStyle(
+                            fontSize: 16,
+                            color: Color.fromARGB(255, 250, 250, 250)),
+                      ),
                     ),
                   ),
-                ),
-              )),
-              const SizedBox(width: 16.0, height: 16),
-              Expanded(
-                child: DropdownButtonFormField<Show>(
-                  iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
-                  dropdownColor: const Color.fromARGB(255, 51, 51, 52),
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 250, 250, 250)),
-                  decoration: const InputDecoration(
-                    labelText: 'Show',
-                    labelStyle:
-                        TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 144, 135, 135)),
+                )),
+                const SizedBox(width: 16.0, height: 16),
+                Expanded(
+                  child: DropdownButtonFormField<Show>(
+                    iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
+                    dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
+                    decoration: const InputDecoration(
+                      labelText: 'Show',
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 144, 135, 135)),
+                      ),
                     ),
+                    value: _selectedShow,
+                    onChanged: (Show? s) {
+                      setState(() {
+                        _selectedShow = s!;
+                      });
+                    },
+                    items: _shows.map<DropdownMenuItem<Show>>((Show s) {
+                      return DropdownMenuItem<Show>(
+                        value: s,
+                        child: Text(s.name),
+                      );
+                    }).toList(),
                   ),
-                  value: _selectedShow,
-                  onChanged: (Show? s) {
-                    setState(() {
-                      _selectedShow = s!;
-                    });
+                ),
+                const SizedBox(width: 16.0, height: 16),
+                Expanded(
+                  child: DropdownButtonFormField<Hall>(
+                    iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
+                    dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
+                    decoration: const InputDecoration(
+                      labelText: 'Hall',
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 144, 135, 135)),
+                      ),
+                    ),
+                    value: _selectedHall,
+                    onChanged: (Hall? h) {
+                      setState(() {
+                        _selectedHall = h!;
+                      });
+                    },
+                    items: _halls.map<DropdownMenuItem<Hall>>((Hall h) {
+                      return DropdownMenuItem<Hall>(
+                        value: h,
+                        child: Text(h.name),
+                      );
+                    }).toList(),
+                  ),
+                ),
+                const SizedBox(width: 16.0, height: 16),
+                ElevatedButton(
+                  onPressed: () {
+                    resetState();
                   },
-                  items: _shows.map<DropdownMenuItem<Show>>((Show s) {
-                    return DropdownMenuItem<Show>(
-                      value: s,
-                      child: Text(s.name),
-                    );
-                  }).toList(),
+                  child: const Text('Reset'),
                 ),
-              ),
-              const SizedBox(width: 16.0, height: 16),
-              Expanded(
-                child: DropdownButtonFormField<Hall>(
-                  iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
-                  dropdownColor: const Color.fromARGB(255, 51, 51, 52),
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 250, 250, 250)),
-                  decoration: const InputDecoration(
-                    labelText: 'Hall',
-                    labelStyle:
-                        TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 144, 135, 135)),
-                    ),
-                  ),
-                  value: _selectedHall,
-                  onChanged: (Hall? h) {
-                    setState(() {
-                      _selectedHall = h!;
-                    });
+                const SizedBox(width: 16.0),
+                ElevatedButton(
+                  onPressed: () {
+                    loadData();
                   },
-                  items: _halls.map<DropdownMenuItem<Hall>>((Hall h) {
-                    return DropdownMenuItem<Hall>(
-                      value: h,
-                      child: Text(h.name),
-                    );
-                  }).toList(),
+                  child: const Text('Search'),
                 ),
-              ),
-              const SizedBox(width: 16.0, height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  resetState();
-                },
-                child: const Text('Reset'),
-              ),
-              const SizedBox(width: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  loadData();
-                },
-                child: const Text('Search'),
-              ),
-              const SizedBox(width: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  openAddModal();
-                },
-                child: const Text('+'),
-              ),
-              const SizedBox(width: 16.0),
-            ],
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            width: double.infinity,
-            child: DataTable(
-              columnSpacing: 0,
-              columns: const [
-                DataColumn(label: Text('Show')),
-                DataColumn(label: Text('Hall')),
-                DataColumn(label: Text('Show date')),
-                DataColumn(label: Text('Show time')),
-                DataColumn(label: Text('Ticket price')),
-                DataColumn(label: Text('Tickets')),
-                DataColumn(label: Text('Edit')),
-                DataColumn(label: Text('Delete')),
+                const SizedBox(width: 16.0),
+                ElevatedButton(
+                  onPressed: () {
+                    openAddModal();
+                  },
+                  child: const Text('+'),
+                ),
+                const SizedBox(width: 16.0),
               ],
-              rows: _showSchedules!.isNotEmpty
-                  ? _showSchedules!.map((showSchedule) {
-                      return DataRow(cells: [
-                        DataCell(
-                          Tooltip(
-                            message: showSchedule.show!.name,
-                            child: Text(
-                              showSchedule.show!.name.length > 20
-                                  ? "${showSchedule.show!.name.substring(0, 20)} ..."
-                                  : showSchedule.show!.name,
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: DataTable(
+                columnSpacing: 0,
+                columns: const [
+                  DataColumn(label: Text('Show')),
+                  DataColumn(label: Text('Hall')),
+                  DataColumn(label: Text('Show date')),
+                  DataColumn(label: Text('Show time')),
+                  DataColumn(label: Text('Ticket price')),
+                  DataColumn(label: Text('Tickets')),
+                  DataColumn(label: Text('Edit')),
+                  DataColumn(label: Text('Delete')),
+                ],
+                rows: _showSchedules!.isNotEmpty
+                    ? _showSchedules!.map((showSchedule) {
+                        return DataRow(cells: [
+                          DataCell(
+                            Tooltip(
+                              message: showSchedule.show!.name,
+                              child: Text(
+                                showSchedule.show!.name.length > 20
+                                    ? "${showSchedule.show!.name.substring(0, 20)} ..."
+                                    : showSchedule.show!.name,
+                              ),
                             ),
                           ),
-                        ),
-                        DataCell(
-                          Tooltip(
-                            message: showSchedule.hall!.name,
-                            child: Text(
-                              showSchedule.hall!.name.length > 20
-                                  ? "${showSchedule.hall!.name.substring(0, 20)} ..."
-                                  : showSchedule.hall!.name,
+                          DataCell(
+                            Tooltip(
+                              message: showSchedule.hall!.name,
+                              child: Text(
+                                showSchedule.hall!.name.length > 20
+                                    ? "${showSchedule.hall!.name.substring(0, 20)} ..."
+                                    : showSchedule.hall!.name,
+                              ),
                             ),
                           ),
-                        ),
-                        DataCell(Text(
-                            showSchedule.showDate.toString().substring(0, 10))),
-                        DataCell(Text(showSchedule.showTime.toString())),
-                        DataCell(Text(showSchedule.ticketPrice.toString())),
-                        DataCell(IconButton(
-                          icon: Icon(Icons.apps_sharp,
-                              color: Theme.of(context).primaryColor),
-                          onPressed: () {
-                            Navigator.pushNamed(
-                                context, TicketsScreen.routeName,
-                                arguments: showSchedule.showScheduleId);
-                          },
-                        )),
-                        DataCell(
-                          IconButton(
-                            icon: Icon(Icons.edit,
+                          DataCell(Text(showSchedule.showDate
+                              .toString()
+                              .substring(0, 10))),
+                          DataCell(Text(showSchedule.showTime.toString())),
+                          DataCell(Text(showSchedule.ticketPrice.toString())),
+                          DataCell(IconButton(
+                            icon: Icon(Icons.apps_sharp,
                                 color: Theme.of(context).primaryColor),
                             onPressed: () {
-                              openEditModal(showSchedule);
+                              Navigator.pushNamed(
+                                  context, TicketsScreen.routeName,
+                                  arguments: showSchedule.showScheduleId);
                             },
+                          )),
+                          DataCell(
+                            IconButton(
+                              icon: Icon(Icons.edit,
+                                  color: Theme.of(context).primaryColor),
+                              onPressed: () {
+                                openEditModal(showSchedule);
+                              },
+                            ),
                           ),
-                        ),
-                        DataCell(
-                          IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {
-                              openDeleteModal(showSchedule);
-                            },
+                          DataCell(
+                            IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                openDeleteModal(showSchedule);
+                              },
+                            ),
                           ),
-                        ),
-                      ]);
-                    }).toList()
-                  : [
-                      const DataRow(cells: [
-                        DataCell(Text('')),
-                        DataCell(Text('')),
-                        DataCell(Text('')),
-                        DataCell(Text('')),
-                        DataCell(Center(child: Text('No search results'))),
-                        DataCell(Text('')),
-                        DataCell(Text('')),
-                        DataCell(Text('')),
-                      ])
-                    ],
+                        ]);
+                      }).toList()
+                    : [
+                        const DataRow(cells: [
+                          DataCell(Text('')),
+                          DataCell(Text('')),
+                          DataCell(Text('')),
+                          DataCell(Text('')),
+                          DataCell(Center(child: Text('No search results'))),
+                          DataCell(Text('')),
+                          DataCell(Text('')),
+                          DataCell(Text('')),
+                        ])
+                      ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

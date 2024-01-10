@@ -150,83 +150,86 @@ class _ActorScreenState extends State<ActorScreen> {
       return const Center(child: CircularProgressIndicator());
     }
     return Scaffold(
-      body: Column(
-        children: [
-          Row(
-            children: [
-              const SizedBox(width: 16.0),
-              Expanded(
-                child: TextFormField(
-                  controller: _searchController,
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 250, 250, 250)),
-                  decoration: const InputDecoration(
-                    labelText: 'Actor',
-                    hintText: 'Enter the name of the actor',
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const SizedBox(width: 16.0),
+                Expanded(
+                  child: TextFormField(
+                    controller: _searchController,
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
+                    decoration: const InputDecoration(
+                      labelText: 'Actor',
+                      hintText: 'Enter the name of the actor',
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  loadData();
-                },
-                child: const Text('Search'),
-              ),
-              const SizedBox(width: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  openAddModal();
-                },
-                child: const Text('+'),
-              ),
-              const SizedBox(width: 16.0),
-            ],
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            height: 520,
-            width: double.infinity,
-            child: SingleChildScrollView(
-              child: DataTable(
-                columns: const [
-                  DataColumn(label: Text('Fist name')),
-                  DataColumn(label: Text('Last name')),
-                  DataColumn(label: Text('Edit')),
-                  DataColumn(label: Text('Delete')),
-                ],
-                rows: _actors!.isNotEmpty
-                    ? _actors!.map((actor) {
-                        return DataRow(cells: [
-                          DataCell(Text(actor.firstName)),
-                          DataCell(Text(actor.lastName)),
-                          DataCell(IconButton(
-                            icon: Icon(Icons.edit,
-                                color: Theme.of(context).primaryColor),
-                            onPressed: () {
-                              openEditModal(actor);
-                            },
-                          )),
-                          DataCell(IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {
-                              openDeleteModal(actor);
-                            },
-                          )),
-                        ]);
-                      }).toList()
-                    : [
-                        const DataRow(cells: [
-                          DataCell(Text('')),
-                          DataCell(Center(child: Text('No search results'))),
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                        ])
-                      ],
+                const SizedBox(width: 16.0),
+                ElevatedButton(
+                  onPressed: () {
+                    loadData();
+                  },
+                  child: const Text('Search'),
+                ),
+                const SizedBox(width: 16.0),
+                ElevatedButton(
+                  onPressed: () {
+                    openAddModal();
+                  },
+                  child: const Text('+'),
+                ),
+                const SizedBox(width: 16.0),
+              ],
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 520,
+              width: double.infinity,
+              child: SingleChildScrollView(
+                child: DataTable(
+                  columns: const [
+                    DataColumn(label: Text('Fist name')),
+                    DataColumn(label: Text('Last name')),
+                    DataColumn(label: Text('Edit')),
+                    DataColumn(label: Text('Delete')),
+                  ],
+                  rows: _actors!.isNotEmpty
+                      ? _actors!.map((actor) {
+                          return DataRow(cells: [
+                            DataCell(Text(actor.firstName)),
+                            DataCell(Text(actor.lastName)),
+                            DataCell(IconButton(
+                              icon: Icon(Icons.edit,
+                                  color: Theme.of(context).primaryColor),
+                              onPressed: () {
+                                openEditModal(actor);
+                              },
+                            )),
+                            DataCell(IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                openDeleteModal(actor);
+                              },
+                            )),
+                          ]);
+                        }).toList()
+                      : [
+                          const DataRow(cells: [
+                            DataCell(Text('')),
+                            DataCell(Center(child: Text('No search results'))),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                          ])
+                        ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

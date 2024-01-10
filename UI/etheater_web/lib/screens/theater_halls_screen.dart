@@ -144,126 +144,130 @@ class _TheaterHallsState extends State<TheaterHalls> {
       return const Center(child: CircularProgressIndicator());
     }
     return Scaffold(
-      body: Column(
-        children: [
-          Row(
-            children: [
-              const SizedBox(width: 16.0),
-              Expanded(
-                child: TextFormField(
-                  controller: _searchController,
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 250, 250, 250)),
-                  decoration: const InputDecoration(
-                    labelText: 'Hall',
-                    hintText: 'Enter the name of the hall',
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const SizedBox(width: 16.0),
+                Expanded(
+                  child: TextFormField(
+                    controller: _searchController,
+                    style: const TextStyle(
+                        color: Color.fromARGB(255, 250, 250, 250)),
+                    decoration: const InputDecoration(
+                      labelText: 'Hall',
+                      hintText: 'Enter the name of the hall',
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  loadData();
-                },
-                child: const Text('Search'),
-              ),
-              const SizedBox(width: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  openAddModal();
-                },
-                child: const Text('+'),
-              ),
-              const SizedBox(width: 16.0),
-            ],
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            width: double.infinity,
-            child: SingleChildScrollView(
-              child: DataTable(
-                columnSpacing: 0,
-                columns: const [
-                  DataColumn(label: Text('Name')),
-                  DataColumn(label: Text('Total seats'), numeric: true),
-                  DataColumn(label: Text('Total rows'), numeric: true),
-                  DataColumn(
-                      label: Text('Number of seats per row'), numeric: true),
-                  DataColumn(
-                    numeric: false,
-                    label: Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("Edit")],
+                const SizedBox(width: 16.0),
+                ElevatedButton(
+                  onPressed: () {
+                    loadData();
+                  },
+                  child: const Text('Search'),
+                ),
+                const SizedBox(width: 16.0),
+                ElevatedButton(
+                  onPressed: () {
+                    openAddModal();
+                  },
+                  child: const Text('+'),
+                ),
+                const SizedBox(width: 16.0),
+              ],
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: SingleChildScrollView(
+                child: DataTable(
+                  columnSpacing: 0,
+                  columns: const [
+                    DataColumn(label: Text('Name')),
+                    DataColumn(label: Text('Total seats'), numeric: true),
+                    DataColumn(label: Text('Total rows'), numeric: true),
+                    DataColumn(
+                        label: Text('Number of seats per row'), numeric: true),
+                    DataColumn(
+                      numeric: false,
+                      label: Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [Text("Edit")],
+                        ),
                       ),
                     ),
-                  ),
-                  DataColumn(
-                    numeric: false,
-                    label: Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("Delete")],
+                    DataColumn(
+                      numeric: false,
+                      label: Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [Text("Delete")],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-                rows: _halls!.isNotEmpty
-                    ? _halls!.map((hall) {
-                        return DataRow(
-                          cells: [
-                            DataCell(
-                              Tooltip(
-                                message: hall.name,
-                                child: Text(
-                                  hall.name.length > 20
-                                      ? "${hall.name.substring(0, 20)} ..."
-                                      : hall.name,
+                  ],
+                  rows: _halls!.isNotEmpty
+                      ? _halls!.map((hall) {
+                          return DataRow(
+                            cells: [
+                              DataCell(
+                                Tooltip(
+                                  message: hall.name,
+                                  child: Text(
+                                    hall.name.length > 20
+                                        ? "${hall.name.substring(0, 20)} ..."
+                                        : hall.name,
+                                  ),
                                 ),
                               ),
-                            ),
-                            DataCell(Text(hall.totalSeats.toString())),
-                            DataCell(Text(hall.totalRows.toString())),
-                            DataCell(Text(hall.numberOfSeatsPerRow.toString())),
-                            DataCell(
-                              Center(
-                                child: IconButton(
-                                  icon: Icon(Icons.edit,
-                                      color: Theme.of(context).primaryColor),
-                                  onPressed: () {
-                                    openEditModal(hall);
-                                  },
+                              DataCell(Text(hall.totalSeats.toString())),
+                              DataCell(Text(hall.totalRows.toString())),
+                              DataCell(
+                                  Text(hall.numberOfSeatsPerRow.toString())),
+                              DataCell(
+                                Center(
+                                  child: IconButton(
+                                    icon: Icon(Icons.edit,
+                                        color: Theme.of(context).primaryColor),
+                                    onPressed: () {
+                                      openEditModal(hall);
+                                    },
+                                  ),
                                 ),
                               ),
-                            ),
-                            DataCell(
-                              Center(
-                                child: IconButton(
-                                  icon: const Icon(Icons.delete,
-                                      color: Colors.red),
-                                  onPressed: () {
-                                    openDeleteModal(hall);
-                                  },
+                              DataCell(
+                                Center(
+                                  child: IconButton(
+                                    icon: const Icon(Icons.delete,
+                                        color: Colors.red),
+                                    onPressed: () {
+                                      openDeleteModal(hall);
+                                    },
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        );
-                      }).toList()
-                    : [
-                        const DataRow(cells: [
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                          DataCell(Center(child: Text('No search results'))),
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                        ])
-                      ],
+                            ],
+                          );
+                        }).toList()
+                      : [
+                          const DataRow(cells: [
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Center(child: Text('No search results'))),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                          ])
+                        ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

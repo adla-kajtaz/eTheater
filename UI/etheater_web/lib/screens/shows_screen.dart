@@ -162,184 +162,188 @@ class _ShowScreenState extends State<ShowScreen> {
     }
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                const SizedBox(width: 16.0),
-                Expanded(
-                  child: TextFormField(
-                    controller: _searchController,
-                    style: const TextStyle(
-                        color: Color.fromARGB(255, 250, 250, 250)),
-                    decoration: const InputDecoration(
-                      labelText: 'Show',
-                      hintText: 'Enter the name of the show',
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16.0),
-                Expanded(
-                  child: DropdownButtonFormField<String>(
-                    iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
-                    dropdownColor: const Color.fromARGB(255, 51, 51, 52),
-                    style: const TextStyle(
-                        color: Color.fromARGB(255, 250, 250, 250)),
-                    decoration: const InputDecoration(
-                      labelText: 'Show genre',
-                      labelStyle:
-                          TextStyle(color: Color.fromARGB(255, 144, 135, 135)),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 144, 135, 135)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const SizedBox(width: 16.0),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _searchController,
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 250, 250, 250)),
+                      decoration: const InputDecoration(
+                        labelText: 'Show',
+                        hintText: 'Enter the name of the show',
                       ),
                     ),
-                    value: _showGenre,
-                    onChanged: (value) {
-                      setState(() {
-                        _showGenre = value ?? 'All';
-                      });
-                    },
-                    items: <String>[
-                      'All',
-                      'Drama',
-                      'Komedija',
-                      'Opera',
-                      'Mjuzikl',
-                      'Balet',
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
                   ),
-                ),
-                const SizedBox(width: 16.0),
-                ElevatedButton(
-                  onPressed: () {
-                    loadData();
-                  },
-                  child: const Text('Search'),
-                ),
-                const SizedBox(width: 16.0),
-                ElevatedButton(
-                  onPressed: () {
-                    openAddModal();
-                  },
-                  child: const Text('+'),
-                ),
-                const SizedBox(width: 16.0),
-              ],
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: DataTable(
-                columnSpacing: 0,
-                columns: const [
-                  DataColumn(label: Text('Name')),
-                  DataColumn(label: Text('Duration')),
-                  DataColumn(label: Text('Show genre')),
-                  DataColumn(label: Text('Edit')),
-                  DataColumn(label: Text('Delete')),
-                  DataColumn(label: Text('Add actor')),
-                  DataColumn(label: Text('Show actors')),
-                  DataColumn(label: Text('Report')),
+                  const SizedBox(width: 16.0),
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      iconEnabledColor: const Color.fromARGB(255, 204, 36, 68),
+                      dropdownColor: const Color.fromARGB(255, 51, 51, 52),
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 250, 250, 250)),
+                      decoration: const InputDecoration(
+                        labelText: 'Show genre',
+                        labelStyle: TextStyle(
+                            color: Color.fromARGB(255, 144, 135, 135)),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(255, 144, 135, 135)),
+                        ),
+                      ),
+                      value: _showGenre,
+                      onChanged: (value) {
+                        setState(() {
+                          _showGenre = value ?? 'All';
+                        });
+                      },
+                      items: <String>[
+                        'All',
+                        'Drama',
+                        'Komedija',
+                        'Opera',
+                        'Mjuzikl',
+                        'Balet',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  const SizedBox(width: 16.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      loadData();
+                    },
+                    child: const Text('Search'),
+                  ),
+                  const SizedBox(width: 16.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      openAddModal();
+                    },
+                    child: const Text('+'),
+                  ),
+                  const SizedBox(width: 16.0),
                 ],
-                rows: _shows!.isNotEmpty
-                    ? _shows!.map((show) {
-                        return DataRow(cells: [
-                          DataCell(Text(show.name)),
-                          DataCell(Text(show.duration.toString())),
-                          DataCell(Text(show.showGenre.name)),
-                          DataCell(
-                            IconButton(
-                              icon: Icon(Icons.edit,
-                                  color: Theme.of(context).primaryColor),
-                              onPressed: () {
-                                openEditModal(show);
-                              },
-                            ),
-                          ),
-                          DataCell(
-                            IconButton(
-                              icon: const Icon(Icons.delete, color: Colors.red),
-                              onPressed: () {
-                                openDeleteModal(show);
-                              },
-                            ),
-                          ),
-                          DataCell(
-                            IconButton(
-                              icon: Icon(Icons.person_add,
-                                  color: Theme.of(context).primaryColor),
-                              onPressed: () {
-                                showDialog(
-                                  barrierDismissible: true,
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AddActorShowModal(
-                                      showName: show.name,
-                                      showId: show.showId,
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          ),
-                          DataCell(
-                            IconButton(
-                              icon: Icon(Icons.format_list_bulleted,
-                                  color: Theme.of(context).primaryColor),
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  ActorListScreen.routeName,
-                                  arguments: {
-                                    'showId': show.showId,
-                                    'name': show.name
-                                  },
-                                );
-                              },
-                            ),
-                          ),
-                          DataCell(
-                            IconButton(
-                              icon: Icon(Icons.addchart,
-                                  color: Theme.of(context).primaryColor),
-                              onPressed: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: const Text('Revenue per show'),
-                                      content: ShowRevenue(
-                                        showId: show.showId,
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          ),
-                        ]);
-                      }).toList()
-                    : [
-                        const DataRow(cells: [
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                          DataCell(Center(child: Text('No search results'))),
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                        ])
-                      ],
               ),
-            ),
-          ],
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: DataTable(
+                  columnSpacing: 0,
+                  columns: const [
+                    DataColumn(label: Text('Name')),
+                    DataColumn(label: Text('Duration')),
+                    DataColumn(label: Text('Show genre')),
+                    DataColumn(label: Text('Edit')),
+                    DataColumn(label: Text('Delete')),
+                    DataColumn(label: Text('Add actor')),
+                    DataColumn(label: Text('Show actors')),
+                    DataColumn(label: Text('Report')),
+                  ],
+                  rows: _shows!.isNotEmpty
+                      ? _shows!.map((show) {
+                          return DataRow(cells: [
+                            DataCell(Text(show.name)),
+                            DataCell(Text(show.duration.toString())),
+                            DataCell(Text(show.showGenre.name)),
+                            DataCell(
+                              IconButton(
+                                icon: Icon(Icons.edit,
+                                    color: Theme.of(context).primaryColor),
+                                onPressed: () {
+                                  openEditModal(show);
+                                },
+                              ),
+                            ),
+                            DataCell(
+                              IconButton(
+                                icon:
+                                    const Icon(Icons.delete, color: Colors.red),
+                                onPressed: () {
+                                  openDeleteModal(show);
+                                },
+                              ),
+                            ),
+                            DataCell(
+                              IconButton(
+                                icon: Icon(Icons.person_add,
+                                    color: Theme.of(context).primaryColor),
+                                onPressed: () {
+                                  showDialog(
+                                    barrierDismissible: true,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AddActorShowModal(
+                                        showName: show.name,
+                                        showId: show.showId,
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                            DataCell(
+                              IconButton(
+                                icon: Icon(Icons.format_list_bulleted,
+                                    color: Theme.of(context).primaryColor),
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    ActorListScreen.routeName,
+                                    arguments: {
+                                      'showId': show.showId,
+                                      'name': show.name
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                            DataCell(
+                              IconButton(
+                                icon: Icon(Icons.addchart,
+                                    color: Theme.of(context).primaryColor),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('Revenue per show'),
+                                        content: ShowRevenue(
+                                          showId: show.showId,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          ]);
+                        }).toList()
+                      : [
+                          const DataRow(cells: [
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Center(child: Text('No search results'))),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                          ])
+                        ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

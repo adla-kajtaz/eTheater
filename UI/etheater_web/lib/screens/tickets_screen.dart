@@ -208,91 +208,94 @@ class _TicketsScreenState extends State<TicketsScreen> {
     return Scaffold(
         appBar: AppBar(title: const Text('Ticket view')),
         body: SingleChildScrollView(
-          child: Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Checkbox(
-                  value: filterActive,
-                  onChanged: (bool? s) {
-                    setState(() {
-                      filterActive = s!;
-                    });
-                  },
-                  activeColor: Theme.of(context).primaryColor,
-                ),
-                const Text(
-                  'Active',
-                  style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
-                ),
-                const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    loadData();
-                  },
-                  child: const Text('Search'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    openDeleteModal();
-                  },
-                  child: const Text('Delete'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    createReport();
-                  },
-                  child: const Text('Report'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    seatingView();
-                  },
-                  child: const Text('Seating view'),
-                ),
-                const SizedBox(width: 10),
-              ],
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: DataTable(
-                columnSpacing: 0,
-                columns: const [
-                  DataColumn(label: Text('Number of seat')),
-                  DataColumn(label: Text('Number of row')),
-                  DataColumn(label: Text('Seat')),
-                  DataColumn(label: Text('Active')),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Checkbox(
+                    value: filterActive,
+                    onChanged: (bool? s) {
+                      setState(() {
+                        filterActive = s!;
+                      });
+                    },
+                    activeColor: Theme.of(context).primaryColor,
+                  ),
+                  const Text(
+                    'Active',
+                    style: TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
+                  ),
+                  const SizedBox(width: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      loadData();
+                    },
+                    child: const Text('Search'),
+                  ),
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      openDeleteModal();
+                    },
+                    child: const Text('Delete'),
+                  ),
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      createReport();
+                    },
+                    child: const Text('Report'),
+                  ),
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      seatingView();
+                    },
+                    child: const Text('Seating view'),
+                  ),
+                  const SizedBox(width: 10),
                 ],
-                rows: _tickets.isNotEmpty
-                    ? _tickets.map((ticket) {
-                        return DataRow(cells: [
-                          DataCell(Text(ticket.numberOfSeat.toString())),
-                          DataCell(Text(ticket.numberOfRow)),
-                          DataCell(Text(ticket.seat)),
-                          DataCell(
-                            Checkbox(
-                              value: ticket.isActive,
-                              onChanged: (bool? s) {},
-                              activeColor: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                        ]);
-                      }).toList()
-                    : [
-                        const DataRow(cells: [
-                          DataCell(Text('')),
-                          DataCell(Center(child: Text('No search results'))),
-                          DataCell(Text('')),
-                          DataCell(Text('')),
-                        ])
-                      ],
               ),
-            )
-          ]),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: DataTable(
+                  columnSpacing: 0,
+                  columns: const [
+                    DataColumn(label: Text('Number of seat')),
+                    DataColumn(label: Text('Number of row')),
+                    DataColumn(label: Text('Seat')),
+                    DataColumn(label: Text('Active')),
+                  ],
+                  rows: _tickets.isNotEmpty
+                      ? _tickets.map((ticket) {
+                          return DataRow(cells: [
+                            DataCell(Text(ticket.numberOfSeat.toString())),
+                            DataCell(Text(ticket.numberOfRow)),
+                            DataCell(Text(ticket.seat)),
+                            DataCell(
+                              Checkbox(
+                                value: ticket.isActive,
+                                onChanged: (bool? s) {},
+                                activeColor: Theme.of(context).primaryColor,
+                              ),
+                            ),
+                          ]);
+                        }).toList()
+                      : [
+                          const DataRow(cells: [
+                            DataCell(Text('')),
+                            DataCell(Center(child: Text('No search results'))),
+                            DataCell(Text('')),
+                            DataCell(Text('')),
+                          ])
+                        ],
+                ),
+              )
+            ]),
+          ),
         ));
   }
 }

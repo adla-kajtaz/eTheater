@@ -82,6 +82,19 @@ class _AddShowScheduleModalState extends State<AddShowScheduleModal> {
       initialDate: showDate,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.dark().copyWith(
+            colorScheme: const ColorScheme.dark(
+              primary: Color.fromARGB(255, 204, 36, 68),
+              onPrimary: Color.fromARGB(255, 250, 250, 250),
+              surface: Color.fromARGB(255, 51, 51, 52),
+              onSurface: Color.fromARGB(255, 250, 250, 250),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
 
     if (picked != null && picked != showDate) {
