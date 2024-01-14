@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ActorListScreen extends StatefulWidget {
-  static const routeName = '/actor-list';
+  static const routeName = '/actor-list/:id/:name';
   final int showId;
   final String name;
   const ActorListScreen({

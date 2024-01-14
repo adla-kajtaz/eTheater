@@ -1,11 +1,11 @@
 import 'package:etheater_web/models/models.dart';
 import 'package:etheater_web/providers/providers.dart';
-import 'package:etheater_web/screens/screens.dart';
 import 'package:etheater_web/widgets/modals/shows/add_actor_show_modal.dart';
 import 'package:etheater_web/widgets/modals/shows/add_show_modal.dart';
 import 'package:etheater_web/widgets/modals/shows/edit_show_modal.dart';
 import 'package:etheater_web/widgets/show_revenue.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class ShowScreen extends StatefulWidget {
@@ -296,14 +296,16 @@ class _ShowScreenState extends State<ShowScreen> {
                                 icon: Icon(Icons.format_list_bulleted,
                                     color: Theme.of(context).primaryColor),
                                 onPressed: () {
-                                  Navigator.pushNamed(
+                                  context.go(
+                                      '/actor-list/${show.showId}/${show.name}');
+                                  /*Navigator.pushNamed(
                                     context,
                                     ActorListScreen.routeName,
                                     arguments: {
                                       'showId': show.showId,
                                       'name': show.name
                                     },
-                                  );
+                                  );*/
                                 },
                               ),
                             ),

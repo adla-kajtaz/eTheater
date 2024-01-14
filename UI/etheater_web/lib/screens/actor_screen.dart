@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ActorScreen extends StatefulWidget {
+  static const routeName = "actors";
   const ActorScreen({super.key});
 
   @override

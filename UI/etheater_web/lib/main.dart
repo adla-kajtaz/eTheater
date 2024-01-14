@@ -3,6 +3,43 @@ import 'package:etheater_web/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/screens.dart';
+import 'package:go_router/go_router.dart';
+
+final GoRouter _router = GoRouter(
+  initialLocation: LoginScreen.routeName,
+  routes: <RouteBase>[
+    GoRoute(
+      path: LoginScreen.routeName,
+      builder: (BuildContext context, GoRouterState state) {
+        return const LoginScreen();
+      },
+    ),
+    GoRoute(
+      path: MainNavigationScreen.routeName,
+      builder: (BuildContext context, GoRouterState state) {
+        return const MainNavigationScreen();
+      },
+    ),
+    GoRoute(
+      path: TicketsScreen.routeName,
+      builder: (BuildContext context, GoRouterState state) {
+        final id = state.pathParameters['id'];
+        return TicketsScreen(showScheduleId: int.parse(id as String));
+      },
+    ),
+    GoRoute(
+      path: ActorListScreen.routeName,
+      builder: (BuildContext context, GoRouterState state) {
+        final id = state.pathParameters['id'];
+        final name = state.pathParameters['name'];
+        return ActorListScreen(
+          showId: int.parse(id as String),
+          name: name as String,
+        );
+      },
+    ),
+  ],
+);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +71,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _router,
       title: 'eTheater Admin',
       theme: ThemeData(
         primaryColor: const Color.fromARGB(255, 250, 250, 250),
@@ -76,8 +114,8 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 204, 36, 68)),
         useMaterial3: true,
       ),
-      initialRoute: LoginScreen.routeName,
-      routes: {
+      //initialRoute: LoginScreen.routeName,
+      /*routes: {
         LoginScreen.routeName: (context) => const LoginScreen(),
         MainNavigationScreen.routeName: (context) =>
             const MainNavigationScreen(),
@@ -91,7 +129,7 @@ class MyApp extends StatelessWidget {
             name: args['name'] as String,
           );
         },
-      },
+      },*/
     );
   }
 }

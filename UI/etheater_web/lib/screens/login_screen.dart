@@ -2,6 +2,7 @@ import 'package:etheater_web/providers/providers.dart';
 import 'package:etheater_web/screens/screens.dart';
 import 'package:etheater_web/utils/util.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 RegExp regexEmail = RegExp(
@@ -112,8 +113,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           TokenProvider.jwtToken = data!.token;
                           saveUserToken(data.token);
                           if (context.mounted) {
-                            Navigator.pushReplacementNamed(
-                                context, MainNavigationScreen.routeName);
+                            context.go(MainNavigationScreen.routeName);
+                            //Navigator.pushReplacementNamed(
+                            //context, MainNavigationScreen.routeName);
                           }
                         } on Exception catch (error) {
                           print(error.toString());

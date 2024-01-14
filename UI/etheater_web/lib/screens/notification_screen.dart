@@ -278,7 +278,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 notification.notificationCategory.name,
                               ),
                             ),
-                            DataCell(Text(notification.user!.userName!)),
+                            DataCell(Text(notification.user!.userName)),
                             DataCell(IconButton(
                               icon: Icon(Icons.edit,
                                   color: Theme.of(context).primaryColor),

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TicketsScreen extends StatefulWidget {
-  static const routeName = '/tickets';
+  static const routeName = '/tickets/:id';
   final int showScheduleId;
   const TicketsScreen({
     super.key,
