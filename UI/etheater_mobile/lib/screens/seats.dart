@@ -311,7 +311,7 @@ class _SeatsState extends State<Seats> {
                           color: Color.fromARGB(255, 227, 223, 223),
                           fontSize: 20),
                     ),
-                    const SizedBox(width: 250),
+                    const SizedBox(width: 180),
                     Text(
                       '${(_showSchedule.ticketPrice! * selectedSeats!.length)} KM',
                       style: const TextStyle(

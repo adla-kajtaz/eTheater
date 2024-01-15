@@ -35,6 +35,8 @@ namespace eTheater.Services
         {
             var filteredQuery = base.AddFilter(query, search);
 
+            if (!string.IsNullOrWhiteSpace(search?.ShowName))
+                filteredQuery = filteredQuery.Where(x => x.Show.Name.ToLower().Contains(search.ShowName.ToLower()));
             if (search.ShowId != null)
                 filteredQuery = filteredQuery.Where(x => x.ShowId == search.ShowId);
             if (search.HallId != null)

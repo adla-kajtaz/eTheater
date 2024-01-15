@@ -29,7 +29,7 @@ class SuccessfulPurchase extends StatelessWidget {
                           const Text(
                             'Successful purchase',
                             style: TextStyle(
-                                fontSize: 32,
+                                fontSize: 30,
                                 color: Color.fromARGB(255, 250, 250, 250)),
                           ),
                           const SizedBox(height: 10),

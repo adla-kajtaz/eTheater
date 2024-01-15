@@ -3,7 +3,7 @@ import 'package:etheater_mobile/screens/recommendation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/showSchedule_provider.dart';
-import '../widgets/show_listing.dart';
+import 'show_listing.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -67,12 +67,12 @@ class _HomeState extends State<Home> {
                 indicatorColor: Colors.white,
                 tabs: myTabs),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(16),
+          body: const Padding(
+            padding: EdgeInsets.all(16),
             child: TabBarView(
               children: [
-                ShowListing(showSchedules: [...showSchedules]),
-                const Recommend(),
+                ShowListing(),
+                Recommend(),
               ],
             ),
           ),

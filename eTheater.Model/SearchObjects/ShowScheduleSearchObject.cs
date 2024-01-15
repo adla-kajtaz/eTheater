@@ -8,6 +8,8 @@ namespace eTheater.Model.SearchObjects
 {
     public class ShowScheduleSearchObject : BaseSearchObject
     {
+        public string? ShowName { get; set; }
+
         public int? ShowId { get; set; }
 
         public int? HallId { get; set; }

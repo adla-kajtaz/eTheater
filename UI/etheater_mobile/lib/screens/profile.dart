@@ -113,7 +113,7 @@ class _ProfileState extends State<Profile> {
               ),
               const SizedBox(height: 5),
               SizedBox(
-                height: 550,
+                height: 460,
                 width: double.infinity,
                 child: PurchaseHistory(
                   purchases: [...purchases],
