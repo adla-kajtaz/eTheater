@@ -55,8 +55,7 @@ class _ShowListingState extends State<ShowListing> {
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   border: OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(20.0), // Adjust the border radius
+                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),

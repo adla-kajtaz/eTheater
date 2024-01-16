@@ -1,5 +1,6 @@
 import 'package:etheater_mobile/models/models.dart';
 import 'package:etheater_mobile/providers/purchase_provider.dart';
+import 'package:etheater_mobile/providers/theater_provider.dart';
 import 'package:etheater_mobile/providers/ticket_provider.dart';
 import 'package:etheater_mobile/screens/screens.dart';
 import 'package:flutter/material.dart';
@@ -21,12 +22,16 @@ class _SeatsState extends State<Seats> {
   List<Ticket>? selectedSeats = [];
   TicketProvider? _ticketProvider;
   PurchaseProvider? _purchaseProvider;
+  TheaterInfoProvider? _theaterProvider;
+  TheaterInfo? _theaterInfo;
   @override
   void initState() {
     super.initState();
     _ticketProvider = context.read<TicketProvider>();
     _purchaseProvider = context.read<PurchaseProvider>();
+    _theaterProvider = context.read<TheaterInfoProvider>();
     loadData();
+    loadTheater();
   }
 
   Future loadData() async {
@@ -37,6 +42,18 @@ class _SeatsState extends State<Seats> {
     setState(() {
       tickets = tempData!;
     });
+  }
+
+  void loadTheater() async {
+    var data = await _theaterProvider!.getById(1);
+    setState(() {
+      _theaterInfo = data;
+    });
+  }
+
+  int calculateCrossAxisCount() {
+    int totalSeatsInRow = widget.showSchedule!.hall!.numberOfSeatsPerRow;
+    return totalSeatsInRow;
   }
 
   void pay(BuildContext context, String paymentIntentId, int purchaseId) async {
@@ -81,6 +98,16 @@ class _SeatsState extends State<Seats> {
                 color: Color.fromARGB(255, 250, 250, 250),
                 fontWeight: FontWeight.bold),
           ),
+          actions: const [
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(
+                Icons.theater_comedy,
+                color: Color.fromARGB(255, 250, 250, 250),
+                size: 40,
+              ),
+            ),
+          ],
         ),
         body: const Center(
           child: Text(
@@ -127,9 +154,9 @@ class _SeatsState extends State<Seats> {
                             fontSize: 20,
                             color: Color.fromARGB(255, 144, 135, 135)),
                       ),
-                      const Text(
-                        "Narodno pozoriste Mostar",
-                        style: TextStyle(
+                      Text(
+                        _theaterInfo!.name,
+                        style: const TextStyle(
                             fontSize: 15,
                             color: Color.fromARGB(255, 144, 135, 135)),
                       ),
@@ -243,7 +270,7 @@ class _SeatsState extends State<Seats> {
                     ],
                   ),
                   SizedBox(
-                    height: 350,
+                    height: 300,
                     width: double.infinity,
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
@@ -251,7 +278,7 @@ class _SeatsState extends State<Seats> {
                         children: [
                           Expanded(
                             child: GridView.count(
-                              crossAxisCount: 10,
+                              crossAxisCount: calculateCrossAxisCount(),
                               children: List.generate(tickets.length, (index) {
                                 final seat = tickets[index];
                                 return InkWell(
@@ -303,7 +330,7 @@ class _SeatsState extends State<Seats> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 10),
                   Row(children: [
                     const Text(
                       'Total:',
@@ -311,7 +338,7 @@ class _SeatsState extends State<Seats> {
                           color: Color.fromARGB(255, 227, 223, 223),
                           fontSize: 20),
                     ),
-                    const SizedBox(width: 180),
+                    const SizedBox(width: 160),
                     Text(
                       '${(_showSchedule.ticketPrice! * selectedSeats!.length)} KM',
                       style: const TextStyle(
@@ -331,9 +358,9 @@ class _SeatsState extends State<Seats> {
                       ),
                       child: InkWell(
                         onTap: () async {
-                          if (selectedSeats!.isEmpty)
+                          if (selectedSeats!.isEmpty) {
                             showMessage("You must choose at least one seat!");
-                          else {
+                          } else {
                             Map newPurchase = {
                               "showScheduleId": _showSchedule.showScheduleId,
                               "tickets":
