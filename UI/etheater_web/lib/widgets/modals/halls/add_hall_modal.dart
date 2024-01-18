@@ -37,7 +37,7 @@ class _AddHallModalState extends State<AddHallModal> {
             TextFormField(
               style: const TextStyle(color: Color.fromARGB(255, 250, 250, 250)),
               decoration: const InputDecoration(
-                labelText: 'Halls name',
+                labelText: 'Name',
               ),
               onChanged: (value) {
                 name = value;
