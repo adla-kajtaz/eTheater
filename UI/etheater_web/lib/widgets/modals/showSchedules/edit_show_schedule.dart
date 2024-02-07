@@ -38,6 +38,7 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
     ticketPriceController =
         TextEditingController(text: widget.showSchedule.ticketPrice.toString());
     _showDate = widget.showSchedule.showDate;
+    selectedTime = widget.showSchedule.showTime;
     loadShows();
     fetchSlots();
   }
@@ -55,8 +56,11 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
   }
 
   void fetchSlots() async {
-    var data = await _scheduleProvider!.getTimeSlotsForDate(
-        {'hallId': widget.showSchedule.hallId, 'date': _showDate});
+    var data = await _scheduleProvider!.getTimeSlotsForDate2({
+      'hallId': widget.showSchedule.hallId,
+      'date': _showDate,
+      'showScheduleId': widget.showSchedule.showScheduleId
+    });
     setState(() {
       _slots = data;
     });
@@ -213,7 +217,7 @@ class _EditShowScheduleModalState extends State<EditShowScheduleModal> {
               value: selectedTime,
               onChanged: (value) {
                 setState(() {
-                  selectedTime = value;
+                  selectedTime = value!;
                 });
               },
               validator: (value) {

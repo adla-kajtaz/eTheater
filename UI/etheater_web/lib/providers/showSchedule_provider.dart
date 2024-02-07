@@ -43,6 +43,23 @@ class ShowScheduleProvider extends BaseProvider<ShowSchedule> {
     return [];
   }
 
+  Future<List<String>> getTimeSlotsForDate2([dynamic search]) async {
+    var url = "$_baseUrl" + "ShowSchedule/getTimeSlotsForDate2";
+    if (search != null) {
+      String queryString = getQueryString(search);
+      url = "$url?$queryString";
+    }
+    var headers = createHeaders();
+    var uri = Uri.parse(url);
+    var response = await http!.get(uri, headers: headers);
+    if (isValidResponseCode(response)) {
+      var data = jsonDecode(response.body);
+      List<String> slots = List<String>.from(data);
+      return slots;
+    }
+    return [];
+  }
+
   Future<bool> deleteTickets(int id) async {
     var url = "$_baseUrl" + "ShowSchedule/deleteTickets/$id";
     var headers = createHeaders();

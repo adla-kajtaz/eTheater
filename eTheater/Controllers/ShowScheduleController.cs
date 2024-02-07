@@ -21,6 +21,12 @@ namespace eTheater.Controllers
             return _service.GetTimeSlotsForDate(hallId, date);
         }
 
+        [HttpGet("getTimeSlotsForDate2")]
+        public List<string> GetTimeSlotsForDate2(int hallId, DateTime date, int showScheduleId)
+        {
+            return _service.GetTimeSlotsForDate2(hallId, date, showScheduleId);
+        }
+
         [Authorize]
         [HttpGet("recommend")]
         public List<Model.ShowSchedule> Recommend()

@@ -136,6 +136,20 @@ namespace eTheater.Services
             return responseSlots;
         }
 
+        public List<string> GetTimeSlotsForDate2(int hallId, DateTime date, int showScheduleId)
+        {
+            var showSchedule = _context.ShowSchedules.Where(e => e.ShowScheduleId == showScheduleId).FirstOrDefault();
+            var showSchedules = _context.ShowSchedules.Where(e => e.ShowDate.Date == date.Date && e.HallId == hallId);
+            List<string> slots = Helper.getTimeSlots();
+            List<string> responseSlots = new List<string> { };
+            foreach (string slot in slots)
+            {
+                if (!showSchedules.Any(e => e.ShowTime == slot) || showSchedule.ShowTime == slot)
+                    responseSlots.Add(slot);
+            };
+            return responseSlots;
+        }
+
         static object isLocked = new object();
         static MLContext mlContext = null;
         static ITransformer model = null;
