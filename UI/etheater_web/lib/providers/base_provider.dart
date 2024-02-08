@@ -158,11 +158,7 @@ abstract class BaseProvider<T> with ChangeNotifier {
 
   bool isValidResponseCode(Response response) {
     if (response.statusCode == 200) {
-      if (response.body != "") {
-        return true;
-      } else {
-        return false;
-      }
+      return true;
     } else if (response.statusCode == 204) {
       return true;
     } else if (response.statusCode == 400) {

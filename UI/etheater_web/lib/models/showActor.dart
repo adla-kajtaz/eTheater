@@ -1,6 +1,5 @@
 import 'package:etheater_web/models/models.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'enums.dart';
 
 part 'showActor.g.dart';
 
@@ -21,6 +20,7 @@ class ShowActor {
       this.show,
       this.isDeleted});
 
-  factory ShowActor.fromJson(Map<String, dynamic> json) => _$ShowActorFromJson(json);
+  factory ShowActor.fromJson(Map<String, dynamic> json) =>
+      _$ShowActorFromJson(json);
   Map<String, dynamic> toJson() => _$ShowActorToJson(this);
 }
