@@ -237,7 +237,17 @@ class _TicketsScreenState extends State<TicketsScreen> {
                   const SizedBox(width: 10),
                   ElevatedButton(
                     onPressed: () {
-                      openDeleteModal();
+                      if (_tickets.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Text(
+                                'You cannot delete tickets because there is no tickets'),
+                          ),
+                        );
+                      } else {
+                        openDeleteModal();
+                      }
                     },
                     child: const Text('Delete'),
                   ),
