@@ -244,14 +244,34 @@ class _TicketsScreenState extends State<TicketsScreen> {
                   const SizedBox(width: 10),
                   ElevatedButton(
                     onPressed: () {
-                      createReport();
+                      if (_tickets.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Text(
+                                'You cannot see report because there is no tickets'),
+                          ),
+                        );
+                      } else {
+                        createReport();
+                      }
                     },
                     child: const Text('Report'),
                   ),
                   const SizedBox(width: 10),
                   ElevatedButton(
                     onPressed: () {
-                      seatingView();
+                      if (_tickets.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Text(
+                                'You cannot see the seat view because there is no tickets'),
+                          ),
+                        );
+                      } else {
+                        seatingView();
+                      }
                     },
                     child: const Text('Seating view'),
                   ),

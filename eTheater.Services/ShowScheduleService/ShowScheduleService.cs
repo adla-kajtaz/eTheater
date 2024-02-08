@@ -125,7 +125,7 @@ namespace eTheater.Services
 
         public List<string> GetTimeSlotsForDate(int hallId, DateTime date)
         {
-            var showSchedules = _context.ShowSchedules.Where(e => e.ShowDate.Date == date.Date && e.HallId == hallId);
+            var showSchedules = _context.ShowSchedules.Where(e => e.ShowDate.Date == date.Date && e.HallId == hallId && e.IsDeleted == false);
             List<string> slots = Helper.getTimeSlots();
             List<string> responseSlots = new List<string> { };
             foreach (string slot in slots)
@@ -139,7 +139,7 @@ namespace eTheater.Services
         public List<string> GetTimeSlotsForDate2(int hallId, DateTime date, int showScheduleId)
         {
             var showSchedule = _context.ShowSchedules.Where(e => e.ShowScheduleId == showScheduleId).FirstOrDefault();
-            var showSchedules = _context.ShowSchedules.Where(e => e.ShowDate.Date == date.Date && e.HallId == hallId);
+            var showSchedules = _context.ShowSchedules.Where(e => e.ShowDate.Date == date.Date && e.HallId == hallId && e.IsDeleted == false);
             List<string> slots = Helper.getTimeSlots();
             List<string> responseSlots = new List<string> { };
             foreach (string slot in slots)

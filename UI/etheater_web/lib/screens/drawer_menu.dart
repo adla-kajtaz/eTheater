@@ -1,4 +1,3 @@
-import 'package:etheater_web/screens/profile_screen.dart';
 import 'package:etheater_web/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -24,9 +23,8 @@ class DrawerMenu extends StatelessWidget {
         itemCount: _navigationItems.length,
         itemBuilder: (BuildContext context, int index) {
           return ListTile(
-            title: Text('Actors',
-                style:
-                    const TextStyle(color: Color.fromARGB(255, 250, 250, 250))),
+            title: const Text('Actors',
+                style: TextStyle(color: Color.fromARGB(255, 250, 250, 250))),
             // selected: _selectedIndex == index,
             onTap: () {
               context.go('/actors');
