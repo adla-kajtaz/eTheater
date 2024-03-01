@@ -1,6 +1,7 @@
 import 'package:etheater_web/models/models.dart';
 import 'package:etheater_web/providers/providers.dart';
 import 'package:etheater_web/screens/screens.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -149,8 +150,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             minimumSize: const Size(double.infinity, 50),
                           ),
                           onPressed: () async {
-                            Navigator.pushReplacementNamed(
-                                context, LoginScreen.routeName);
+                            context.go('/login');
                             TokenProvider.jwtToken = null;
                           },
                           child: const Text('Logout',
